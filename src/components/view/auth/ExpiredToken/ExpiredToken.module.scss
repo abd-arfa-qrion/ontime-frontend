@@ -1,0 +1,20 @@
+.exp {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  opacity: 0.7;
+  position: absolute;
+  z-index: 999;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  &__text {
+    font-size: x-large;
+    position: relative;
+    color: aliceblue;
+    z-index: 9999;
+  }
+  &__expiredbtn {
+    width: 200px;
+  }
+}

@@ -1,0 +1,24 @@
+.bagfilter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  &__search {
+    min-width: 200px;
+  }
+  &__btn {
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    gap: 5px;
+    border-radius: 25px;
+  }
+  &__select {
+    min-width: 100px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+}

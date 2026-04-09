@@ -1,0 +1,8 @@
+.website{
+    display: flex;
+    flex-direction: column;
+    &__content{
+        width: 100%;
+        padding: 20px;
+    }
+}

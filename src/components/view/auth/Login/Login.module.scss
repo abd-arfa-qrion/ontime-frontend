@@ -1,0 +1,28 @@
+.login {
+  &__textfield {
+    width: 100%;
+    margin-top: 20px;
+  }
+  &__button {
+    margin-top: 20px;
+  }
+  &__devider {
+    border-top: #989797 1px solid;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    &__button {
+      background-color: #e3e4e5 !important;
+      color: #496feb !important;
+      width: 100%;
+      padding: 5px !important;
+      border: none;
+      margin-top: 20px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+  }
+}

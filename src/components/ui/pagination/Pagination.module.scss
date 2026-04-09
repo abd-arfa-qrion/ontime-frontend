@@ -1,0 +1,17 @@
+.pagecomponent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  &__select {
+    display: flex;
+    width: 70px;
+    font-size: x-small;
+    justify-content: space-between;
+  }
+  &__pagebutton {
+    margin-top: 10px;
+  }
+}

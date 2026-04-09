@@ -1,0 +1,50 @@
+.enkrip {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  &__error {
+    color: red;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(248, 207, 207);
+  }
+  input {
+    display: none;
+  }
+  &__label {
+    cursor: pointer;
+    width: 100%;
+    border: 2px dotted #dee2e6;
+    border-radius: 10px;
+    padding: 50px 10px;
+    text-align: center;
+    color: #9a9b9b;
+    i {
+      font-size: 40pt;
+    }
+  }
+  &__labelhover {
+    cursor: pointer;
+    width: 100%;
+    border: 2px dotted #dee2e6;
+    border-radius: 10px;
+    padding: 50px 10px;
+    text-align: center;
+    color: #dee2e6;
+    background-color: rgb(56, 56, 56);
+    i {
+      font-size: 40pt;
+    }
+  }
+  &__btn {
+    margin-top: 20px;
+  }
+  &__table {
+    margin-top: 20px;
+    width: 100%;
+    th {
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.madduser {
+  &__bagper {
+    margin-top: 10px;
+    gap: 10px;
+    span {
+      color: rgb(8, 55, 195);
+    }
+  }
+  &__btnsubmit {
+    margin-top: 20px;
+  }
+  &__bagusername {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    &__username {
+      width: 50%;
+    }
+    &__password {
+      width: 50%;
+    }
+  }
+}

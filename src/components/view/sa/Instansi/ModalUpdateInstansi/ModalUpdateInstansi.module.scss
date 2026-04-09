@@ -1,0 +1,20 @@
+.mupdateinstansi {
+  &__title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  &__bagperusahaan {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    p {
+      color: blue;
+    }
+  }
+  &__input {
+    width: 100%;
+  }
+  &__btn {
+    margin-top: 20px;
+  }
+}

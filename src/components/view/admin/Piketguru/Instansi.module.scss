@@ -1,0 +1,85 @@
+.instansi {
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__content {
+    &__addButton {
+      width: 140px;
+      margin-bottom: 10px;
+    }
+    &__table {
+      width: 100%;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border: 1px solid #dee2e6;
+      thead {
+        tr {
+          background-color: #f4f4f4;
+        }
+        th {
+          text-align: left;
+          padding: 8px;
+        }
+      }
+
+      th,
+      td:nth-of-type(1) {
+        max-width: 10px;
+      }
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #f4f4f4;
+      }
+      tr {
+        background-color: #fff;
+        th:last-child,
+        td:last-child {
+          max-width: 30px !important;
+        }
+      }
+      &__number {
+        max-width: 20px !important;
+      }
+      &__action {
+        justify-content: center;
+        flex-direction: column;
+        &__button {
+          text-decoration: none;
+          border: none;
+          color: #fff;
+          cursor: pointer;
+          border-radius: 10px;
+          background-color: #df9407;
+          padding: 0 5px;
+        }
+        &__menu {
+          background-color: #fff;
+          font-family: "IBM Plex Sans", sans-serif;
+          cursor: pointer;
+          font-size: 0.875rem;
+          box-sizing: border-box;
+          padding: 6px;
+          min-width: 90px;
+          border-radius: 12px;
+          overflow: auto;
+          outline: 0px;
+          z-index: 9999;
+          ul {
+            list-style: none;
+            li {
+              padding: 5px;
+              display: flex;
+              justify-content: left;
+              &:hover {
+                color: #df9407;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

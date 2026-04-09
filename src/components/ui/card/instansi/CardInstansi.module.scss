@@ -1,0 +1,64 @@
+.cardinstansi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  &__card {
+    min-width: 250px;
+    border: solid 1.5px #f7f7f7;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: #dedede 3px 4px 12px -5px;
+    &__bagiantext {
+      &__bagianatas {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        &__title {
+          font-weight: bold;
+          font-size: small;
+          margin-bottom: 5px;
+        }
+        &__kode {
+          width: max-content;
+          color: rgb(200, 16, 197);
+          font-size: x-small;
+          padding: 3px 5px;
+          margin-bottom: 5px;
+          background-color: #dedede;
+          border-radius: 15px;
+        }
+      }
+      &__bagianbawah {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        &__harga {
+          font-size: small;
+          color: #8e8e8e;
+        }
+        &__btnrestok {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background-color: #aa076e;
+          border: none;
+          color: #f7f7f7;
+          padding: 5px;
+          border-radius: 5px;
+          font-size: x-small;
+          font-weight: 600;
+          cursor: pointer;
+          &:hover {
+            background-color: #8e076e;
+            transition: 0.3s;
+          }
+          i {
+            font-size: small;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
