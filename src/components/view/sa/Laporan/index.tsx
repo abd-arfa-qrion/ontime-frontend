@@ -5,7 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import * as XLSX from "xlsx";
 import { renderToString } from "react-dom/server";
 import SaLayout from "@/components/layout/SaLayout";
-import transaksiServices from "@/services/transaksi";
 import ExportDataTransaksiTemplate from "@/components/ui/laporan/TempalteExcel/LapTransaksi";
 import FilterLaporanTransaksi from "@/components/ui/laporan/filterlaporantransaksi";
 
@@ -18,14 +17,14 @@ const LaporanCetak = (props: Proptype) => {
   const exportToExcel = (data: any[], fileName: string, template: string) => {
     // Render komponen menjadi HTML string
     const htmlString = renderToString(
-      <ExportDataTransaksiTemplate data={data} />
+      <ExportDataTransaksiTemplate data={data} />,
     );
 
     // Konversi HTML string menjadi worksheet
     const worksheet = XLSX.utils.table_to_sheet(
       new DOMParser()
         .parseFromString(htmlString, "text/html")
-        .querySelector("table")
+        .querySelector("table"),
     );
 
     // Buat workbook dan tambahkan worksheet
@@ -39,121 +38,121 @@ const LaporanCetak = (props: Proptype) => {
   const getAllTransaksi = async (e: { selected: string; dataDate: any }) => {
     console.log("tarik data siswa", e.selected);
     if (e.selected === "sukses") {
-      try {
-        const result = await transaksiServices.getTransaksiSuksesByTgl(
-          e.dataDate,
-          session.data?.accessToken
-        );
-        if (result.status === 200) {
-          if (result.data.status_code === 200) {
-            console.log("data transaksi", result.data.data);
-            exportToExcel(
-              result.data.data,
-              `Data_Transaksi_${e.selected}`,
-              "DataTransaksi"
-            );
-            setIsLoading("");
-            setToaster({
-              variant: "success",
-              message: "Download data Transaksi berhasil!",
-            });
-          } else {
-            setToaster({
-              variant: "danger",
-              message: `Data tidak ditemukan! ${result.data.data.message}`,
-            });
-            setIsLoading("");
-          }
-        } else {
-          setToaster({
-            variant: "danger",
-            message: `terjadi kesalahan dalam fetching data ${result.data.message}`,
-          });
-          setIsLoading("");
-        }
-      } catch (error) {
-        setToaster({
-          variant: "danger",
-          message: `Data Error! ${error}`,
-        });
-        setIsLoading("");
-      }
-    } else if (e.selected === "gagal") {
-      try {
-        const result = await transaksiServices.getTransaksiGagalByTgl(
-          e.dataDate,
-          session.data?.accessToken
-        );
-        if (result.status === 200) {
-          if (result.data.status_code === 200) {
-            console.log("data transaksi", result.data.data);
-            exportToExcel(
-              result.data.data,
-              `Data_Transaksi_${e.selected}`,
-              "DataTransaksi"
-            );
-            setIsLoading("");
-            setToaster({
-              variant: "success",
-              message: "Download data Transaksi berhasil!",
-            });
-          } else {
-            setToaster({
-              variant: "danger",
-              message: `Data tidak ditemukan! ${result.data.data.message}`,
-            });
-            setIsLoading("");
-          }
-        } else {
-          setToaster({
-            variant: "danger",
-            message: `terjadi kesalahan dalam fetching data ${result.data.message}`,
-          });
-          setIsLoading("");
-        }
-      } catch (error) {
-        setToaster({
-          variant: "danger",
-          message: `Data Error! ${error}`,
-        });
-        setIsLoading("");
-      }
-    } else {
-      try {
-        const result = await transaksiServices.getAllTransaksiByTgl(
-          e.dataDate,
-          session.data?.accessToken
-        );
-        if (result.status === 200) {
-          if (result.data.status_code === 200) {
-            console.log("data siswa", result.data.data);
-            exportToExcel(result.data.data, "Data_Transaksi", "DataTransaksi");
-            setIsLoading("");
-            setToaster({
-              variant: "success",
-              message: "Download data pembayaran berhasil!",
-            });
-          } else {
-            setToaster({
-              variant: "danger",
-              message: `Data tidak ditemukan! ${result.data.data.message}`,
-            });
-            setIsLoading("");
-          }
-        } else {
-          setToaster({
-            variant: "danger",
-            message: `terjadi kesalahan dalam fetching data ${result.data.message}`,
-          });
-          setIsLoading("");
-        }
-      } catch (error) {
-        setToaster({
-          variant: "danger",
-          message: `Data Error! ${error}`,
-        });
-        setIsLoading("");
-      }
+      //   try {
+      //     const result = await transaksiServices.getTransaksiSuksesByTgl(
+      //       e.dataDate,
+      //       session.data?.accessToken
+      //     );
+      //     if (result.status === 200) {
+      //       if (result.data.status_code === 200) {
+      //         console.log("data transaksi", result.data.data);
+      //         exportToExcel(
+      //           result.data.data,
+      //           `Data_Transaksi_${e.selected}`,
+      //           "DataTransaksi"
+      //         );
+      //         setIsLoading("");
+      //         setToaster({
+      //           variant: "success",
+      //           message: "Download data Transaksi berhasil!",
+      //         });
+      //       } else {
+      //         setToaster({
+      //           variant: "danger",
+      //           message: `Data tidak ditemukan! ${result.data.data.message}`,
+      //         });
+      //         setIsLoading("");
+      //       }
+      //     } else {
+      //       setToaster({
+      //         variant: "danger",
+      //         message: `terjadi kesalahan dalam fetching data ${result.data.message}`,
+      //       });
+      //       setIsLoading("");
+      //     }
+      //   } catch (error) {
+      //     setToaster({
+      //       variant: "danger",
+      //       message: `Data Error! ${error}`,
+      //     });
+      //     setIsLoading("");
+      //   }
+      // } else if (e.selected === "gagal") {
+      //   try {
+      //     const result = await transaksiServices.getTransaksiGagalByTgl(
+      //       e.dataDate,
+      //       session.data?.accessToken
+      //     );
+      //     if (result.status === 200) {
+      //       if (result.data.status_code === 200) {
+      //         console.log("data transaksi", result.data.data);
+      //         exportToExcel(
+      //           result.data.data,
+      //           `Data_Transaksi_${e.selected}`,
+      //           "DataTransaksi"
+      //         );
+      //         setIsLoading("");
+      //         setToaster({
+      //           variant: "success",
+      //           message: "Download data Transaksi berhasil!",
+      //         });
+      //       } else {
+      //         setToaster({
+      //           variant: "danger",
+      //           message: `Data tidak ditemukan! ${result.data.data.message}`,
+      //         });
+      //         setIsLoading("");
+      //       }
+      //     } else {
+      //       setToaster({
+      //         variant: "danger",
+      //         message: `terjadi kesalahan dalam fetching data ${result.data.message}`,
+      //       });
+      //       setIsLoading("");
+      //     }
+      //   } catch (error) {
+      //     setToaster({
+      //       variant: "danger",
+      //       message: `Data Error! ${error}`,
+      //     });
+      //     setIsLoading("");
+      //   }
+      // } else {
+      //   try {
+      //     const result = await transaksiServices.getAllTransaksiByTgl(
+      //       e.dataDate,
+      //       session.data?.accessToken
+      //     );
+      //     if (result.status === 200) {
+      //       if (result.data.status_code === 200) {
+      //         console.log("data siswa", result.data.data);
+      //         exportToExcel(result.data.data, "Data_Transaksi", "DataTransaksi");
+      //         setIsLoading("");
+      //         setToaster({
+      //           variant: "success",
+      //           message: "Download data pembayaran berhasil!",
+      //         });
+      //       } else {
+      //         setToaster({
+      //           variant: "danger",
+      //           message: `Data tidak ditemukan! ${result.data.data.message}`,
+      //         });
+      //         setIsLoading("");
+      //       }
+      //     } else {
+      //       setToaster({
+      //         variant: "danger",
+      //         message: `terjadi kesalahan dalam fetching data ${result.data.message}`,
+      //       });
+      //       setIsLoading("");
+      //     }
+      //   } catch (error) {
+      //     setToaster({
+      //       variant: "danger",
+      //       message: `Data Error! ${error}`,
+      //     });
+      //     setIsLoading("");
+      //   }
     }
   };
 

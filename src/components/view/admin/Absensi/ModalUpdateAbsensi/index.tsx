@@ -1,7 +1,6 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import Modal from "@/components/ui/modal";
-import instansiServices from "@/services/instansi";
 import { Instansi } from "@/type/Instansi.type";
 import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
@@ -36,27 +35,27 @@ const ModalUpdateAbsensi = (props: Proptypes) => {
     };
 
     console.log(data);
-    const result = await instansiServices.updateInstansi(
-      updateInstansi.id,
-      data,
-      session.data?.accessToken,
-    );
-    if (result.status === 200) {
-      form.reset();
-      setIsLoading(false);
-      setUpdateInstansi({});
-      setToaster({
-        variant: "success",
-        message: "Update Jasa berhasil!",
-      });
-      // feth ulang seluruh data user
-      const { data } = await instansiServices.getAllInstansi(
-        session.data?.accessToken,
-      );
-      setInstansiData(data.data);
-    } else {
-      setIsLoading(false);
-    }
+    // const result = await instansiServices.updateInstansi(
+    //   updateInstansi.id,
+    //   data,
+    //   session.data?.accessToken,
+    // );
+    // if (result.status === 200) {
+    //   form.reset();
+    //   setIsLoading(false);
+    //   setUpdateInstansi({});
+    //   setToaster({
+    //     variant: "success",
+    //     message: "Update Jasa berhasil!",
+    //   });
+    //   // feth ulang seluruh data user
+    //   const { data } = await instansiServices.getAllInstansi(
+    //     session.data?.accessToken,
+    //   );
+    //   setInstansiData(data.data);
+    // } else {
+    //   setIsLoading(false);
+    // }
   };
 
   return (
