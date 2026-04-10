@@ -1,15 +1,11 @@
 import SaLayout from "@/components/layout/SaLayout";
 import ResumePenjualan from "@/components/ui/chart/multibarchart/admin/ResumePenjualan";
 import MyPieChart from "@/components/ui/chart/piechart";
-import dashboardsaServices from "@/services/dashboardsa";
+
 import {
   TransaksiTodayDefault,
   TransaksiTodayType,
 } from "@/type/Dashboard.type";
-import {
-  TransaksiPeriode,
-  TransaksiPeriodeDefault,
-} from "@/type/Transaksi.type";
 import { Button } from "@mui/material";
 import { get } from "http";
 import { useSession } from "next-auth/react";
@@ -29,45 +25,45 @@ type Proptypes = {
 const SaDashboardView = (prop: Proptypes) => {
   const { setToaster } = prop;
   const [countTrx, setCountTrx] = useState<TransaksiTodayType>(
-    TransaksiTodayDefault
+    TransaksiTodayDefault,
   );
-  const [txBlnBerjalan, setTxBlnBerjalan] = useState<TransaksiPeriode[]>([
-    TransaksiPeriodeDefault,
-  ]);
+  // const [txBlnBerjalan, setTxBlnBerjalan] = useState<TransaksiPeriode[]>([
+  //   TransaksiPeriodeDefault,
+  // ]);
   const pieChartData = [
     { name: "Counter", value: countTrx.countCounter },
     { name: "Mobile", value: countTrx.countMobile },
     { name: "Qris", value: countTrx.countQris },
   ];
-  const barChartData = txBlnBerjalan;
+  // const barChartData = txBlnBerjalan;
   const session: any = useSession();
   //ambil count transaksi total dan perchannel
   const getCountTXToday = useCallback(async () => {
-    try {
-      const req = await dashboardsaServices.getCountTxToday(
-        session.data?.accessToken
-      );
-      if (req.status === 200) {
-        if (req.data.status_code === 200) {
-          setCountTrx(req.data.data);
-        } else {
-          setToaster({
-            variant: "warning",
-            message: req.data.status_code + "-" + req.data.message,
-          });
-        }
-      } else {
-        setToaster({
-          variant: "danger",
-          message: req.status + "-" + req.data.message,
-        });
-      }
-    } catch (error) {
-      setToaster({
-        variant: "danger",
-        message: `Data Error! ${error}`,
-      });
-    }
+    // try {
+    //   const req = await dashboardsaServices.getCountTxToday(
+    //     session.data?.accessToken
+    //   );
+    //   if (req.status === 200) {
+    //     if (req.data.status_code === 200) {
+    //       setCountTrx(req.data.data);
+    //     } else {
+    //       setToaster({
+    //         variant: "warning",
+    //         message: req.data.status_code + "-" + req.data.message,
+    //       });
+    //     }
+    //   } else {
+    //     setToaster({
+    //       variant: "danger",
+    //       message: req.status + "-" + req.data.message,
+    //     });
+    //   }
+    // } catch (error) {
+    //   setToaster({
+    //     variant: "danger",
+    //     message: `Data Error! ${error}`,
+    //   });
+    // }
   }, [session.data?.accessToken]);
   //ambil data transaksi bulan berjalan
   const getTXBlnBerjalan = useCallback(async () => {
@@ -85,32 +81,32 @@ const SaDashboardView = (prop: Proptypes) => {
       startDate: Number(startDate),
       endDate: Number(endDate),
     };
-    try {
-      const req = await dashboardsaServices.getTxBlnBerjalan(
-        data,
-        session.data?.accessToken
-      );
-      if (req.status === 200) {
-        if (req.data.status_code === 200) {
-          setTxBlnBerjalan(req.data.data);
-        } else {
-          setToaster({
-            variant: "warning",
-            message: req.data.status_code + "-" + req.data.message,
-          });
-        }
-      } else {
-        setToaster({
-          variant: "danger",
-          message: req.status + "-" + req.data.message,
-        });
-      }
-    } catch (error) {
-      setToaster({
-        variant: "danger",
-        message: `Data Error! ${error}`,
-      });
-    }
+    // try {
+    //   const req = await dashboardsaServices.getTxBlnBerjalan(
+    //     data,
+    //     session.data?.accessToken
+    //   );
+    //   if (req.status === 200) {
+    //     if (req.data.status_code === 200) {
+    //       setTxBlnBerjalan(req.data.data);
+    //     } else {
+    //       setToaster({
+    //         variant: "warning",
+    //         message: req.data.status_code + "-" + req.data.message,
+    //       });
+    //     }
+    //   } else {
+    //     setToaster({
+    //       variant: "danger",
+    //       message: req.status + "-" + req.data.message,
+    //     });
+    //   }
+    // } catch (error) {
+    //   setToaster({
+    //     variant: "danger",
+    //     message: `Data Error! ${error}`,
+    //   });
+    // }
   }, [session.data?.accessToken]);
 
   useEffect(() => {
@@ -153,10 +149,10 @@ const SaDashboardView = (prop: Proptypes) => {
           </div>
         </div>
         <div>
-          <ResumePenjualan
+          {/* <ResumePenjualan
             title="Resume Transaksi Bulan Ini"
             data={barChartData}
-          />
+          /> */}
         </div>
       </div>
     </SaLayout>

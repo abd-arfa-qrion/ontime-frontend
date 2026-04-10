@@ -3,7 +3,6 @@ import { Button } from "@mui/material";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Instansi } from "@/type/Instansi.type";
-import instansiServices from "@/services/instansi";
 
 type Proptypes = {
   deletedInstansi: Instansi | any;
@@ -35,31 +34,31 @@ const ModalDeleteAbsensi = (props: Proptypes) => {
       id: stringId,
     };
 
-    const result = await instansiServices.deleteInstansi(
-      data,
-      session.data?.accessToken
-    );
+    // const result = await instansiServices.deleteInstansi(
+    //   data,
+    //   session.data?.accessToken
+    // );
 
-    // console.log(result)
-    if (result.status === 200) {
-      setToaster({
-        variant: "success",
-        message: result.data.data.message,
-      });
+    // // console.log(result)
+    // if (result.status === 200) {
+    //   setToaster({
+    //     variant: "success",
+    //     message: result.data.data.message,
+    //   });
 
-      setIsLoading(false);
-      // fetch ulang seluruh data user
-      const { data } = await instansiServices.getAllInstansi(
-        session.data?.accessToken
-      );
-      setInstansiData(data.data);
-    } else {
-      setIsLoading(false);
-      setToaster({
-        variant: "danger",
-        message: "Delete Instansi gagal!",
-      });
-    }
+    //   setIsLoading(false);
+    //   // fetch ulang seluruh data user
+    //   const { data } = await instansiServices.getAllInstansi(
+    //     session.data?.accessToken
+    //   );
+    //   setInstansiData(data.data);
+    // } else {
+    //   setIsLoading(false);
+    //   setToaster({
+    //     variant: "danger",
+    //     message: "Delete Instansi gagal!",
+    //   });
+    // }
   };
   return (
     <Modal onClose={() => setDeletedInstansi({})}>
