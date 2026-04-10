@@ -1,14 +1,15 @@
 # Base image
 FROM node:18-alpine
 
-# Mendefinisikan build argument
-ARG NEXT_PUBLIC_BACKEND_API_BASEURL
-ARG NEXT_PUBLIC_GRECAPTCHA_SITE_KEY
-ARG GRECAPTCHA_SECRET_KEY
-ARG BACKEND_API_BASEURL
-ARG FRONTEND_URL
-ARG NEXTAUTH_URL
-ARG NEXT_PUBLIC_NEXTAUTH_URL
+# Mendefinisikan build argument dengan default placeholder agar build tidak crash
+# Nilai asli akan di-override dari .env server saat runtime (docker run --env-file .env)
+ARG NEXT_PUBLIC_BACKEND_API_BASEURL=http://localhost:3000
+ARG NEXT_PUBLIC_GRECAPTCHA_SITE_KEY=placeholder
+ARG GRECAPTCHA_SECRET_KEY=placeholder
+ARG BACKEND_API_BASEURL=http://localhost:3000
+ARG FRONTEND_URL=http://localhost:3000
+ARG NEXTAUTH_URL=http://localhost:3000
+ARG NEXT_PUBLIC_NEXTAUTH_URL=http://localhost:3000
 
 # Mengatur environment variables
 ENV NEXT_PUBLIC_BACKEND_API_BASEURL=$NEXT_PUBLIC_BACKEND_API_BASEURL
