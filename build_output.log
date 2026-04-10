@@ -1,0 +1,492 @@
+$ next build
+ ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  ▲ Next.js 14.2.30
+  - Environments: .env
+
+   Linting and checking validity of types ...
+   Creating an optimized production build ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully
+   Collecting page data ...
+   Generating static pages (0/18) ...
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/kelas". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/expired/tokenexpired". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/auth/login". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+   Generating static pages (4/18) 
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/justifikasi". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/piketguru". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/website/home". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/sa/profile". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+   Generating static pages (8/18) 
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/pengaturan". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/laporan". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/sa". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/pengumuman". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+   Generating static pages (13/18) 
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/absensi". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/500". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/sa/laporan". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+
+Error occurred prerendering page "/admin/akademik". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: NextRouter was not mounted. https://nextjs.org/docs/messages/next-router-not-mounted
+    at h (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/chunks/4417.js:74:43240)
+    at b (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/.next/server/pages/_app.js:2:4717)
+    at renderWithHooks (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5732:15)
+    at renderElement (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6087:14)
+    at renderNode (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6270:12)
+    at renderChildrenArray (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6222:7)
+    at renderNodeDestructiveImpl (/Users/ego.oktafanda/dev/phoenixProj/app ontime/ontime-frontend/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6152:7)
+ ✓ Generating static pages (18/18)
+
+> Export encountered errors on following paths:
+	/
+	/_error: /404
+	/_error: /500
+	/admin
+	/admin/absensi
+	/admin/akademik
+	/admin/justifikasi
+	/admin/kelas
+	/admin/laporan
+	/admin/pengaturan
+	/admin/pengumuman
+	/admin/piketguru
+	/auth/login
+	/expired/tokenexpired
+	/sa
+	/sa/laporan
+	/sa/profile
+	/website/home
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
