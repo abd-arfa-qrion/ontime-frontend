@@ -27,8 +27,8 @@ type Proptypes = {
   setToaster: Dispatch<SetStateAction<{}>>;
   setAddAbsensi: Dispatch<SetStateAction<boolean>>;
   setDataJdwlAkdmk: Dispatch<SetStateAction<JadwalAkademik[]>>;
-  isLoading: boolean;
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: string;
+  setIsLoading: Dispatch<SetStateAction<string>>;
   kelasData: Kelas[];
 };
 const hours = Array.from({ length: 24 }, (_, i) => String(i).padStart(2, "0"));
@@ -154,7 +154,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
   };
   const handleAddAbsensi = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading("btnSubmitAkademik");
     const form: any = e.target as HTMLFormElement;
     const masuk = form.jamMasuk.value + ":" + form.menitMasuk.value + ":00";
     const keluar = form.jamKeluar.value + ":" + form.menitKeluar.value + ":59";
@@ -193,17 +193,17 @@ const ModalAddAbsensi = (props: Proptypes) => {
         );
         console.log(resData);
         setDataJdwlAkdmk(resData.data.data);
-        setIsLoading(false);
+        setIsLoading("");
         setAddAbsensi(false);
       } else {
         setToaster({
           variant: "danger",
           message: result.data.message,
         });
-        setIsLoading(false);
+        setIsLoading("");
       }
     } else {
-      setIsLoading(false);
+      setIsLoading("");
     }
   };
 
@@ -367,8 +367,11 @@ const ModalAddAbsensi = (props: Proptypes) => {
                 </div>
               </div>
 
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? (
+              <Button
+                type="submit"
+                disabled={isLoading === "btnSubmitAkademik"}
+              >
+                {isLoading === "btnSubmitAkademik" ? (
                   <div className="box-loader">
                     <div className="loader" />
                     <p>Loading...</p>

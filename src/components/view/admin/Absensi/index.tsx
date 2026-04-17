@@ -55,7 +55,7 @@ const AbsensiPageView = (prop: Proptype) => {
   // Modal Manajemen
   const [addAbsensi, setAddAbsensi] = useState<boolean>(false);
   const [addAbsensiUmum, setAddAbsensiUmum] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState("");
   // Tab Manajemen
   const [jenisAbsensi, setJenisAbsensi] = useState<string>("umum"); //umum, masuk, pelajaran
 
@@ -104,7 +104,7 @@ const AbsensiPageView = (prop: Proptype) => {
         message: "Terjadi kesalahan",
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading("");
     }
   };
 

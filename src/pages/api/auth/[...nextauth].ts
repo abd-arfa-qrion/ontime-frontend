@@ -103,6 +103,7 @@ const authOptions: NextAuthOptions = {
               token.instAddInfo = decodedTokenWithEmail.instAddInfo;
               token.namaPerusahaan = decodedTokenWithEmail.namaPerusahaan;
               token.accessToken = user.token;
+              token.logo = user.logo;
             }
           } catch (error) {
             console.error("Error decoding JWT:", error);
@@ -168,6 +169,7 @@ const authOptions: NextAuthOptions = {
       }
       // console.log(session.user)
       session.accessToken = token.accessToken;
+      session.logo = token.logo;
       return session;
     },
   },

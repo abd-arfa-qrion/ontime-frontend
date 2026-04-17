@@ -29,8 +29,8 @@ type Props = {
   setToaster: Dispatch<SetStateAction<{}>>;
   setAddAbsensiUmum: Dispatch<SetStateAction<boolean>>;
   setDataJdwlUmum: Dispatch<SetStateAction<JadwalUmum[]>>;
-  isLoading: boolean;
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: string;
+  setIsLoading: Dispatch<SetStateAction<string>>;
 };
 const hours = Array.from({ length: 24 }, (_, i) => String(i).padStart(2, "0"));
 const minutes = Array.from({ length: 60 }, (_, i) =>
@@ -98,7 +98,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
         message: "Terjadi kesalahan",
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading("");
     }
   };
 
@@ -125,7 +125,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
         message: "Terjadi kesalahan",
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading("");
     }
   };
   const getDataMethodeAbsensi = async () => {
@@ -148,12 +148,12 @@ const ModalAddAbsensiUmum = (props: Props) => {
         message: "Terjadi kesalahan",
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading("");
     }
   };
   const handleAddAbsensi = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading("btnSubmitUmum");
 
     const form: any = e.target as HTMLFormElement;
     const validations = [
@@ -197,7 +197,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
 
     if (error) {
       setError(error.error);
-      setIsLoading(false);
+      setIsLoading("");
       setToaster({
         variant: "danger",
         message: error.message,
@@ -443,9 +443,13 @@ const ModalAddAbsensiUmum = (props: Props) => {
               textTransform: "none",
             }}
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading === "btnSubmitUmum"}
           >
-            {isLoading ? <CircularProgress size={20} /> : "Simpan"}
+            {isLoading === "btnSubmitUmum" ? (
+              <CircularProgress size={20} />
+            ) : (
+              "Simpan"
+            )}
           </Button>
         </form>
       </Box>

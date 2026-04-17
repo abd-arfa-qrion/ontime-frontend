@@ -68,6 +68,7 @@ const Sidebar = ({ list }: Proptypes) => {
     pathParts.length >= 2
       ? `/${pathParts[0]}/${pathParts[1]}`
       : `/${pathParts[0]}`;
+  const urlQms = process.env.NEXT_PUBLIC_QMS_BASEURL;
 
   const handleClick = (ref: string) => {
     setKlikMenu((prev) => ({
@@ -203,7 +204,7 @@ const Sidebar = ({ list }: Proptypes) => {
 
       <div className={styles.sidebar__bottom}>
         <Link
-          href={`http://103.179.56.190:3068/token-login?token=${session.data?.accessToken}`}
+          href={`${urlQms}/token-login?token=${session.data?.accessToken}`}
           className="w-full text-white font-semibold [background:var(--gradient-primary)] hover:[background:var(--primary-color)] p-3 border rounded-md text-center underline-none"
         >
           <ArrowBackIos /> {isLoading ? "Loading..." : "Login to QMS"}

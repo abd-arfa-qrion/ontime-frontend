@@ -8,14 +8,16 @@ type IconProps = {
 };
 
 const Appbar = () => {
-  const { data }: any = useSession();
-  const namaInstansi = data?.user?.namaInstansi;
-  const instAddInfo = data?.user?.instAddInfo;
+  const session: any = useSession();
+  const namaInstansi = session.data?.user?.namaInstansi;
+  const instAddInfo = session.data?.user?.instAddInfo;
+  const logo = session.data?.logo;
+  console.log(logo);
   return (
     <div className={styles.appbar}>
       <div className="flex gap-2 items-center">
         <Image
-          src="/assets/logo/foto-sekolah.png"
+          src={logo || "/assets/logo/foto-sekolah.png"}
           width={50}
           height={50}
           alt="logo-sekolah"
@@ -40,13 +42,13 @@ const Appbar = () => {
             />
             <div className="flex flex-col gap-0">
               <p className="text-xs md:text-sm font-semibold">
-                {data?.user?.name}
+                {session.data?.user?.name}
               </p>
               <p className="text-[8px] md:text-[10px] text-gray-500">
-                {data?.user?.role}
+                {session.data?.user?.role}
               </p>
               <p className="text-[10px] md:text-[11px] text-gray-500 mt-[-5px]">
-                {data?.user?.email}
+                {session.data?.user?.email}
               </p>
             </div>
           </div>
