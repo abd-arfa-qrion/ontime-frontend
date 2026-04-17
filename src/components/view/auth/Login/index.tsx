@@ -18,6 +18,7 @@ const LoginView = ({ setToaster }: any) => {
   const { executeRecaptcha } = useGoogleReCaptcha(); // Hook Google reCAPTCHA
   const callbackUrl: any = "/authenticated";
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    console.log("sedang login");
     event.preventDefault();
     setIsLoading(true);
     setError("");
@@ -31,9 +32,12 @@ const LoginView = ({ setToaster }: any) => {
           variant: "danger",
           message: "Gagal memvalidasi reCAPTCHA!",
         });
+        console.error("Gagal memvalidasi reCAPTCHA!");
         setIsLoading(false);
         return;
       }
+
+      console.log("berhasil memvalidasi reCAPTCHA: ", recaptchaToken);
 
       // Lanjutkan login dengan token reCAPTCHA
       const res = await signIn("credentials", {
@@ -72,6 +76,7 @@ const LoginView = ({ setToaster }: any) => {
       link="/auth/register"
       linkText="Anda belum memiliki akun? Silahkan register"
     >
+      {error && <p className={styles.auth__error}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <TextField
           label="Username/Email"
