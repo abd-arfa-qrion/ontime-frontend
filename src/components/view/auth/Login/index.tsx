@@ -19,27 +19,32 @@ const LoginView = ({ setToaster }: any) => {
   const callbackUrl: any = "/authenticated";
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     console.log("sedang login");
+
     event.preventDefault();
     setIsLoading(true);
     setError("");
 
     const form = event.target as HTMLFormElement;
+
     try {
-      // Pastikan reCAPTCHA dijalankan
+      console.log("executeRecaptcha:", executeRecaptcha);
+
       const recaptchaToken = await executeRecaptcha?.("login_action");
+
       if (!recaptchaToken) {
+        console.error("reCAPTCHA token kosong");
         setToaster({
           variant: "danger",
           message: "Gagal memvalidasi reCAPTCHA!",
         });
-        console.error("Gagal memvalidasi reCAPTCHA!");
         setIsLoading(false);
         return;
       }
 
-      console.log("berhasil memvalidasi reCAPTCHA: ", recaptchaToken);
+      console.log("berhasil recaptcha:", recaptchaToken);
 
-      // Lanjutkan login dengan token reCAPTCHA
+      console.log("START SIGNIN");
+
       const res = await signIn("credentials", {
         redirect: false,
         username: form.username.value,
@@ -47,7 +52,9 @@ const LoginView = ({ setToaster }: any) => {
         recaptchaToken,
         callbackUrl,
       });
-      // console.log(res)
+
+      console.log("SIGNIN RESULT:", res);
+
       if (!res?.error && res?.ok && res?.status === 200) {
         setIsLoading(false);
         form.reset();
@@ -63,10 +70,14 @@ const LoginView = ({ setToaster }: any) => {
           message: "Username / Password salah!",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error("LOGIN ERROR FULL:", error);
+
       setIsLoading(false);
-      setIsLoading(false);
-      setError("Something went wrong");
+
+      setError(
+        "Something went wrong: " + (error?.message || JSON.stringify(error)),
+      );
     }
   };
 
