@@ -20,6 +20,10 @@ const authOptions: NextAuthOptions = {
 
       async authorize(credentials, req) {
         // Validasi reCAPTCHA
+        console.log(
+          "ini secret key grecaptcha:",
+          process.env.GRECAPTCHA_SECRET_KEY,
+        );
         const recaptchaResponse = await fetch(
           "https://www.google.com/recaptcha/api/siteverify",
           {
