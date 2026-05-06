@@ -26,6 +26,7 @@ import SearchSelect from "@/components/ui/ontime/singleselectsearch";
 import guruServices from "@/pages/api/services/guru";
 import { Guru } from "@/type/Guru.type";
 import piketGuruServices from "@/pages/api/services/piketguru";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 
 type Props = {
   open: boolean;
@@ -53,6 +54,8 @@ const ModalUpdatePiket = (props: Props) => {
   const [guruData, setGuruData] = useState<Guru[]>([]);
   const [error, setError] = useState<string>("");
   const [value, setValue] = useState<any>(null);
+
+  const tasem = getTahunAjaranWithSemester();
 
   //state get data
 
@@ -124,6 +127,7 @@ const ModalUpdatePiket = (props: Props) => {
       }
       const data = {
         inst: session.data?.user?.instansiId,
+        tahunajaran: tasem.ta,
       };
 
       const res = await piketGuruServices.getAllData(

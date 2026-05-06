@@ -8,6 +8,13 @@ const taSmesterServices = {
       },
     }),
 
+  getDataTAFilter: (data: any, token: string) =>
+    instance.post("/api/datatahunajaranfilter", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+
   getDataSemester: (data: any, token: string) =>
     instance.post("/api/datatasmester", data, {
       headers: {

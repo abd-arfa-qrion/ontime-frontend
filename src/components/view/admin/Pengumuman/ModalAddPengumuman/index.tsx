@@ -9,7 +9,6 @@ import {
   Modal,
   Box,
   TextField,
-  Button,
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
@@ -22,11 +21,10 @@ import Select from "@/components/ui/select";
 import CalendarIcon from "@/components/icons/CalendarIcon";
 import targetAbsensiServices from "@/pages/api/services/targetabsensi";
 import { TargetAbsensi } from "@/type/TargetAbsensi.type";
-import { JadwalUmum } from "@/type/Jadwalumum.type";
-import { formatTimestamp } from "@/utils/formatdate";
 import MSSTargetPengumuman from "@/components/ui/ontime/multiselect/mstargetpengumuman";
 import pengumumanServices from "@/pages/api/services/pengumuman";
 import { Pengumuman } from "@/type/Pengumuman.type";
+import Button from "@/components/ui/button";
 
 type Props = {
   open: boolean;
@@ -189,7 +187,7 @@ const ModalAddPengumuman = (props: Props) => {
       if (res.status === 200 && res.data.status_code === 200) {
         setToaster({
           variant: "success",
-          message: "Tambah Jadwal Umum berhasil!",
+          message: "Tambah Pengumuman Baru berhasil!",
         });
 
         const resData = await pengumumanServices.getAllData(
@@ -284,29 +282,31 @@ const ModalAddPengumuman = (props: Props) => {
             {/* ############### DATE PICKER */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-6">
               {/* Dari Tanggal */}
-              <div className="flex flex-col gap-1 w-full">
-                <label
-                  className={`text-sm font-medium ${!isSchedule ? "text-gray-200" : ""}`}
-                >
-                  Dari Tanggal
-                </label>
+              {isSchedule && (
+                <div className="flex flex-col gap-1 w-full">
+                  <label
+                    className={`text-sm font-medium ${!isSchedule ? "text-gray-200" : ""}`}
+                  >
+                    Dari Tanggal
+                  </label>
 
-                <div className="relative w-full">
-                  <DatePicker
-                    required
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    dateFormat="dd/MM/yyyy"
-                    placeholderText="Pilih tanggal"
-                    wrapperClassName="w-full"
-                    className={`w-full border ${!isSchedule ? "bg-gray-200" : "border-gray-800"} rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-                  />
+                  <div className="relative w-full">
+                    <DatePicker
+                      required
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="Pilih tanggal"
+                      wrapperClassName="w-full"
+                      className={`w-full border ${!isSchedule ? "bg-gray-200" : "border-gray-800"} rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                    />
 
-                  <CalendarIcon
-                    className={`${!isSchedule ? "text-gray-200" : ""} absolute right-3 top-2.5 text-gray-400 w-4 h-4 pointer-events-none`}
-                  />
+                    <CalendarIcon
+                      className={`${!isSchedule ? "text-gray-200" : ""} absolute right-3 top-2.5 text-gray-400 w-4 h-4 pointer-events-none`}
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Sampai Tanggal */}
               <div className="flex flex-col gap-1 w-full">
@@ -331,25 +331,29 @@ const ModalAddPengumuman = (props: Props) => {
             </div>
           </div>
           {/* Button */}
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              backgroundColor: "var(--primary-color)",
-              textTransform: "none",
-            }}
-            type="submit"
-            disabled={isLoading === "submitBtn"}
-          >
-            {isLoading === "submitBtn" ? (
-              <div className="box-loader">
-                <div className="loader" />
-                <p>Loading...</p>
-              </div>
-            ) : (
-              "Publish"
-            )}
-          </Button>
+          <div className="flex gap-4 w-[70%] ml-auto mt-10">
+            <Button
+              type="button"
+              className="[background:var(--gradient-secondary)] hover:[background:var(--secondary-dark)]"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={isLoading === "publishBtn"}
+              className="[background:var(--gradient-primary)] hover:[background:var(--primary-color)]"
+            >
+              {isLoading === "publishBtn" ? (
+                <div className="box-loader">
+                  <div className="loader" />
+                  <p>Loading...</p>
+                </div>
+              ) : (
+                "Publish"
+              )}
+            </Button>
+          </div>
         </form>
       </Box>
     </Modal>

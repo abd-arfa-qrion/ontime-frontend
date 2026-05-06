@@ -16,8 +16,6 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import TableRowSkeleton from "../../../skeleton/tableRow";
-
-import { RefreshRounded } from "@mui/icons-material";
 import EditBtn from "@/components/ui/button/edit";
 import { PiketGuru } from "@/type/Piketguru.type";
 import ModalUpdatePiket from "@/components/view/admin/Piketguru/ModalUpdate";
@@ -217,7 +215,7 @@ const DataTablePiketGuru = (prop: Proptype) => {
                       Absensi Masuk dan Pulang telebih dahulu
                     </p>
 
-                    <Link href="/admin/absensi">
+                    <Link href="/admin/absensi?tab=masuk">
                       <Button
                         variant="contained"
                         sx={{

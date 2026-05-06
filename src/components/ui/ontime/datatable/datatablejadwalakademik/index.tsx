@@ -27,6 +27,7 @@ import { Kelas } from "@/type/Kelas.type";
 import CalendarView from "../../calendarview";
 import EditBtn from "@/components/ui/button/edit";
 import ModalUpdateAbsensiAkademik from "@/components/view/admin/Absensi/ModalUpdateAbsensiAkademik";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 type Proptype = {
   data: JadwalAkademik[];
   setData: Dispatch<SetStateAction<JadwalAkademik[]>>;
@@ -63,6 +64,8 @@ const DataTabelJadwalAkademik = (prop: Proptype) => {
   const [updateJadwal, setUpdateJadwal] = useState<JadwalAkademik | {}>({});
   //handle tombol switch list | calendar
   const [switchBtn, setSwitchBtn] = useState<string>("list");
+
+  const tasem = getTahunAjaranWithSemester();
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -132,9 +135,13 @@ const DataTabelJadwalAkademik = (prop: Proptype) => {
     page * rowsPerPage + rowsPerPage,
   );
 
-  const handleFilterbyKelas = (kelas: number) => {
-    const result = data.filter((item) => item.kelas_id === kelas);
-    setFilteredData(result);
+  const handleFilterbyKelas = (kelas: number | null) => {
+    if (kelas !== null) {
+      const result = data.filter((item) => item.kelas_id === kelas);
+      setFilteredData(result);
+    } else {
+      setFilteredData(data);
+    }
   };
 
   const handleEdit = async (id: number) => {
@@ -152,7 +159,7 @@ const DataTabelJadwalAkademik = (prop: Proptype) => {
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Absensi Mata Pelajaran Tahun Ajaran
+            Absensi Mata Pelajaran Tahun Ajaran {tasem.ta}
           </h4>
 
           {/* KANAN */}
@@ -380,6 +387,8 @@ const DataTabelJadwalAkademik = (prop: Proptype) => {
       </Paper>
       {!!Object?.keys(updateJadwal).length && (
         <ModalUpdateAbsensiAkademik
+          open={!!Object?.keys(updateJadwal).length}
+          onClose={() => setUpdateJadwal({})}
           updateJadwal={updateJadwal}
           setUpdateJadwal={setUpdateJadwal}
           setData={setData}

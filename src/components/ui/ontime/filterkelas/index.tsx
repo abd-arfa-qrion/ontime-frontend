@@ -1,4 +1,3 @@
-import { JadwalAkademik } from "@/type/Jadwalakademik.type";
 import { Kelas } from "@/type/Kelas.type";
 import {
   FormControl,
@@ -7,22 +6,31 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 
 type Proptype = {
   kelasData: Kelas[];
-  handleFilterbyKelas: (kelas: number) => void;
+  handleFilterbyKelas: (kelas: number | null) => void;
   switchBtn: string;
 };
+
 const FilterKelas = (prop: Proptype) => {
   const { kelasData, handleFilterbyKelas, switchBtn } = prop;
-  const [selectedOption, setSelectedOption] = useState("");
-  const handleChange = async (event: SelectChangeEvent<string>) => {
-    setSelectedOption(event.target.value);
-    const idKelas = Number(event.target.value);
-    console.log(event.target.value);
-    await handleFilterbyKelas(idKelas);
+
+  // default = ALL
+  const [selectedOption, setSelectedOption] = useState<string>("all");
+
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+
+    if (value === "all") {
+      handleFilterbyKelas(null); // kirim null = semua data
+    } else {
+      handleFilterbyKelas(Number(value));
+    }
   };
+
   return (
     <FormControl
       sx={{
@@ -33,19 +41,20 @@ const FilterKelas = (prop: Proptype) => {
       }}
       size="small"
     >
-      <InputLabel id="demo-simple-select-label" className="rounded-[10px]">
-        Kelas
-      </InputLabel>
+      <InputLabel id="filter-kelas-label">Kelas</InputLabel>
+
       <Select
         disabled={switchBtn !== "list"}
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        labelId="filter-kelas-label"
         value={selectedOption}
-        label="Options"
+        label="Kelas"
         onChange={handleChange}
       >
+        {/* 🔥 OPTION ALL */}
+        <MenuItem value="all">Semua Kelas</MenuItem>
+
         {kelasData.map((option) => (
-          <MenuItem key={option.id} value={option.id}>
+          <MenuItem key={option.id} value={option.id.toString()}>
             {option.name}
           </MenuItem>
         ))}

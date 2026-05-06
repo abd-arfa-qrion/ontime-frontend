@@ -5,6 +5,7 @@ import jadwalUmumServices from "@/pages/api/services/jadwalumum";
 import { JadwalAkademik } from "@/type/Jadwalakademik.type";
 import { JadwalMasuk } from "@/type/Jadwalmasuk.type";
 import { JadwalUmum } from "@/type/Jadwalumum.type";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import { error } from "console";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -16,10 +17,13 @@ const AdminAbsenPage = ({ setToaster }: any) => {
   const [dataJdwlMasuk, setDataJdwlMasuk] = useState<JadwalMasuk[]>([]);
   const [loadingFetch, setLoadingFetch] = useState(true);
 
+  const tasem = getTahunAjaranWithSemester();
+
   const getDataJadwalAkademik = async () => {
     try {
       const payload = {
         inst: session.data?.user?.instansiId,
+        tahunajaran: tasem.ta,
       };
       const token = session.data?.accessToken;
       const req = await jadwalAkademikServices.getAllData(payload, token);
@@ -34,9 +38,12 @@ const AdminAbsenPage = ({ setToaster }: any) => {
   };
   const getDataJadwalUmum = async () => {
     try {
-      const inst = session.data?.user?.instansiId;
+      const payload = {
+        inst: session.data?.user?.instansiId,
+        tahunajaran: tasem.ta,
+      };
       const token = session.data?.accessToken;
-      const req = await jadwalUmumServices.getAllData({ inst }, token);
+      const req = await jadwalUmumServices.getAllData(payload, token);
       if (req.status !== 200 || req.data.status_code !== 200) {
         console.error("Gagal mengambil data jadwal umum");
         return;
@@ -50,6 +57,7 @@ const AdminAbsenPage = ({ setToaster }: any) => {
   const getDataJadwalMasuk = async () => {
     const data = {
       inst: session.data?.user?.instansiId,
+      tahunajaran: tasem.ta,
     };
     try {
       const reqData = await jadwalMasukServices.getAllData(

@@ -7,7 +7,13 @@ const kelasServices = {
         Authorization: `Bearer ${token}`,
       },
     }),
-  
+
+  getDataMonitoringKelas: (data: any, token: string) =>
+    instance.post("/api/monitoringkelas", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
 };
 
 export default kelasServices;

@@ -24,6 +24,7 @@ import jadwalMasukServices from "@/pages/api/services/jadwalmasuk";
 import EditBtn from "@/components/ui/button/edit";
 import ModalGenerate from "@/components/view/admin/Absensi/ModalGenerate";
 import ModalUpdateAbsensiMasuk from "@/components/view/admin/Absensi/ModalUpdateAbsensiMasuk";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 type Proptype = {
   data: JadwalMasuk[];
   setData: Dispatch<SetStateAction<JadwalMasuk[]>>;
@@ -48,6 +49,9 @@ const DataTabelJadwalMasuk = (prop: Proptype) => {
   //handle Modal
   const [modalGenerate, setModalGenerate] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
+
+  //baca tahun ajaran saat ini
+  const tasem = getTahunAjaranWithSemester();
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -135,6 +139,7 @@ const DataTabelJadwalMasuk = (prop: Proptype) => {
 
       const payloadList = {
         inst: session.data?.user?.instansiId,
+        tahunajaran: tasem.ta,
       };
 
       const req = await jadwalMasukServices.getAllData(
@@ -171,13 +176,14 @@ const DataTabelJadwalMasuk = (prop: Proptype) => {
     setModalUpdate(true);
     setIsLoading("");
   };
+
   return (
     <>
       <Paper className="px-2 pt-2">
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Absensi Mata & Pulang Sekolah
+            Absensi Mata & Pulang Sekolah Tahun Ajaran {tasem.ta}
           </h4>
 
           {/* KANAN */}
@@ -266,12 +272,12 @@ const DataTabelJadwalMasuk = (prop: Proptype) => {
             </TableHead>
             <TableBody>
               {loadingFetch ? (
-                <TableRowSkeleton columns={9} />
+                <TableRowSkeleton columns={7} />
               ) : searchLoading ? (
-                <TableRowSkeleton columns={9} />
+                <TableRowSkeleton columns={7} />
               ) : filteredData.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={9} align="center">
+                  <TableCell colSpan={7} align="center">
                     <p className="text-gray-500 text-sm mb-4">
                       Data tidak ditemukan
                     </p>

@@ -154,6 +154,7 @@ const AbsensiPageView = (prop: Proptype) => {
       {addAbsensi && (
         <ModalAddAbsensi
           isLoading={isLoading}
+          onClose={() => setAddAbsensi(false)}
           setIsLoading={setIsLoading}
           setToaster={setToaster}
           setAddAbsensi={setAddAbsensi}

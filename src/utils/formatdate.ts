@@ -56,3 +56,48 @@ export const formatCreatedAt = (dateValue: string | Date) => {
     year: "numeric",
   });
 };
+
+export const formatTglUtkBankendRequest = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}T00:00:00Z`;
+};
+
+export const formatDateShortID = (date: Date | string) => {
+  const d = new Date(date);
+
+  return d.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+};
+
+export const formatDateFullID = (date: Date | string) => {
+  const d = new Date(date);
+
+  return d.toLocaleDateString("id-ID", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
+
+export const formatBulanIndonesia = (value: string): string => {
+  if (!value) return "-";
+
+  // pastikan format YYYY-MM
+  const [year, month] = value.split("-");
+
+  if (!year || !month) return value;
+
+  const date = new Date(Number(year), Number(month) - 1, 1);
+
+  return date.toLocaleDateString("id-ID", {
+    month: "long",
+    year: "numeric",
+  });
+};

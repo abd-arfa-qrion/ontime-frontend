@@ -5,15 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import {
-  Modal,
-  Box,
-  Typography,
-  TextField,
-  Button,
-  CircularProgress,
-  InputAdornment,
-} from "@mui/material";
+import { Modal, Box, TextField, InputAdornment } from "@mui/material";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { TahunAjaran } from "@/type/Tahunajaran.type";
@@ -21,6 +13,8 @@ import taSmesterServices from "@/pages/api/services/tasmester";
 import Select from "@/components/ui/select";
 import { JadwalMasuk } from "@/type/Jadwalmasuk.type";
 import jadwalMasukServices from "@/pages/api/services/jadwalmasuk";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+import Button from "@/components/ui/button";
 
 type Props = {
   open: boolean;
@@ -52,6 +46,7 @@ const ModalUpdateAbsensiMasuk = (props: Props) => {
   const [error, setError] = useState<string>("");
 
   //state get data
+  const tasem = getTahunAjaranWithSemester();
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
@@ -124,6 +119,7 @@ const ModalUpdateAbsensiMasuk = (props: Props) => {
 
       const data = {
         inst: session.data?.user?.instansiId,
+        tahunajaran: tasem.ta,
       };
 
       const res = await jadwalMasukServices.getAllData(
@@ -308,25 +304,29 @@ const ModalUpdateAbsensiMasuk = (props: Props) => {
           />
 
           {/* Button */}
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              backgroundColor: "var(--primary-color)",
-              textTransform: "none",
-            }}
-            type="submit"
-            disabled={isLoading === "submitBtn1"}
-          >
-            {isLoading === "submitBtn1" ? (
-              <div className="box-loader">
-                <div className="loader" />
-                <p>Loading...</p>
-              </div>
-            ) : (
-              "Simpan"
-            )}
-          </Button>
+          <div className="flex gap-4 w-[70%] ml-auto mt-10">
+            <Button
+              type="button"
+              className="[background:var(--gradient-secondary)] hover:[background:var(--secondary-dark)]"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={isLoading === "submitBtn1"}
+              className="[background:var(--gradient-primary)] hover:[background:var(--primary-color)]"
+            >
+              {isLoading === "submitBtn1" ? (
+                <div className="box-loader">
+                  <div className="loader" />
+                  <p>Loading...</p>
+                </div>
+              ) : (
+                "Simpan"
+              )}
+            </Button>
+          </div>
         </form>
       </Box>
     </Modal>

@@ -14,6 +14,8 @@ type Props = {
   value: OptionType | null;
   onChange: (value: OptionType | null) => void;
   placeholder?: string;
+  size?: "small" | "medium";
+  className?: string;
 };
 
 export default function SearchSelect({
@@ -22,6 +24,8 @@ export default function SearchSelect({
   value,
   onChange,
   placeholder,
+  size,
+  className,
 }: Props) {
   return (
     <Autocomplete
@@ -31,9 +35,14 @@ export default function SearchSelect({
       getOptionLabel={(option) => option.label}
       isOptionEqualToValue={(option, val) => option.value === val.value}
       fullWidth
-      size="small"
+      size={size}
       renderInput={(params) => (
-        <TextField {...params} label={label} placeholder={placeholder} />
+        <TextField
+          {...params}
+          label={label}
+          placeholder={placeholder}
+          className={className}
+        />
       )}
     />
   );

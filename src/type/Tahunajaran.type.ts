@@ -23,3 +23,12 @@ export const TahunAjaranDefault = {
   institutionId: 0,
   yayasanId: 0,
 };
+
+export type TaFilter = {
+  id: number;
+  name: string;
+};
+export const TaFilterDefault = {
+  id: 0,
+  name: "",
+};

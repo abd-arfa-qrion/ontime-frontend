@@ -1,5 +1,7 @@
-import CalendarIcon from "@/components/icons/CalendarIcon";
-import { CalendarMonthRounded } from "@mui/icons-material";
+import taSmesterServices from "@/pages/api/services/tasmester";
+import { TaFilter } from "@/type/Tahunajaran.type";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+import CalendarMonthRounded from "@mui/icons-material/CalendarMonthRounded";
 import {
   FormControl,
   InputAdornment,
@@ -9,14 +11,59 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import React, { useState } from "react";
-const options = [
-  { value: "0", label: "2024/2024" },
-  { value: "1", label: "2025/2026" },
-  { value: "2", label: "2026/2027" },
-];
+import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 const FilterTahunAjaran = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const [taDataFilter, setTaDataFilter] = useState<TaFilter[]>([]);
+
+  const session: any = useSession();
+
+  const getTahunAjaran = async () => {
+    const data = {
+      inst: session.data?.user?.instansiId,
+    };
+    try {
+      const res = await taSmesterServices.getDataTAFilter(
+        data,
+        session.data?.accessToken,
+      );
+      if (res.status !== 200) {
+        console.log(res);
+      } else {
+        setTaDataFilter(res.data.data);
+      }
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log(taDataFilter);
+    }
+  };
+
+  useEffect(() => {
+    if (!session?.data?.accessToken) return;
+    const loadData = async () => {
+      await getTahunAjaran(); // tunggu selesai du
+    };
+
+    if (session.status === "authenticated") {
+      loadData();
+    }
+  }, [session.status]);
+
+  useEffect(() => {
+    if (taDataFilter.length === 0) return;
+
+    const { ta } = getTahunAjaranWithSemester();
+
+    const found = taDataFilter.find((item) => item.name.includes(ta));
+    // console.log("ini id ta saat ini: ", found?.id);
+
+    if (found) {
+      setSelectedOption(found.id.toString());
+    }
+  }, [taDataFilter]);
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedOption(event.target.value);
   };
@@ -48,9 +95,9 @@ const FilterTahunAjaran = () => {
         onChange={handleChange}
         IconComponent={CalendarMonthRounded}
       >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
+        {taDataFilter.map((dtFilter) => (
+          <MenuItem key={dtFilter.id} value={dtFilter.id}>
+            {dtFilter.name}
           </MenuItem>
         ))}
       </Select>

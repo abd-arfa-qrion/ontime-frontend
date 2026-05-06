@@ -5,7 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Modal, Box, TextField, Button, CircularProgress } from "@mui/material";
+import { Modal, Box, TextField, CircularProgress } from "@mui/material";
+import Button from "@/components/ui/button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TahunAjaran } from "@/type/Tahunajaran.type";
@@ -22,6 +23,7 @@ import MSSMethodeAbsensi from "@/components/ui/ontime/multiselect/msmethodeabsen
 import jadwalUmumServices from "@/pages/api/services/jadwalumum";
 import { JadwalUmum } from "@/type/Jadwalumum.type";
 import Validate from "@/utils/validation";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 
 type Props = {
   open: boolean;
@@ -53,6 +55,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [error, setError] = useState<string>("");
+
   const [selectedTarget, setSelectedTarget] = useState<(number | string)[]>([]);
   const [selectedMethode, setSelectedMethode] = useState<(number | string)[]>(
     [],
@@ -61,6 +64,8 @@ const ModalAddAbsensiUmum = (props: Props) => {
   //state get data
   const [methodeAbsensi, setMethodeAbsensi] = useState<MethodeAbsensi[]>([]);
   const [targetAbsensi, setTargetAbsensi] = useState<TargetAbsensi[]>([]);
+
+  const tasem = getTahunAjaranWithSemester();
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
@@ -219,47 +224,52 @@ const ModalAddAbsensiUmum = (props: Props) => {
       methodes_absensi: selectedMethode,
       institution_id: session.data?.user?.instansi,
     };
-    console.log(data);
-    try {
-      const res = await jadwalUmumServices.AddData(
-        data,
-        session.data?.accessToken,
-      );
-      if (res.status === 200) {
-        if (res.data.status_code === 200) {
-          setToaster({
-            variant: "success",
-            message: "Tambah Jadwal Umum berhasil!",
-          });
-          console.log(res);
-          const dataInst = {
-            inst: session.data?.user?.instansiId,
-          };
+    console.log("ini data yang akan diinput: ", data);
+    // try {
+    //   const res = await jadwalUmumServices.AddData(
+    //     data,
+    //     session.data?.accessToken,
+    //   );
+    //   if (res.status === 200) {
+    //     if (res.data.status_code === 200) {
+    //       setToaster({
+    //         variant: "success",
+    //         message: "Tambah Jadwal Umum berhasil!",
+    //       });
+    //       console.log(res);
+    //       const dataInst = {
+    //         inst: session.data?.user?.instansiId,
+    //         tahunajaran: tasem.ta,
+    //       };
 
-          // fetch ulang seluruh data user
-          const resData = await jadwalUmumServices.getAllData(
-            dataInst,
-            session.data?.accessToken,
-          );
-          console.log(resData);
-          setDataJdwlUmum(resData.data.data);
-          setAddAbsensiUmum(false);
-        } else {
-          setToaster({
-            variant: "danger",
-            message: res.data.message,
-          });
-        }
-      }
-    } catch (error) {
-      setToaster({
-        variant: "danger",
-        message: "Terjadi kesalahan",
-      });
-    }
-    onClose();
+    //       // fetch ulang seluruh data user
+    //       const resData = await jadwalUmumServices.getAllData(
+    //         dataInst,
+    //         session.data?.accessToken,
+    //       );
+    //       console.log(resData);
+    //       setDataJdwlUmum(resData.data.data);
+    //       setAddAbsensiUmum(false);
+    //     } else {
+    //       setToaster({
+    //         variant: "danger",
+    //         message: res.data.message,
+    //       });
+    //     }
+    //   }
+    // } catch (error) {
+    //   setToaster({
+    //     variant: "danger",
+    //     message: "Terjadi kesalahan",
+    //   });
+    // }
+    // onClose();
   };
 
+  const jamMasukDefault = "00";
+  const menitMasukDefault = "00";
+  const jamPulangDefault = "00";
+  const menitPulangDefault = "00";
   return (
     <Modal open={open} onClose={onClose}>
       <Box
@@ -351,6 +361,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                     className="w-full mb-4"
                     label="Jam"
                     name="jamMasuk"
+                    defaultValue={jamMasukDefault}
                     options={
                       hours &&
                       hours.map((jam) => ({
@@ -364,6 +375,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                     className="w-full mb-4"
                     label="Menit"
                     name="menitMasuk"
+                    defaultValue={menitMasukDefault}
                     options={
                       minutes &&
                       minutes.map((mnt) => ({
@@ -387,6 +399,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                     className="w-full mb-4"
                     label="Jam"
                     name="jamKeluar"
+                    defaultValue={jamPulangDefault}
                     options={
                       hours &&
                       hours.map((jam) => ({
@@ -400,6 +413,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                     className="w-full mb-4"
                     label="Menit"
                     name="menitKeluar"
+                    defaultValue={menitPulangDefault}
                     options={
                       minutes &&
                       minutes.map((mnt) => ({
@@ -435,7 +449,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
             error={error}
           />
           {/* Button */}
-          <Button
+          {/* <Button
             variant="contained"
             fullWidth
             sx={{
@@ -450,7 +464,27 @@ const ModalAddAbsensiUmum = (props: Props) => {
             ) : (
               "Simpan"
             )}
-          </Button>
+          </Button> */}
+          <div className="flex gap-4 w-[70%] ml-auto mt-10">
+            <Button
+              type="button"
+              className="[background:var(--gradient-secondary)] hover:[background:var(--secondary-dark)]"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={isLoading === "btnSubmitUmum"}
+              className="[background:var(--gradient-primary)] hover:[background:var(--primary-color)]"
+            >
+              {isLoading === "btnSubmitUmum" ? (
+                <CircularProgress size={20} />
+              ) : (
+                "Simpan"
+              )}
+            </Button>
+          </div>
         </form>
       </Box>
     </Modal>

@@ -1,79 +1,147 @@
 import AdminLayout from "@/components/layout/AdminLayout";
-import ResumePenjualan from "@/components/ui/chart/multibarchart/admin/ResumePenjualan";
-import MyPieChart from "@/components/ui/chart/piechart";
+import HeadContent from "@/components/ui/headContent/headcontent";
+import HeadContentRightDashboard from "@/components/ui/headContent/headcontentrightdashboard";
+
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import DashboardAtas from "./bagatas";
+import DashboardChart from "./bagchart";
 import {
-  TransaksiTodayDefault,
-  TransaksiTodayType,
+  Resume7Hari,
+  Resume7HariPerbulan,
+  Resume7HariTidakhadir,
+  ResumeSiswa,
 } from "@/type/Dashboard.type";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-import React, {
-  Dispatch,
-  SetStateAction,
-  use,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import DataTableDashboardSiswa7Hari from "@/components/ui/ontime/datatable/datatabledashboardsiswa7hari";
+import { Kelas } from "@/type/Kelas.type";
+import kelasServices from "@/pages/api/services/kelas";
 
 type Proptypes = {
   setToaster: Dispatch<SetStateAction<{}>>;
+  session: any;
+  countSiswa: number;
+  dataResume: ResumeSiswa[];
+  dataResume7Hari: Resume7Hari[];
+  dataResume7HariTidakhadir: Resume7HariTidakhadir[];
+  loadingFetch: boolean;
+  data: Resume7HariPerbulan[];
 };
 const AdminDashboardView = (prop: Proptypes) => {
-  const { setToaster } = prop;
-  const [countTrx, setCountTrx] = useState<TransaksiTodayType>(
-    TransaksiTodayDefault,
-  );
+  const {
+    setToaster,
+    session,
+    countSiswa,
+    dataResume,
+    dataResume7Hari,
+    dataResume7HariTidakhadir,
+    loadingFetch,
+    data,
+  } = prop;
+  const [kelasData, setKelasData] = useState<Kelas[]>([]);
+  const [isLoading, setIsLoading] = useState("");
+  const [tabActive, setTabActive] = useState("siswa");
 
-  const pieChartData = [
-    { name: "Counter", value: countTrx.countCounter },
-    { name: "Mobile", value: countTrx.countMobile },
-    { name: "Qris", value: countTrx.countQris },
-  ];
+  useEffect(() => {
+    if (!session?.data?.accessToken) return;
+    const loadData = async () => {
+      await getDataKelas(); // tunggu selesai dulu
+    };
 
-  const session: any = useSession();
-  //ambil count transaksi total dan perchannel
+    if (session.status === "authenticated") {
+      loadData();
+    }
+  }, [session?.data?.accessToken]);
 
+  const getDataKelas = async () => {
+    const data = {
+      inst: session.data?.user?.instansiId,
+    };
+    try {
+      const res = await kelasServices.getAllData(
+        data,
+        session.data?.accessToken,
+      );
+      if (res.status !== 200) {
+        setToaster({
+          variant: "danger",
+          message: res.data.message,
+        });
+      } else {
+        setKelasData(res.data.data);
+      }
+      console.log(res);
+    } catch (error) {
+      setToaster({
+        variant: "danger",
+        message: "Terjadi kesalahan",
+      });
+    } finally {
+      setIsLoading("");
+    }
+  };
+  const handleFilterbyKelas = (kelas: number | null) => {
+    if (kelas !== null) {
+      console.log(kelas);
+    } else {
+      console.log(data);
+    }
+  };
   return (
-    <AdminLayout>
-      <div className="w-full flex flex-col gap-2">
-        <div className="w-full shadow-md rounded-lg p-4 flex md:flex-row flex-col gap-2 items-center justify-between">
-          <p className="md:text-2xl text-lg font-bold ">
-            Jumlah Transaksi Hari Ini
-            {countTrx.count > 0 && (
-              <Link
-                href="/admin/transaksi"
-                className="text-white hover:bg-green-700 text-sm rounded-md px-2 py-1 bg-green-800 flex items-center gap-1 justify-center"
-                target="_blank"
-              >
-                <i className="bx bx-show-alt text-lg mr-1"></i>
-                Lihat Detail
-              </Link>
-            )}
-          </p>
-          <div className="bg-tird p-4 pt-2 rounded-xl text-white">
-            <p className="text-center md:text-lg text-sm">Total</p>
-            <p className="text-center md:text-7xl text-3xl font-bold">
-              {countTrx.count}
-            </p>
-          </div>
-          <div className="md:w-1/2">
-            <MyPieChart
-              title="Transaksi Hari Ini"
-              width="100%"
-              height={250}
-              data={pieChartData}
+    <>
+      <AdminLayout>
+        <div>
+          <div className="bagian-head-content flex justify-between items-center">
+            <HeadContent text="Dashboard" />
+            <HeadContentRightDashboard
+              tabActive={tabActive}
+              setTabActive={setTabActive}
+              kelasData={kelasData}
+              handleFilterbyKelas={handleFilterbyKelas}
             />
           </div>
+          {tabActive === "siswa" ? (
+            <div className="flex flex-col gap-4">
+              <DashboardAtas
+                countSiswa={countSiswa}
+                dataResume={dataResume}
+                loadingFetch={loadingFetch}
+              />
+              <DashboardChart
+                dataResume7Hari={dataResume7Hari}
+                dataResume7HariTidakhadir={dataResume7HariTidakhadir}
+                loadingFetch={loadingFetch}
+              />
+              <DataTableDashboardSiswa7Hari
+                data={data}
+                loadingFetch={loadingFetch}
+                session={session}
+                setData={setToaster}
+              />
+              {/* <DashboardTable /> */}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              <DashboardAtas
+                countSiswa={countSiswa}
+                dataResume={dataResume}
+                loadingFetch={loadingFetch}
+              />
+              <DashboardChart
+                dataResume7Hari={dataResume7Hari}
+                dataResume7HariTidakhadir={dataResume7HariTidakhadir}
+                loadingFetch={loadingFetch}
+              />
+              <DataTableDashboardSiswa7Hari
+                data={data}
+                loadingFetch={loadingFetch}
+                session={session}
+                setData={setToaster}
+              />
+              {/* <DashboardTable /> */}
+            </div>
+          )}
         </div>
-        <div>
-          {/* <ResumePenjualan
-            title="Resume Transaksi Bulan Ini"
-            data={barChartData}
-          /> */}
-        </div>
-      </div>
-    </AdminLayout>
+      </AdminLayout>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import HeadContentRightBiasa from "@/components/ui/headContent/headcontentrightb
 import React, { Dispatch, SetStateAction } from "react";
 import UploadLokasiPageView from "./UploadLokasi";
 import { InstitutionArea } from "@/type/Institutionarea.type";
+import Link from "next/link";
 
 type Props = {
   setToaster: Dispatch<SetStateAction<{}>>;
@@ -31,27 +32,49 @@ const PengaturanPageView = (prop: Props) => {
               />
 
               <div className="max-w-[400px] items-left">
-                {dataArea.id !== 0 ? (
-                  <div>
-                    <p className="flex items-center gap-2">
-                      <i className="bx bx-check-circle text-green-700"></i>
-                      <span className="text-green-700 text-md font-semibold">
-                        Area kamu telah di atur pada
-                      </span>
-                    </p>
-                    <p className="text-sm break-words">{dataArea.area}</p>
-                  </div>
-                ) : (
-                  <div className="bg-orange-100 border border-orange-300 text-orange-700 p-3 rounded flex gap-2">
-                    <i className="bx bx-error-circle text-xl"></i>
-                    <div>
-                      <p className="font-semibold">Area belum diatur</p>
-                      <p className="text-sm">
-                        Silakan atur area absen institusi terlebih dahulu.
-                      </p>
+                <div>
+                  <div className="flex flex-col gap-4 mb-4 bg-yellow-100 border border-yellow-300 text-orange-700 p-3 rounded ">
+                    <div className="flex gap-2">
+                      <i className="bx bx-error-circle text-xl"></i>
+                      <div>
+                        <p className="font-semibold">Area belum diatur?</p>
+                        <p className="text-sm">
+                          Untuk menentukan area, kamu harus mengupload lokasi
+                          dan mendapatkan file .kml. Untuk mendapatkan file
+                          .kml, ikuti link di bawah ini
+                        </p>
+                      </div>
                     </div>
+                    <a
+                      href="https://www.google.com/maps/d/"
+                      className="text-[var(--primary-color)] hover:text-[var(--primary-light)] flex items-center gap-1"
+                      target="_blank"
+                    >
+                      <i className="bx bx-map text-xl"></i>
+                      Arahkan ke akun google map sekarang
+                      <i className="bx bx-right-arrow-alt text-xl"></i>
+                    </a>
                   </div>
-                )}
+                  <p className="flex items-center gap-2">
+                    <i className="bx bx-check-circle text-green-700"></i>
+                    <span className="text-green-700 text-md font-semibold">
+                      Area kamu telah di atur pada
+                    </span>
+                  </p>
+                  <p className="text-sm break-words">{dataArea.area}</p>
+                </div>
+              </div>
+              <div className="max-w-[400px] flex flex-col gap-4">
+                <p className="font-semibold">Bagaimana cara menentukan area?</p>
+                <Link
+                  href="https://drive.google.com/file/d/1nqAvGH_OAKv6Ezy29cHxbMs2OvHSLptA/view?usp=sharing"
+                  target="_blank"
+                  className="text-[var(--primary-color)] hover:text-[var(--primary-light)] flex items-center gap-1"
+                >
+                  <i className="bx bx-book text-xl"></i>
+                  klik disini
+                  <i className="bx bx-right-arrow-alt text-xl"></i>
+                </Link>
               </div>
             </div>
           </div>

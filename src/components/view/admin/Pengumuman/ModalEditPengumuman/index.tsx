@@ -9,7 +9,6 @@ import {
   Modal,
   Box,
   TextField,
-  Button,
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
@@ -29,6 +28,7 @@ import pengumumanServices from "@/pages/api/services/pengumuman";
 import Select from "@/components/ui/select";
 import CalendarIcon from "@/components/icons/CalendarIcon";
 import MSSTargetPengumuman from "@/components/ui/ontime/multiselect/mstargetpengumuman";
+import Button from "@/components/ui/button";
 
 type Props = {
   open: boolean;
@@ -84,6 +84,7 @@ const ModalEditPengumuman = (props: Props) => {
 
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [targetAbsensi, setTargetAbsensi] = useState<TargetAbsensi[]>([]);
+  const [isDraft, setIsDraft] = useState<boolean>(false);
 
   const sessionData: any = useSession();
 
@@ -166,11 +167,17 @@ const ModalEditPengumuman = (props: Props) => {
   const handleUpdatePengumuman = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setIsLoading("submitBtn");
+    setIsLoading("editPengumumanBtn");
 
     const user = sessionData.data.user;
     const token = sessionData.data.accessToken;
 
+    const tglMulai = startDate
+      ? new Date(startDate).toISOString()
+      : new Date().toISOString();
+
+    const tglSelesai = endDate ? new Date(endDate).toISOString() : null;
+    const statPublish = isSchedule ? "schedule" : isDraft ? "draft" : "publish";
     const targetString = selectedTarget
       .map((id) => targetAbsensi.find((t) => t.id === id)?.target)
       .filter(Boolean)
@@ -181,12 +188,10 @@ const ModalEditPengumuman = (props: Props) => {
       inst: user.instansiId,
       title: judul,
       content: content,
-      start_date: startDate
-        ? new Date(startDate).toISOString()
-        : editData.start_date,
-      end_date: endDate ? new Date(endDate).toISOString() : null,
+      start_date: tglMulai,
+      end_date: tglSelesai,
       target: targetString,
-      status_publish: isSchedule ? "schedule" : "publish",
+      status_publish: statPublish,
       institution_id: user.instansi,
       username: user.username,
     };
@@ -316,18 +321,29 @@ const ModalEditPengumuman = (props: Props) => {
             </div>
           </div>
 
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              backgroundColor: "var(--primary-color)",
-              textTransform: "none",
-            }}
-            type="submit"
-            disabled={isLoading === "submitBtn"}
-          >
-            {isLoading === "submitBtn" ? "Loading..." : "Update Pengumuman"}
-          </Button>
+          <div className="flex gap-4 w-[70%] ml-auto mt-10">
+            <Button
+              type="button"
+              className="[background:var(--gradient-secondary)] hover:[background:var(--secondary-dark)]"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={isLoading === "editPengumumanBtn"}
+              className="[background:var(--gradient-primary)] hover:[background:var(--primary-color)]"
+            >
+              {isLoading === "editPengumumanBtn" ? (
+                <div className="box-loader">
+                  <div className="loader" />
+                  <p>Loading...</p>
+                </div>
+              ) : (
+                "Update"
+              )}
+            </Button>
+          </div>
         </form>
       </Box>
     </Modal>

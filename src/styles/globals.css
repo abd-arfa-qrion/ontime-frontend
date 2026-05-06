@@ -38,7 +38,11 @@
     var(--primary-color) 30%,
     var(--secondary-color) 100%
   );
-
+  --gradient-secondary: linear-gradient(
+    to right,
+    var(--secondary-dark) 30%,
+    var(--text-secondary) 100%
+  );
   --gradient-soft: linear-gradient(
     135deg,
     #f0fdf8 0%,

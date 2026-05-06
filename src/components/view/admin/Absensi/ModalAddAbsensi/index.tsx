@@ -23,8 +23,10 @@ import mapelServices from "@/pages/api/services/mapel";
 import { Mapel } from "@/type/Mapel.type";
 import { Kelas } from "@/type/Kelas.type";
 import { JadwalAkademik } from "@/type/Jadwalakademik.type";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 type Proptypes = {
   setToaster: Dispatch<SetStateAction<{}>>;
+  onClose: () => void;
   setAddAbsensi: Dispatch<SetStateAction<boolean>>;
   setDataJdwlAkdmk: Dispatch<SetStateAction<JadwalAkademik[]>>;
   isLoading: string;
@@ -38,6 +40,7 @@ const minutes = Array.from({ length: 60 }, (_, i) =>
 
 const ModalAddAbsensi = (props: Proptypes) => {
   const {
+    onClose,
     setToaster,
     setAddAbsensi,
     isLoading,
@@ -52,6 +55,8 @@ const ModalAddAbsensi = (props: Proptypes) => {
   const [guruData, setGuruData] = useState<Guru[]>([]);
   const [mapelData, setMapelData] = useState<Mapel[]>([]);
   const [load, setLoad] = useState<string>("");
+
+  const tasem = getTahunAjaranWithSemester();
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
@@ -184,6 +189,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
         console.log(result);
         const dataInst = {
           inst: session.data?.user?.instansiId,
+          tahunajaran: tasem.ta,
         };
 
         // fetch ulang seluruh data user
@@ -206,7 +212,10 @@ const ModalAddAbsensi = (props: Proptypes) => {
       setIsLoading("");
     }
   };
-
+  const jamMasukDefault = "00";
+  const menitMasukDefault = "00";
+  const jamPulangDefault = "00";
+  const menitPulangDefault = "00";
   return (
     <>
       <Modal width="min-w-[500px]" onClose={() => setAddAbsensi(false)}>
@@ -220,6 +229,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
             </Typography>
 
             <Select
+              required
               name="tahunajaran"
               onChange={handleGetSemester}
               options={
@@ -237,6 +247,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
           {semesterData && semesterData.length > 0 && (
             <>
               <Select
+                required
                 className="w-full mb-4"
                 label="Semester"
                 name="semester"
@@ -250,6 +261,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
               />
 
               <Select
+                required
                 className="w-full mb-4"
                 label="Hari"
                 name="hari"
@@ -263,6 +275,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
               />
 
               <Select
+                required
                 className="w-full mb-4"
                 label="Kelas"
                 name="kelas"
@@ -276,6 +289,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
               />
 
               <Select
+                required
                 className="w-full mb-4"
                 label="Mata Pelajaran"
                 name="mapel"
@@ -289,6 +303,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
               />
 
               <Select
+                required
                 className="w-full mb-4"
                 label="Nama Guru"
                 name="guru"
@@ -309,6 +324,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
                         className="w-full mb-4"
                         label="Jam"
                         name="jamMasuk"
+                        defaultValue={jamMasukDefault}
                         options={
                           hours &&
                           hours.map((jam) => ({
@@ -322,6 +338,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
                         className="w-full mb-4"
                         label="Menit"
                         name="menitMasuk"
+                        defaultValue={menitMasukDefault}
                         options={
                           minutes &&
                           minutes.map((mnt) => ({
@@ -341,6 +358,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
                         className="w-full mb-4"
                         label="Jam"
                         name="jamKeluar"
+                        defaultValue={jamPulangDefault}
                         options={
                           hours &&
                           hours.map((jam) => ({
@@ -354,6 +372,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
                         className="w-full mb-4"
                         label="Menit"
                         name="menitKeluar"
+                        defaultValue={menitPulangDefault}
                         options={
                           minutes &&
                           minutes.map((mnt) => ({
@@ -367,19 +386,29 @@ const ModalAddAbsensi = (props: Proptypes) => {
                 </div>
               </div>
 
-              <Button
-                type="submit"
-                disabled={isLoading === "btnSubmitAkademik"}
-              >
-                {isLoading === "btnSubmitAkademik" ? (
-                  <div className="box-loader">
-                    <div className="loader" />
-                    <p>Loading...</p>
-                  </div>
-                ) : (
-                  "Simpan"
-                )}
-              </Button>
+              <div className="flex gap-4 w-[70%] ml-auto mt-10">
+                <Button
+                  type="button"
+                  className="[background:var(--gradient-secondary)] hover:[background:var(--secondary-dark)]"
+                  onClick={onClose}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={isLoading === "btnSubmitAkademik"}
+                  className="[background:var(--gradient-primary)] hover:[background:var(--primary-color)]"
+                >
+                  {isLoading === "btnSubmitAkademik" ? (
+                    <div className="box-loader">
+                      <div className="loader" />
+                      <p>Loading...</p>
+                    </div>
+                  ) : (
+                    "Simpan"
+                  )}
+                </Button>
+              </div>
             </>
           )}
         </form>
