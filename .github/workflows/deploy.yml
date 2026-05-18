@@ -40,7 +40,13 @@ jobs:
             GRECAPTCHA_SECRET_KEY=${{ secrets.GRECAPTCHA_SECRET_KEY }}
             FRONTEND_URL=${{ vars.FRONTEND_URL }}
             NEXTAUTH_URL=${{ vars.NEXTAUTH_URL }}
+            SUPEBASE_PUBLIC_KEY=${{ secrets.SUPEBASE_PUBLIC_KEY }}
             NEXT_PUBLIC_NEXTAUTH_URL=${{ vars.NEXT_PUBLIC_NEXTAUTH_URL }}
+            NEXT_PUBLIC_URL_PARAM_ENCRYPT_KEY=${{ secrets.NEXT_PUBLIC_URL_PARAM_ENCRYPT_KEY }}
+            NEXT_PUBLIC_URL_ENCRYPT_KEY=${{ secrets.NEXT_PUBLIC_URL_ENCRYPT_KEY }}
+            NEXT_PUBLIC_SUPEBASE_SECRET_KEY=${{ secrets.NEXT_PUBLIC_SUPEBASE_SECRET_KEY }}
+            NEXT_PUBLIC_QMS_BASEURL=${{ secrets.NEXT_PUBLIC_QMS_BASEURL }}
+            NEXT_PUBLIC_ONTUITION_BASEURL=${{ secrets.NEXT_PUBLIC_ONTUITION_BASEURL }}
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
@@ -75,6 +81,12 @@ jobs:
               -e GRECAPTCHA_SECRET_KEY='${{ secrets.GRECAPTCHA_SECRET_KEY }}' \
               -e FRONTEND_URL='${{ vars.FRONTEND_URL }}' \
               -e NEXTAUTH_URL='${{ vars.NEXTAUTH_URL }}' \
+              -e SUPEBASE_PUBLIC_KEY='${{ secrets.SUPEBASE_PUBLIC_KEY }}' \
+              -e NEXT_PUBLIC_URL_PARAM_ENCRYPT_KEY='${{ secrets.NEXT_PUBLIC_URL_PARAM_ENCRYPT_KEY }}' \
+              -e NEXT_PUBLIC_URL_ENCRYPT_KEY='${{ secrets.NEXT_PUBLIC_URL_ENCRYPT_KEY }}' \
+              -e NEXT_PUBLIC_SUPEBASE_SECRET_KEY='${{ secrets.NEXT_PUBLIC_SUPEBASE_SECRET_KEY }}' \
+              -e NEXT_PUBLIC_QMS_BASEURL='${{ secrets.NEXT_PUBLIC_QMS_BASEURL }}' \
+              -e NEXT_PUBLIC_ONTUITION_BASEURL='${{ secrets.NEXT_PUBLIC_ONTUITION_BASEURL }}' \
               -e NEXT_PUBLIC_NEXTAUTH_URL='${{ vars.NEXT_PUBLIC_NEXTAUTH_URL }}' \
               ${{ secrets.DOCKER_USERNAME }}/${{ vars.CONTAINER_NAME }}:${{ github.sha }}
 
