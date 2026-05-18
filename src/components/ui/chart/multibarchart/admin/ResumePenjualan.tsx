@@ -13,12 +13,13 @@ import {
 
 type Proptype = {
   title: string;
-  data: Resume7Hari[];
+  data?: Resume7Hari[];
 };
 
 const CustomAxisTick = (props: any) => {
   const { x, y, payload } = props;
-  const [hari, tanggal] = payload.value.split("|");
+  const value = String(payload?.value ?? "");
+  const [hari, tanggal] = value.split("|");
 
   return (
     <g transform={`translate(${x},${y})`}>
@@ -48,16 +49,16 @@ const CustomAxisTick = (props: any) => {
   );
 };
 
-const ResumePenjualan = ({ title, data }: Proptype) => {
+const ResumePenjualan = ({ title, data = [] }: Proptype) => {
   const formattedData = data.map((item) => ({
     ...item,
     label: `${item.hari}|${item.tanggal}`,
   }));
 
   const CustomTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active || !payload?.length || !label) return null;
 
-    const [hari, tanggal] = label.split("|");
+    const [hari, tanggal] = String(label).split("|");
 
     const hadir = payload.find((p: any) => p.dataKey === "hadir")?.value || 0;
     const tidakHadir =

@@ -58,6 +58,7 @@ export const formatCreatedAt = (dateValue: string | Date) => {
 };
 
 export const formatTglUtkBankendRequest = (date: Date) => {
+  // Konversi nilai ke string
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
@@ -76,6 +77,7 @@ export const formatDateShortID = (date: Date | string) => {
 };
 
 export const formatDateFullID = (date: Date | string) => {
+  //untuk membuat format sbb: Rabu, 06 Mei 2026
   const d = new Date(date);
 
   return d.toLocaleDateString("id-ID", {

@@ -1,6 +1,7 @@
 import JustifikasiPageView from "@/components/view/admin/Justifikasi";
 import justifikasiServices from "@/pages/api/services/justifikasi";
 import { Justifikasi } from "@/type/Justifikasi.type";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
@@ -8,10 +9,12 @@ const JustifikasiPage = ({ setToaster }: any) => {
   const session: any = useSession();
   const [data, setData] = useState<Justifikasi[]>([]);
   const [loadingFetch, setLoadingFetch] = useState(true);
+  const tasem = getTahunAjaranWithSemester();
   const getDataJustifikasi = async () => {
     try {
       const payload = {
         inst: session.data?.user?.instansiId,
+        tahunajaran: tasem.ta,
       };
       const token = session.data?.accessToken;
       const req = await justifikasiServices.getAllData(payload, token);
@@ -48,6 +51,7 @@ const JustifikasiPage = ({ setToaster }: any) => {
       data={data}
       setData={setData}
       loadingFetch={loadingFetch}
+      setLoadingFetch={setLoadingFetch}
     />
   );
 };

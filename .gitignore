@@ -42,3 +42,4 @@ pnpm-debug.log*
 
 # docker
 docker-data
+.git

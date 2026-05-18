@@ -11,24 +11,22 @@ import {
   TextField,
   TableSortLabel,
   InputAdornment,
-  Button,
-  Link,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import TableRowSkeleton from "../../../skeleton/tableRow";
-import { PiketGuru } from "@/type/Piketguru.type";
-import { Resume7HariPerbulan } from "@/type/Dashboard.type";
 import { getTahunAjaranWithSemester } from "@/utils/tasemester";
-import { formatBulanIndonesia } from "@/utils/formatdate";
+import { formatCreatedAt } from "@/utils/formatdate";
 import { Justifikasi } from "@/type/Justifikasi.type";
+import ModalUpdateJustifikasi from "@/components/view/admin/Justifikasi/ModalUpdate";
 type Proptype = {
   data: Justifikasi[];
   setData: Dispatch<SetStateAction<Justifikasi[]>>;
   session: any;
   loadingFetch: boolean;
+  setToaster: Dispatch<SetStateAction<{}>>;
 };
 const DataTableJustifikasi = (prop: Proptype) => {
-  const { data, setData, session, loadingFetch } = prop;
+  const { data, setData, session, loadingFetch, setToaster } = prop;
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -37,6 +35,12 @@ const DataTableJustifikasi = (prop: Proptype) => {
   const [filteredData, setFilteredData] = useState<Justifikasi[]>(data);
   const [sortField, setSortField] = useState<keyof Justifikasi | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+  const [isLoading, setIsLoading] = useState<string>("");
+
+  const [updateJustifikasi, setUpdateJustifikasi] = useState<Justifikasi | {}>(
+    {},
+  );
 
   const tasem = getTahunAjaranWithSemester();
 
@@ -108,6 +112,14 @@ const DataTableJustifikasi = (prop: Proptype) => {
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage,
   );
+  const handleEdit = async (id: number) => {
+    setIsLoading("editBtn");
+
+    const editingData = data.find((item) => item.id === id);
+    console.log("menampilkan data: ", editingData);
+    setUpdateJustifikasi(editingData ?? {});
+    setIsLoading("");
+  };
 
   return (
     <>
@@ -115,7 +127,7 @@ const DataTableJustifikasi = (prop: Proptype) => {
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Absensi Mata Pelajaran Tahun Ajaran {tasem.ta}
+            Justifikasi Absensi Siswa Tahun Ajaran {tasem.ta}
           </h4>
 
           {/* KANAN */}
@@ -153,9 +165,9 @@ const DataTableJustifikasi = (prop: Proptype) => {
                 <TableCell className="font-[550]">No</TableCell>
                 <TableCell className="font-[550]">
                   <TableSortLabel
-                    active={sortField === "nama_siswa"}
-                    direction={sortField === "nama_siswa" ? sortOrder : "asc"}
-                    onClick={() => handleSort("nama_siswa")}
+                    active={sortField === "student_name"}
+                    direction={sortField === "student_name" ? sortOrder : "asc"}
+                    onClick={() => handleSort("student_name")}
                   >
                     Nama Siswa
                   </TableSortLabel>
@@ -163,27 +175,29 @@ const DataTableJustifikasi = (prop: Proptype) => {
 
                 <TableCell className="font-[550]">
                   <TableSortLabel
-                    active={sortField === "nama_kelas"}
-                    direction={sortField === "nama_kelas" ? sortOrder : "asc"}
-                    onClick={() => handleSort("nama_kelas")}
+                    active={sortField === "class_name"}
+                    direction={sortField === "class_name" ? sortOrder : "asc"}
+                    onClick={() => handleSort("class_name")}
                   >
                     Kelas
                   </TableSortLabel>
                 </TableCell>
                 <TableCell className="font-[550]">
                   <TableSortLabel
-                    active={sortField === "tgl"}
-                    direction={sortField === "tgl" ? sortOrder : "asc"}
-                    onClick={() => handleSort("tgl")}
+                    active={sortField === "waktu_absensi"}
+                    direction={
+                      sortField === "waktu_absensi" ? sortOrder : "asc"
+                    }
+                    onClick={() => handleSort("waktu_absensi")}
                   >
                     Tanggal
                   </TableSortLabel>
                 </TableCell>
-                <TableCell className="font-[550]">
+                <TableCell className="font-[550] w-1 whitespace-nowrap">
                   <TableSortLabel
-                    active={sortField === "status_awal"}
-                    direction={sortField === "status_awal" ? sortOrder : "asc"}
-                    onClick={() => handleSort("status_awal")}
+                    active={sortField === "status_hadir"}
+                    direction={sortField === "status_hadir" ? sortOrder : "asc"}
+                    onClick={() => handleSort("status_hadir")}
                   >
                     Status Awal
                   </TableSortLabel>
@@ -197,16 +211,17 @@ const DataTableJustifikasi = (prop: Proptype) => {
                     Status Akhir
                   </TableSortLabel>
                 </TableCell>
+                <TableCell className="font-[550]">Aksi</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {loadingFetch ? (
-                <TableRowSkeleton columns={6} />
+                <TableRowSkeleton columns={7} />
               ) : searchLoading ? (
-                <TableRowSkeleton columns={6} />
+                <TableRowSkeleton columns={7} />
               ) : filteredData.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={9} align="center">
+                  <TableCell colSpan={7} align="center">
                     <p className="text-gray-500 text-sm mb-4">
                       Belum Ada data Justifikasi
                     </p>
@@ -218,11 +233,37 @@ const DataTableJustifikasi = (prop: Proptype) => {
                     <TableRow>
                       <TableCell>{page * rowsPerPage + index + 1}</TableCell>
 
-                      <TableCell>{row.nama_siswa}</TableCell>
-                      <TableCell>{row.nama_kelas}</TableCell>
-                      <TableCell>{row.tgl?.toLocaleDateString()}</TableCell>
-                      <TableCell>{row.status_awal}</TableCell>
-                      <TableCell>{row.status_akhir}</TableCell>
+                      <TableCell>{row.student_name}</TableCell>
+                      <TableCell>{row.class_name}</TableCell>
+                      <TableCell>
+                        {formatCreatedAt(row.waktu_absensi)}
+                      </TableCell>
+                      <TableCell>
+                        <p className="inline-block text-red-700 font-semibold bg-red-100 px-2 py-1 rounded-md border-l-4 border-red-600">
+                          {row.status_hadir}
+                        </p>
+                      </TableCell>
+                      <TableCell className="text-gray-400 font-thin">
+                        Belum Justifikasi
+                      </TableCell>
+                      <TableCell>
+                        {isLoading === "editBtnJustifikasi" ? (
+                          <div className="box-loader">
+                            <div className="loader" />
+                            <p>Loading...</p>
+                          </div>
+                        ) : (
+                          <div
+                            onClick={() => handleEdit(row.id)}
+                            className="flex gap-1 items-center cursor-pointer"
+                          >
+                            <i className="bx bx-edit text-[var(--primary-color)] text-lg"></i>
+                            <p className="text-sm text-[var(--primary-color)]">
+                              Justifikasi
+                            </p>
+                          </div>
+                        )}
+                      </TableCell>
                     </TableRow>
                   </React.Fragment>
                 ))
@@ -264,6 +305,20 @@ const DataTableJustifikasi = (prop: Proptype) => {
           }}
         />
       </Paper>
+      {!!Object?.keys(updateJustifikasi).length && (
+        <ModalUpdateJustifikasi
+          open={!!Object?.keys(updateJustifikasi).length}
+          onClose={() => setUpdateJustifikasi({})}
+          updateJustifikasi={updateJustifikasi}
+          setUpdateJustifikasi={setUpdateJustifikasi}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          setToaster={setToaster}
+          session={session}
+          setData={setData}
+          taTasem={tasem.ta}
+        />
+      )}
     </>
   );
 };

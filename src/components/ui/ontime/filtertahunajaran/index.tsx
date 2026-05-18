@@ -71,12 +71,24 @@ const FilterTahunAjaran = () => {
     <FormControl
       sx={{
         minWidth: 180,
+
+        backgroundColor: "#fff",
+        borderRadius: "10px",
+
         "& .MuiOutlinedInput-root": {
           borderRadius: "10px",
+          backgroundColor: "#fff",
         },
+
+        "& .MuiInputLabel-root": {
+          backgroundColor: "#fff",
+          paddingX: "4px",
+        },
+
         "& .MuiSelect-icon": {
-          color: "gray-800",
+          color: "gray",
         },
+
         "& .MuiSelect-iconOpen": {
           transform: "rotate(0deg)",
           color: "var(--primary-color)",
@@ -84,9 +96,16 @@ const FilterTahunAjaran = () => {
       }}
       size="small"
     >
-      <InputLabel id="demo-simple-select-label" className="rounded-[10px]">
+      <InputLabel
+        id="demo-simple-select-label"
+        className="border border-1 rounded-md border-grey-500"
+        sx={{
+          transform: "translate(14px, -12px) scale(0.75)",
+        }}
+      >
         Tahun Ajaran
       </InputLabel>
+
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"

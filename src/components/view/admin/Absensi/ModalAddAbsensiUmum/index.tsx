@@ -225,45 +225,45 @@ const ModalAddAbsensiUmum = (props: Props) => {
       institution_id: session.data?.user?.instansi,
     };
     console.log("ini data yang akan diinput: ", data);
-    // try {
-    //   const res = await jadwalUmumServices.AddData(
-    //     data,
-    //     session.data?.accessToken,
-    //   );
-    //   if (res.status === 200) {
-    //     if (res.data.status_code === 200) {
-    //       setToaster({
-    //         variant: "success",
-    //         message: "Tambah Jadwal Umum berhasil!",
-    //       });
-    //       console.log(res);
-    //       const dataInst = {
-    //         inst: session.data?.user?.instansiId,
-    //         tahunajaran: tasem.ta,
-    //       };
+    try {
+      const res = await jadwalUmumServices.AddData(
+        data,
+        session.data?.accessToken,
+      );
+      if (res.status === 200) {
+        if (res.data.status_code === 200) {
+          setToaster({
+            variant: "success",
+            message: "Tambah Jadwal Umum berhasil!",
+          });
+          console.log(res);
+          const dataInst = {
+            inst: session.data?.user?.instansiId,
+            tahunajaran: tasem.ta,
+          };
 
-    //       // fetch ulang seluruh data user
-    //       const resData = await jadwalUmumServices.getAllData(
-    //         dataInst,
-    //         session.data?.accessToken,
-    //       );
-    //       console.log(resData);
-    //       setDataJdwlUmum(resData.data.data);
-    //       setAddAbsensiUmum(false);
-    //     } else {
-    //       setToaster({
-    //         variant: "danger",
-    //         message: res.data.message,
-    //       });
-    //     }
-    //   }
-    // } catch (error) {
-    //   setToaster({
-    //     variant: "danger",
-    //     message: "Terjadi kesalahan",
-    //   });
-    // }
-    // onClose();
+          // fetch ulang seluruh data user
+          const resData = await jadwalUmumServices.getAllData(
+            dataInst,
+            session.data?.accessToken,
+          );
+          console.log(resData);
+          setDataJdwlUmum(resData.data.data);
+          setAddAbsensiUmum(false);
+        } else {
+          setToaster({
+            variant: "danger",
+            message: res.data.message,
+          });
+        }
+      }
+    } catch (error) {
+      setToaster({
+        variant: "danger",
+        message: "Terjadi kesalahan",
+      });
+    }
+    onClose();
   };
 
   const jamMasukDefault = "00";

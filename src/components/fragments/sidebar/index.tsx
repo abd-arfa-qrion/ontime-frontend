@@ -57,13 +57,15 @@ const useIsMobile = () => {
 const Sidebar = ({ list }: Proptypes) => {
   const isMobile = useIsMobile();
   const { pathname } = useRouter();
-  const session: any = useSession();
+  const router = useRouter();
+  const [tokenq, setTokenq] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState("");
 
   const [klikMenu, setKlikMenu] = useState<Record<string, boolean>>({});
 
   const pathParts = pathname.split("/").filter(Boolean);
+
   const pathName =
     pathParts.length >= 2
       ? `/${pathParts[0]}/${pathParts[1]}`
@@ -78,6 +80,18 @@ const Sidebar = ({ list }: Proptypes) => {
   };
 
   useEffect(() => {
+    const token = sessionStorage.getItem("tokenQMS");
+    if (!token) {
+      signOut();
+      router.push("/auth/login");
+    } else {
+      setTokenq(token);
+    }
+
+    console.log(token);
+  }, []);
+
+  useEffect(() => {
     list.forEach((item) => {
       if (item.li && pathName.includes(item.ref)) {
         setKlikMenu((prev) => ({
@@ -89,7 +103,7 @@ const Sidebar = ({ list }: Proptypes) => {
   }, [pathName, list]);
 
   const handleSignout = async () => {
-    setIsLoading(true);
+    setIsLoading("btnSignOut");
     const callbackUrl =
       process.env.NEXT_PUBLIC_NEXTAUTH_URL +
       "/" +
@@ -98,7 +112,7 @@ const Sidebar = ({ list }: Proptypes) => {
     setTimeout(async () => {
       const result = await signOut({ callbackUrl });
 
-      setIsLoading(false);
+      setIsLoading("");
     }, 500);
   };
 
@@ -204,20 +218,23 @@ const Sidebar = ({ list }: Proptypes) => {
 
       <div className={styles.sidebar__bottom}>
         <Link
-          href={`${urlQms}/token-login?token=${session.data?.accessToken}`}
-          className="w-full text-white font-semibold [background:var(--gradient-primary)] hover:[background:var(--primary-color)] p-3 border rounded-md text-center underline-none"
+          target="_blank"
+          href={`${urlQms}/token-login?token=${tokenq}`}
+          className="w-full text-white [background:var(--gradient-secondary)] hover:[background:var(--primary-color)] p-3 border rounded-md text-center underline-none"
         >
-          <ArrowBackIos /> {isLoading ? "Loading..." : "Login to QMS"}
+          <ArrowBackIos />{" "}
+          {isLoading === "btnQMS" ? "Loading..." : "Login to QMS"}
         </Link>
 
         <Button
           type="button"
           onClick={() => handleSignout()}
           variant="primary"
-          disabled={isLoading}
+          disabled={isLoading === "btnSignOut"}
         >
           {" "}
-          <LogoutOutlined /> {isLoading ? "Loading..." : "LOGOUT"}
+          <LogoutOutlined />{" "}
+          {isLoading === "btnSignOut" ? "Loading..." : "LOGOUT"}
         </Button>
       </div>
     </div>

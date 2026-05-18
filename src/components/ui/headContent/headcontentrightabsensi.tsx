@@ -27,7 +27,7 @@ const HeadContentRightAbsensi = (prop: Proptype) => {
           borderRadius: "10px",
           color: jenisAbsensi === "masuk" ? "#fff" : "var(--primary-color)",
           backgroundColor:
-            jenisAbsensi === "masuk" ? "var(--primary-color)" : "transparent",
+            jenisAbsensi === "masuk" ? "var(--primary-color)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
             backgroundColor:
@@ -50,7 +50,7 @@ const HeadContentRightAbsensi = (prop: Proptype) => {
           borderRadius: "10px",
           color: jenisAbsensi === "umum" ? "#fff" : "var(--primary-color)",
           backgroundColor:
-            jenisAbsensi === "umum" ? "var(--primary-color)" : "transparent",
+            jenisAbsensi === "umum" ? "var(--primary-color)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
             backgroundColor:
@@ -73,9 +73,7 @@ const HeadContentRightAbsensi = (prop: Proptype) => {
           borderRadius: "10px",
           color: jenisAbsensi === "pelajaran" ? "#fff" : "var(--primary-color)",
           backgroundColor:
-            jenisAbsensi === "pelajaran"
-              ? "var(--primary-color)"
-              : "transparent",
+            jenisAbsensi === "pelajaran" ? "var(--primary-color)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
             backgroundColor:

@@ -2,9 +2,13 @@ import AdminLayout from "@/components/layout/AdminLayout";
 import HeadContent from "@/components/ui/headContent/headcontent";
 import HeadContentRightDashboard from "@/components/ui/headContent/headcontentrightdashboard";
 import DataTableJustifikasi from "@/components/ui/ontime/datatable/datatablejustifikasi";
+import DataTableJustifikasiGuru from "@/components/ui/ontime/datatable/datatablejustifikasiguru";
+import justifikasiServices from "@/pages/api/services/justifikasi";
 import kelasServices from "@/pages/api/services/kelas";
-import { Justifikasi } from "@/type/Justifikasi.type";
+import { Justifikasi, JustifikasiGuru } from "@/type/Justifikasi.type";
 import { Kelas } from "@/type/Kelas.type";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+import { useSearchParams } from "next/navigation";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type Props = {
@@ -13,12 +17,27 @@ type Props = {
   data: Justifikasi[];
   setData: Dispatch<SetStateAction<Justifikasi[]>>;
   loadingFetch: boolean;
+  setLoadingFetch: Dispatch<SetStateAction<boolean>>;
 };
 const JustifikasiPageView = (prop: Props) => {
-  const { setToaster, session, data, setData, loadingFetch } = prop;
+  const { setToaster, session, data, setData, loadingFetch, setLoadingFetch } =
+    prop;
+
+  const searchParam = useSearchParams();
+  const activeTab = searchParam.get("tab") ?? "siswa";
+
   const [kelasData, setKelasData] = useState<Kelas[]>([]);
   const [isLoading, setIsLoading] = useState("");
   const [tabActive, setTabActive] = useState("siswa");
+  const [dataGuru, setDataGuru] = useState<JustifikasiGuru[]>([]);
+
+  const tasem = getTahunAjaranWithSemester();
+  useEffect(() => {
+    if (activeTab) {
+      setTabActive(activeTab);
+    }
+  }, [activeTab]);
+
   useEffect(() => {
     if (!session?.data?.accessToken) return;
     const loadData = async () => {
@@ -30,6 +49,41 @@ const JustifikasiPageView = (prop: Props) => {
     }
   }, [session?.data?.accessToken]);
 
+  useEffect(() => {
+    if (tabActive === "guru") {
+      if (session.status === "authenticated") {
+        getDataGuru();
+      }
+    }
+  }, [tabActive]);
+
+  const getDataGuru = async () => {
+    setLoadingFetch(true);
+    const data = {
+      inst: session.data?.user?.instansiId,
+      tahunajaran: tasem.ta,
+    };
+    try {
+      const res = await justifikasiServices.getAllDataGuru(
+        data,
+        session.data?.accessToken,
+      );
+      if (res.status !== 200 && res.data.status_code !== 200) {
+        setToaster({
+          variant: "danger",
+          message: res.data.message,
+        });
+      } else {
+        console.log("data justifikasi guru: ", res);
+        setDataGuru(res.data.data);
+      }
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingFetch(false);
+    }
+  };
   const getDataKelas = async () => {
     const data = {
       inst: session.data?.user?.instansiId,
@@ -76,12 +130,25 @@ const JustifikasiPageView = (prop: Props) => {
             handleFilterbyKelas={handleFilterbyKelas}
           />
         </div>
-        <DataTableJustifikasi
-          data={data}
-          setData={setData}
-          session={session}
-          loadingFetch={loadingFetch}
-        />
+        {tabActive === "siswa" ? (
+          <DataTableJustifikasi
+            data={data}
+            setData={setData}
+            session={session}
+            loadingFetch={loadingFetch}
+            setToaster={setToaster}
+          />
+        ) : (
+          <DataTableJustifikasiGuru
+            dataGuru={dataGuru}
+            setDataGuru={setDataGuru}
+            session={session}
+            loadingFetch={loadingFetch}
+            setToaster={setToaster}
+            setTabActive={setTabActive}
+          />
+        )}
+
         <div></div>
       </div>
     </AdminLayout>

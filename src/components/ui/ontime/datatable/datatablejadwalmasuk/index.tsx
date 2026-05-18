@@ -46,6 +46,7 @@ const DataTabelJadwalMasuk = (prop: Proptype) => {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [isLoading, setIsLoading] = useState<string>(""); // sebelumnya index: number
   const [editingData, setEditingData] = useState<JadwalMasuk | null>(null);
+
   //handle Modal
   const [modalGenerate, setModalGenerate] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);

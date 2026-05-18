@@ -202,7 +202,7 @@ const ModalEditPengumuman = (props: Props) => {
       if (res.status === 200) {
         setToaster({
           variant: "success",
-          message: "Pengumuman berhasil diperbarui",
+          message: "Pengumum an berhasil diperbarui",
         });
 
         const resData = await pengumumanServices.getAllData(

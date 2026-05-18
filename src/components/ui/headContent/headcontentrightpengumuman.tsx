@@ -24,9 +24,7 @@ const HeadContentRightPengumuman = (prop: Proptypes) => {
           borderRadius: "10px",
           color: statusPublish === "publish" ? "#fff" : "var(--primary-color)",
           backgroundColor:
-            statusPublish === "publish"
-              ? "var(--primary-color)"
-              : "transparent",
+            statusPublish === "publish" ? "var(--primary-color)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
             backgroundColor:
@@ -49,7 +47,7 @@ const HeadContentRightPengumuman = (prop: Proptypes) => {
           borderRadius: "10px",
           color: statusPublish === "draft" ? "#fff" : "var(--primary-color)",
           backgroundColor:
-            statusPublish === "draft" ? "var(--primary-color)" : "transparent",
+            statusPublish === "draft" ? "var(--primary-color)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
             backgroundColor:
@@ -72,9 +70,7 @@ const HeadContentRightPengumuman = (prop: Proptypes) => {
           borderRadius: "10px",
           color: statusPublish === "schedule" ? "#fff" : "var(--primary-color)",
           backgroundColor:
-            statusPublish === "schedule"
-              ? "var(--primary-color)"
-              : "transparent",
+            statusPublish === "schedule" ? "var(--primary-color)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
             backgroundColor:

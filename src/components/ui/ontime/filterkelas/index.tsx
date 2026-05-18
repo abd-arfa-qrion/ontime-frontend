@@ -35,8 +35,27 @@ const FilterKelas = (prop: Proptype) => {
     <FormControl
       sx={{
         minWidth: 180,
+
+        backgroundColor: "#fff",
+        borderRadius: "10px",
+
         "& .MuiOutlinedInput-root": {
           borderRadius: "10px",
+          backgroundColor: "#fff",
+        },
+
+        "& .MuiInputLabel-root": {
+          backgroundColor: "#fff",
+          paddingX: "4px",
+        },
+
+        "& .MuiSelect-icon": {
+          color: "gray",
+        },
+
+        "& .MuiSelect-iconOpen": {
+          transform: "rotate(0deg)",
+          color: "var(--primary-color)",
         },
       }}
       size="small"

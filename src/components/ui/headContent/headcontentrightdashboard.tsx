@@ -18,7 +18,7 @@ const HeadContentRightDashboard = (prop: Proptypes) => {
   return (
     <div className="flex gap-2">
       <Button
-        onClick={() => handleClick("publish")}
+        onClick={() => handleClick("siswa")}
         variant={tabActive === "siswa" ? "contained" : "outlined"}
         sx={{
           textTransform: "none",
@@ -41,7 +41,7 @@ const HeadContentRightDashboard = (prop: Proptypes) => {
         Siswa
       </Button>
       <Button
-        onClick={() => handleClick("draft")}
+        onClick={() => handleClick("guru")}
         variant={tabActive === "guru" ? "contained" : "outlined"}
         sx={{
           textTransform: "none",

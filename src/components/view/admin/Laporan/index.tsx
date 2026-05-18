@@ -1,43 +1,58 @@
-import { ButtonLoading, ButtonLoadingDefault } from "@/type/Buttonloading.type";
-import { useSession } from "next-auth/react";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import * as XLSX from "xlsx";
-import { renderToString } from "react-dom/server";
-import ExportDataTransaksiTemplate from "@/components/ui/laporan/TempalteExcel/LapTransaksi";
 import AdminLayout from "@/components/layout/AdminLayout";
+import HeadContent from "@/components/ui/headContent/headcontent";
+import HeadContentRightLaporan from "@/components/ui/headContent/headcontentrightlaporan";
+import DownloadAbsensiModal from "./Modaldownload";
+import DataTableUmumGuru from "./datatabelumum/datatableguru";
 
-type Proptype = { setToaster: Dispatch<SetStateAction<{}>> };
+type Proptype = {
+  setToaster: Dispatch<SetStateAction<{}>>;
+  session: any;
+  lapAbsenAkdmk: any;
+  lapAbsenUmum: any;
+  lapAbsenMasuk: any;
+  loadingFetch: boolean;
+};
 const LaporanCetak = (props: Proptype) => {
-  const { setToaster } = props;
-  const session: any = useSession();
-  const [isLoading, setIsLoading] = useState("");
+  const { setToaster, session } = props;
 
-  const exportToExcel = (data: any[], fileName: string, template: string) => {
-    // Render komponen menjadi HTML string
-    const htmlString = renderToString(
-      <ExportDataTransaksiTemplate data={data} />,
-    );
-
-    // Konversi HTML string menjadi worksheet
-    const worksheet = XLSX.utils.table_to_sheet(
-      new DOMParser()
-        .parseFromString(htmlString, "text/html")
-        .querySelector("table"),
-    );
-
-    // Buat workbook dan tambahkan worksheet
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, template);
-
-    // Simpan file
-    XLSX.writeFile(workbook, `${fileName}.xlsx`);
-  };
+  const [jenisAbsensi, setJenisAbsensi] = useState("masuk");
+  const [subjek, setSubjek] = useState("siswa");
+  const [modalDownload, setModalDownload] = useState(false);
 
   return (
-    <AdminLayout>
-      <div className="grid grid-cols-2 gap-2">tes</div>
-    </AdminLayout>
+    <>
+      <AdminLayout>
+        <div>
+          <div className="bagian-head-content flex justify-between items-center">
+            <HeadContent text="Laporan Absensi" />
+            <HeadContentRightLaporan
+              jenisAbsensi={jenisAbsensi}
+              setJenisAbsensi={setJenisAbsensi}
+              modalDownload={modalDownload}
+              setModalDownload={setModalDownload}
+            />
+          </div>
+          {jenisAbsensi === "umum" && subjek === "guru" ? (
+            <p>Data tabel Absensi Umum Guru</p>
+          ) : jenisAbsensi === "umum" && subjek === "siswa" ? (
+            <p>Data tabel Absensi Umum Siswa</p>
+          ) : jenisAbsensi === "masuk" && subjek === "guru" ? (
+            <p>Data tabel Absensi Masuk Guru</p>
+          ) : jenisAbsensi === "masuk" && subjek === "siswa" ? (
+            <p>Maaf Tidak Ada absen Masuk & Pulang untuk Siswa</p>
+          ) : jenisAbsensi === "pelajaran" && subjek === "guru" ? (
+            <p>Maaf Tidak Ada absen pelajaran untuk Guru</p>
+          ) : jenisAbsensi === "pelajaran" && subjek === "siswa" ? (
+            <p>Data tabel Absensi Akademik Siswa</p>
+          ) : null}
+        </div>
+      </AdminLayout>
+      {modalDownload && (
+        <DownloadAbsensiModal onClose={() => setModalDownload(false)} />
+      )}
+    </>
   );
 };
 
