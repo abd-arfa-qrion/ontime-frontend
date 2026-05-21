@@ -238,8 +238,8 @@ const NewNcilPageView = (prop: Proptypes) => {
 
                     {/* PRICE */}
                     <div className="mt-8">
-                      <div className="flex items-end gap-2">
-                        <span className="text-5xl font-black tracking-tight text-gray-900">
+                      <div className="flex flex-wrap items-end gap-2">
+                        <span className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-gray-900 break-all leading-tights">
                           {new Intl.NumberFormat("id-ID", {
                             style: "currency",
                             currency: "IDR",

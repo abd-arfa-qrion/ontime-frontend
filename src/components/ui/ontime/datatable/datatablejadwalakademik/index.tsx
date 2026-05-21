@@ -189,28 +189,30 @@ const DataTabelJadwalAkademik = (prop: Proptype) => {
               switchBtn={switchBtn}
             />
 
-            <div className="w-64">
-              <TextField
-                label="Search"
-                variant="outlined"
-                size="small"
-                fullWidth
-                value={searchQuery}
-                onChange={handleSearchChange}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "10px",
-                  },
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
+            {switchBtn === "list" && (
+              <div className="w-64">
+                <TextField
+                  label="Search"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "10px",
+                    },
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
         {/* Field Search dengan Icon */}

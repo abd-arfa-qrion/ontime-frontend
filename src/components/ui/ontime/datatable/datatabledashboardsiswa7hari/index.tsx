@@ -168,7 +168,7 @@ const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
                     direction={sortField === "total_siswa" ? sortOrder : "asc"}
                     onClick={() => handleSort("total_siswa")}
                   >
-                    Jumlahiswa
+                    Jumlah Siswa
                   </TableSortLabel>
                 </TableCell>
                 <TableCell className="font-[550]">
@@ -179,7 +179,7 @@ const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
                     }
                     onClick={() => handleSort("persen_kehadiran")}
                   >
-                    Porsentase Hadir
+                    Persentase Hadir
                   </TableSortLabel>
                 </TableCell>
                 <TableCell className="font-[550]">
@@ -190,7 +190,7 @@ const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
                     }
                     onClick={() => handleSort("persen_tidak_hadir")}
                   >
-                    Porsentase Tidak Hadir
+                    Persentase Tidak Hadir
                   </TableSortLabel>
                 </TableCell>
               </TableRow>
