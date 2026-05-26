@@ -6,9 +6,11 @@ import { useRouter } from "next/router";
 type Proptype = {
   jenisAbsensi: string;
   setJenisAbsensi: React.Dispatch<React.SetStateAction<string>>;
+  filterTA: string;
+  setFilterTA: React.Dispatch<React.SetStateAction<string>>;
 };
 const HeadContentRightAbsensi = (prop: Proptype) => {
-  const { jenisAbsensi, setJenisAbsensi } = prop;
+  const { jenisAbsensi, setJenisAbsensi, filterTA, setFilterTA } = prop;
   const router = useRouter();
 
   const handleClick = (jenis: string) => {
@@ -87,7 +89,7 @@ const HeadContentRightAbsensi = (prop: Proptype) => {
       >
         Absen Pelajaran
       </Button>
-      <FilterTahunAjaran />
+      <FilterTahunAjaran filterTA={filterTA} setFilterTA={setFilterTA} />
     </div>
   );
 };

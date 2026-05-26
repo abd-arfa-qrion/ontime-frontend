@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, {
   Dispatch,
@@ -71,7 +72,7 @@ const PaymentPageView = (prop: Proptype) => {
   // Live Check Pembayaran
   // =========================
   useEffect(() => {
-    if (!invoiceData?.invoiceId) return;
+    if (!invoiceData?.referenceNumber) return;
 
     const checkPaymentStatus = async () => {
       try {
@@ -81,6 +82,31 @@ const PaymentPageView = (prop: Proptype) => {
         // CALL API CHECK STATUS
         // =========================
         console.log("check payment status");
+        try {
+          const req = await fetch(
+            `${process.env.NEXT_PUBLIC_ONTUITION_BASEURL}/api/payment-gateway-logs/reference/${invoiceData?.referenceNumber}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("tokenQMS")}`,
+              },
+            },
+          );
+          const res = await req.json();
+          console.log(res);
+          if (res.status === 200 && res.data.gatewayStatus === "SUCCESS") {
+            setToaster({
+              variant: "success",
+              message: "Pembayaran berhasil silahkan login kembali!",
+            });
+            setLoadingBtn("btnCancelPay");
+            sessionStorage.removeItem("invoice");
+            signOut();
+          }
+        } catch (error) {
+          console.log(error);
+        }
 
         // CONTOH RESPONSE
         // const result = await api...

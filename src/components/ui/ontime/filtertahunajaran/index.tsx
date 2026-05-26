@@ -13,7 +13,14 @@ import {
 } from "@mui/material";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-const FilterTahunAjaran = () => {
+
+type Proptype = {
+  filterTA: string;
+  setFilterTA: React.Dispatch<React.SetStateAction<string>>;
+};
+const FilterTahunAjaran = (prop: Proptype) => {
+  const { filterTA, setFilterTA } = prop;
+
   const [selectedOption, setSelectedOption] = useState("");
   const [taDataFilter, setTaDataFilter] = useState<TaFilter[]>([]);
 
@@ -54,18 +61,19 @@ const FilterTahunAjaran = () => {
 
   useEffect(() => {
     if (taDataFilter.length === 0) return;
-
     const { ta } = getTahunAjaranWithSemester();
-
     const found = taDataFilter.find((item) => item.name.includes(ta));
     // console.log("ini id ta saat ini: ", found?.id);
-
     if (found) {
       setSelectedOption(found.id.toString());
     }
   }, [taDataFilter]);
   const handleChange = (event: SelectChangeEvent<string>) => {
+    const taId = taDataFilter.find(
+      (item) => item.id === Number(event.target.value),
+    );
     setSelectedOption(event.target.value);
+    setFilterTA(taId?.name || "");
   };
   return (
     <FormControl

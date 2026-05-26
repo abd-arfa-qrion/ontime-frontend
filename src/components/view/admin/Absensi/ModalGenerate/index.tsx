@@ -5,12 +5,22 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Modal, Box, Button } from "@mui/material";
+import {
+  Modal,
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  SelectChangeEvent,
+  MenuItem,
+} from "@mui/material";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { TahunAjaran } from "@/type/Tahunajaran.type";
 import taSmesterServices from "@/pages/api/services/tasmester";
-import Select from "@/components/ui/select";
+import SelectCustom from "@/components/ui/select";
+import { SettingsInputCompositeTwoTone } from "@mui/icons-material";
 
 type Props = {
   open: boolean;
@@ -33,6 +43,7 @@ const ModalGenerate = (props: Props) => {
     setIsLoading,
   } = props;
 
+  const [tahunAjaran, setTahunAjaran] = useState<string>("");
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [errorTa, setErrorTa] = useState<boolean>(false);
 
@@ -115,18 +126,23 @@ const ModalGenerate = (props: Props) => {
         </h1>
         <form onSubmit={handleGenerates}>
           {/* Tahun Ajaran */}
-          <Select
-            required
-            className={`w-full mb-4 ${errorTa ? "border-red-500" : ""}`}
-            name="tahunajaran"
-            options={
-              taData &&
-              taData.map((dt) => ({
-                value: dt.id.toString(),
-                label: dt.name,
-              }))
-            }
-          />
+          <FormControl fullWidth size="medium" sx={{ mb: 2 }}>
+            <InputLabel>Tahun Ajaran</InputLabel>
+            <Select
+              name="tahunajaran"
+              value={tahunAjaran}
+              label="Tahun Ajaran"
+              onChange={(e: SelectChangeEvent) =>
+                setTahunAjaran(e.target.value)
+              }
+            >
+              {taData.map((dt) => (
+                <MenuItem key={dt.id} value={dt.id.toString()}>
+                  {dt.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           {/* Button */}
           <Button
             variant="contained"

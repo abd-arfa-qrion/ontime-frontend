@@ -8,22 +8,25 @@ import { JadwalUmum } from "@/type/Jadwalumum.type";
 import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import { error } from "console";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 const AdminAbsenPage = ({ setToaster }: any) => {
   const session: any = useSession();
   const [dataJdwlAkdmk, setDataJdwlAkdmk] = useState<JadwalAkademik[]>([]);
   const [dataJdwlUmum, setDataJdwlUmum] = useState<JadwalUmum[]>([]);
   const [dataJdwlMasuk, setDataJdwlMasuk] = useState<JadwalMasuk[]>([]);
+  const [filterTA, setFilterTA] = useState(() => {
+    return getTahunAjaranWithSemester().ta;
+  });
   const [loadingFetch, setLoadingFetch] = useState(true);
 
-  const tasem = getTahunAjaranWithSemester();
+  // const tasem = getTahunAjaranWithSemester();
 
   const getDataJadwalAkademik = async () => {
     try {
       const payload = {
         inst: session.data?.user?.instansiId,
-        tahunajaran: tasem.ta,
+        tahunajaran: filterTA,
       };
       const token = session.data?.accessToken;
       const req = await jadwalAkademikServices.getAllData(payload, token);
@@ -40,7 +43,7 @@ const AdminAbsenPage = ({ setToaster }: any) => {
     try {
       const payload = {
         inst: session.data?.user?.instansiId,
-        tahunajaran: tasem.ta,
+        tahunajaran: filterTA,
       };
       const token = session.data?.accessToken;
       const req = await jadwalUmumServices.getAllData(payload, token);
@@ -57,7 +60,7 @@ const AdminAbsenPage = ({ setToaster }: any) => {
   const getDataJadwalMasuk = async () => {
     const data = {
       inst: session.data?.user?.instansiId,
-      tahunajaran: tasem.ta,
+      tahunajaran: filterTA,
     };
     try {
       const reqData = await jadwalMasukServices.getAllData(
@@ -87,7 +90,7 @@ const AdminAbsenPage = ({ setToaster }: any) => {
     if (session.status === "authenticated") {
       loadData();
     }
-  }, [session.status]);
+  }, [session.status, filterTA]);
 
   return (
     <AbsensiPageView
@@ -101,6 +104,8 @@ const AdminAbsenPage = ({ setToaster }: any) => {
       setDataJdwlMasuk={setDataJdwlMasuk}
       loadingFetch={loadingFetch}
       setLoadingFetch={setLoadingFetch}
+      filterTA={filterTA}
+      setFilterTA={setFilterTA}
     />
   );
 };

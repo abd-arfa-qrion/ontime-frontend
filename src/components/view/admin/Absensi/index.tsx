@@ -32,6 +32,8 @@ type Proptype = {
   setDataJdwlUmum: Dispatch<SetStateAction<JadwalUmum[]>>;
   setDataJdwlMasuk: Dispatch<SetStateAction<JadwalMasuk[]>>;
   setLoadingFetch: Dispatch<SetStateAction<boolean>>;
+  filterTA: string;
+  setFilterTA: Dispatch<SetStateAction<string>>;
 };
 
 const AbsensiPageView = (prop: Proptype) => {
@@ -46,6 +48,8 @@ const AbsensiPageView = (prop: Proptype) => {
     setDataJdwlMasuk,
     loadingFetch,
     setLoadingFetch,
+    filterTA,
+    setFilterTA,
   } = prop;
   const searchParam = useSearchParams();
   const activeTab = searchParam.get("tab") ?? "umum";
@@ -117,6 +121,8 @@ const AbsensiPageView = (prop: Proptype) => {
             <HeadContentRightAbsensi
               jenisAbsensi={jenisAbsensi}
               setJenisAbsensi={setJenisAbsensi}
+              filterTA={filterTA}
+              setFilterTA={setFilterTA}
             />
           </div>
           {jenisAbsensi === "pelajaran" ? (
@@ -128,6 +134,7 @@ const AbsensiPageView = (prop: Proptype) => {
               loadingFetch={loadingFetch}
               setAddAbsensi={setAddAbsensi}
               kelasData={kelasData}
+              filterTA={filterTA}
             />
           ) : jenisAbsensi === "umum" ? (
             <DataTabelJadwalUmum
@@ -138,6 +145,7 @@ const AbsensiPageView = (prop: Proptype) => {
               loadingFetch={loadingFetch}
               setAddAbsensiUmum={setAddAbsensiUmum}
               kelasData={kelasData}
+              filterTA={filterTA}
             />
           ) : (
             <DataTabelJadwalMasuk
@@ -147,6 +155,7 @@ const AbsensiPageView = (prop: Proptype) => {
               session={session}
               loadingFetch={loadingFetch}
               setLoadingFetch={setLoadingFetch}
+              // filterTA={filterTA}
             />
           )}
         </div>

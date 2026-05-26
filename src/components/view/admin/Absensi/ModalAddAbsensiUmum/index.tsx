@@ -5,14 +5,24 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Modal, Box, TextField, CircularProgress } from "@mui/material";
+import {
+  Modal,
+  Box,
+  TextField,
+  CircularProgress,
+  Select,
+  FormControl,
+  InputLabel,
+  SelectChangeEvent,
+  MenuItem,
+} from "@mui/material";
 import Button from "@/components/ui/button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TahunAjaran } from "@/type/Tahunajaran.type";
 import { useSession } from "next-auth/react";
 import taSmesterServices from "@/pages/api/services/tasmester";
-import Select from "@/components/ui/select";
+import SelectCustom from "@/components/ui/select";
 import CalendarIcon from "@/components/icons/CalendarIcon";
 import targetAbsensiServices from "@/pages/api/services/targetabsensi";
 import methodeAbsensiServices from "@/pages/api/services/methodeabsensi";
@@ -50,6 +60,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
   } = props;
 
   const session: any = useSession();
+  const [tahunAjaran, setTahunAjaran] = useState("");
   const [namaAbsensi, setNamaAbsensi] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -163,6 +174,11 @@ const ModalAddAbsensiUmum = (props: Props) => {
     const form: any = e.target as HTMLFormElement;
     const validations = [
       {
+        condition: !tahunAjaran,
+        error: "tahunAjaran",
+        message: "Maaf, Tahun Ajaran wajib dipilih!",
+      },
+      {
         condition: !form.jamMasuk.value || !form.menitMasuk.value,
         error: "waktuMasuk",
         message: "Maaf, Jam Masuk wajib diisi!",
@@ -214,7 +230,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
     const keluar = form.jamKeluar.value + ":" + form.menitKeluar.value + ":59";
     const data = {
       inst: session.data?.user?.instansiId,
-      tahunajaran_id: Number(form.tahunajaran.value),
+      tahunajaran_id: Number(tahunAjaran),
       absensi_name: namaAbsensi,
       tgl_mulai: startDate?.toLocaleDateString("en-CA"),
       tgl_selesai: endDate?.toLocaleDateString("en-CA"),
@@ -287,18 +303,24 @@ const ModalAddAbsensiUmum = (props: Props) => {
         </h1>
         <form onSubmit={handleAddAbsensi}>
           {/* Tahun Ajaran */}
-          <Select
-            className="w-full mb-4"
-            label="Tahun Ajaran"
-            name="tahunajaran"
-            options={
-              taData &&
-              taData.map((dt) => ({
-                value: dt.id.toString(),
-                label: dt.name,
-              }))
-            }
-          />
+          <FormControl fullWidth size="medium" sx={{ mb: 2 }}>
+            <InputLabel>Tahun Ajaran</InputLabel>
+
+            <Select
+              name="tahunajaran"
+              value={tahunAjaran}
+              label="Tahun Ajaran"
+              onChange={(e: SelectChangeEvent) =>
+                setTahunAjaran(e.target.value)
+              }
+            >
+              {taData.map((dt) => (
+                <MenuItem key={dt.id} value={dt.id.toString()}>
+                  {dt.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           {/* Nama Absensi */}
           <TextField
@@ -357,7 +379,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                   Jam Mulai
                 </b>
                 <div className="flex gap-2 items-center">
-                  <Select
+                  <SelectCustom
                     className="w-full mb-4"
                     label="Jam"
                     name="jamMasuk"
@@ -371,7 +393,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                     }
                   />
                   <p>:</p>
-                  <Select
+                  <SelectCustom
                     className="w-full mb-4"
                     label="Menit"
                     name="menitMasuk"
@@ -395,7 +417,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                   Jam Selesai
                 </b>
                 <div className="flex gap-2 items-center">
-                  <Select
+                  <SelectCustom
                     className="w-full mb-4"
                     label="Jam"
                     name="jamKeluar"
@@ -409,7 +431,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
                     }
                   />
                   <p>:</p>
-                  <Select
+                  <SelectCustom
                     className="w-full mb-4"
                     label="Menit"
                     name="menitKeluar"
@@ -449,22 +471,6 @@ const ModalAddAbsensiUmum = (props: Props) => {
             error={error}
           />
           {/* Button */}
-          {/* <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              backgroundColor: "var(--primary-color)",
-              textTransform: "none",
-            }}
-            type="submit"
-            disabled={isLoading === "btnSubmitUmum"}
-          >
-            {isLoading === "btnSubmitUmum" ? (
-              <CircularProgress size={20} />
-            ) : (
-              "Simpan"
-            )}
-          </Button> */}
           <div className="flex gap-4 w-[70%] ml-auto mt-10">
             <Button
               type="button"

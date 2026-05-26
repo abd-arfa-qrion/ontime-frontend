@@ -42,6 +42,7 @@ type Proptype = {
   session: any;
   loadingFetch: boolean;
   kelasData: Kelas[];
+  filterTA: string;
 };
 const DataTabelJadwalUmum = (prop: Proptype) => {
   const {
@@ -52,6 +53,7 @@ const DataTabelJadwalUmum = (prop: Proptype) => {
     loadingFetch,
     setAddAbsensiUmum,
     kelasData,
+    filterTA,
   } = prop;
 
   const [page, setPage] = useState(0);
@@ -153,7 +155,7 @@ const DataTabelJadwalUmum = (prop: Proptype) => {
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Absensi Umum Tahun Ajaran {tasem.ta}
+            Absensi Umum Tahun Ajaran {filterTA ?? tasem.ta}
           </h4>
 
           {/* KANAN */}
