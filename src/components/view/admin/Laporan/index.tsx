@@ -13,9 +13,11 @@ type Proptype = {
   lapAbsenUmum: any;
   lapAbsenMasuk: any;
   loadingFetch: boolean;
+  filterTA: string;
+  setFilterTA: Dispatch<SetStateAction<string>>;
 };
 const LaporanCetak = (props: Proptype) => {
-  const { setToaster, session } = props;
+  const { setToaster, session, filterTA, setFilterTA } = props;
 
   const [jenisAbsensi, setJenisAbsensi] = useState("masuk");
   const [subjek, setSubjek] = useState("siswa");
@@ -32,6 +34,8 @@ const LaporanCetak = (props: Proptype) => {
               setJenisAbsensi={setJenisAbsensi}
               modalDownload={modalDownload}
               setModalDownload={setModalDownload}
+              filterTA={filterTA}
+              setFilterTA={setFilterTA}
             />
           </div>
           {jenisAbsensi === "umum" && subjek === "guru" ? (

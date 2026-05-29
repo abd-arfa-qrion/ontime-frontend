@@ -105,7 +105,7 @@ const HeadContentRightPengumuman = (prop: Proptypes) => {
         Buat Pengumuman +
       </Button>
 
-      <FilterTahunAjaran />
+      {/* <FilterTahunAjaran /> */}
     </div>
   );
 };

@@ -7,6 +7,8 @@ type Proptypes = {
   switchBtn: string;
   setSwitchBtn: React.Dispatch<React.SetStateAction<string>>;
   setAddJadwal: React.Dispatch<React.SetStateAction<boolean>>;
+  filterTA: string;
+  setFilterTA: React.Dispatch<React.SetStateAction<string>>;
 };
 const HeadContentRightAkademik = (prop: Proptypes) => {
   const { setAddJadwal, switchBtn, setSwitchBtn } = prop;
@@ -45,7 +47,10 @@ const HeadContentRightAkademik = (prop: Proptypes) => {
         Tambah Agenda +
       </Button>
 
-      <FilterTahunAjaran />
+      <FilterTahunAjaran
+        filterTA={prop.filterTA}
+        setFilterTA={prop.setFilterTA}
+      />
     </div>
   );
 };

@@ -24,6 +24,8 @@ type Proptypes = {
   dataResume7HariTidakhadir: Resume7HariTidakhadir[];
   loadingFetch: boolean;
   data: Resume7HariPerbulan[];
+  filterTA: string;
+  setFilterTA: Dispatch<SetStateAction<string>>;
 };
 const AdminDashboardView = (prop: Proptypes) => {
   const {
@@ -35,6 +37,8 @@ const AdminDashboardView = (prop: Proptypes) => {
     dataResume7HariTidakhadir,
     loadingFetch,
     data,
+    filterTA,
+    setFilterTA,
   } = prop;
   const [kelasData, setKelasData] = useState<Kelas[]>([]);
   const [isLoading, setIsLoading] = useState("");
@@ -96,6 +100,8 @@ const AdminDashboardView = (prop: Proptypes) => {
               setTabActive={setTabActive}
               kelasData={kelasData}
               handleFilterbyKelas={handleFilterbyKelas}
+              filterTA={filterTA}
+              setFilterTA={setFilterTA}
             />
           </div>
           {tabActive === "siswa" ? (

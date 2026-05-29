@@ -16,8 +16,10 @@ const LaporanPage = ({ setToaster }: any) => {
   const [lapAbsenUmum, setLapAbsenUmum] = useState<LaporanAbsensiUmum[]>([]);
   const [lapAbsenMasuk, setLapAbsenMasuk] = useState<LaporanAbsensiMasuk[]>([]);
   const [loadingFetch, setLoadingFetch] = useState(true);
+  const [filterTA, setFilterTA] = useState(() => {
+    return getTahunAjaranWithSemester().ta;
+  });
 
-  const tasem = getTahunAjaranWithSemester();
   return (
     <LaporanCetak
       setToaster={setToaster}
@@ -26,6 +28,8 @@ const LaporanPage = ({ setToaster }: any) => {
       lapAbsenUmum={lapAbsenUmum}
       lapAbsenMasuk={lapAbsenMasuk}
       loadingFetch={loadingFetch}
+      filterTA={filterTA}
+      setFilterTA={setFilterTA}
     />
   );
 };

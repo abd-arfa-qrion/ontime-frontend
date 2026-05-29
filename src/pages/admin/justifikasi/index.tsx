@@ -9,12 +9,15 @@ const JustifikasiPage = ({ setToaster }: any) => {
   const session: any = useSession();
   const [data, setData] = useState<Justifikasi[]>([]);
   const [loadingFetch, setLoadingFetch] = useState(true);
-  const tasem = getTahunAjaranWithSemester();
+  const [filterTA, setFilterTA] = useState(() => {
+    return getTahunAjaranWithSemester().ta;
+  });
+
   const getDataJustifikasi = async () => {
     try {
       const payload = {
         inst: session.data?.user?.instansiId,
-        tahunajaran: tasem.ta,
+        tahunajaran: filterTA,
       };
       const token = session.data?.accessToken;
       const req = await justifikasiServices.getAllData(payload, token);
@@ -52,6 +55,8 @@ const JustifikasiPage = ({ setToaster }: any) => {
       setData={setData}
       loadingFetch={loadingFetch}
       setLoadingFetch={setLoadingFetch}
+      filterTA={filterTA}
+      setFilterTA={setFilterTA}
     />
   );
 };

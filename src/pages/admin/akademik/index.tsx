@@ -1,6 +1,7 @@
 import AkademikPageView from "@/components/view/admin/Akademik";
 import kaldikServices from "@/pages/api/services/kaldik";
 import { Kaldik } from "@/type/Kaldik.type";
+import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
@@ -8,6 +9,9 @@ const AdminAkademikPage = ({ setToaster }: any) => {
   const session: any = useSession();
   const [data, setData] = React.useState<Kaldik[]>([]);
   const [loadingFetch, setLoadingFetch] = useState(true);
+  const [filterTA, setFilterTA] = useState(() => {
+    return getTahunAjaranWithSemester().ta;
+  });
   const getDataKaldik = async () => {
     try {
       const payload = {
@@ -48,6 +52,8 @@ const AdminAkademikPage = ({ setToaster }: any) => {
       setData={setData}
       loadingFetch={loadingFetch}
       setLoadingFetch={setLoadingFetch}
+      filterTA={filterTA}
+      setFilterTA={setFilterTA}
     />
   );
 };

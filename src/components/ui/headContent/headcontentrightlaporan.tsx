@@ -8,10 +8,18 @@ type Proptype = {
   setJenisAbsensi: Dispatch<SetStateAction<string>>;
   modalDownload: boolean;
   setModalDownload: Dispatch<SetStateAction<boolean>>;
+  filterTA: string;
+  setFilterTA: Dispatch<SetStateAction<string>>;
 };
 const HeadContentRightLaporan = (prop: Proptype) => {
-  const { jenisAbsensi, setJenisAbsensi, modalDownload, setModalDownload } =
-    prop;
+  const {
+    jenisAbsensi,
+    setJenisAbsensi,
+    modalDownload,
+    setModalDownload,
+    filterTA,
+    setFilterTA,
+  } = prop;
   const router = useRouter();
 
   const handleClick = (jenis: string) => {
@@ -113,7 +121,7 @@ const HeadContentRightLaporan = (prop: Proptype) => {
       >
         Absen Pelajaran
       </Button>
-      <FilterTahunAjaran />
+      <FilterTahunAjaran filterTA={filterTA} setFilterTA={setFilterTA} />
     </div>
   );
 };

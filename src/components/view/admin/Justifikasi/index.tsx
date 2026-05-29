@@ -18,10 +18,20 @@ type Props = {
   setData: Dispatch<SetStateAction<Justifikasi[]>>;
   loadingFetch: boolean;
   setLoadingFetch: Dispatch<SetStateAction<boolean>>;
+  filterTA: string;
+  setFilterTA: Dispatch<SetStateAction<string>>;
 };
 const JustifikasiPageView = (prop: Props) => {
-  const { setToaster, session, data, setData, loadingFetch, setLoadingFetch } =
-    prop;
+  const {
+    setToaster,
+    session,
+    data,
+    setData,
+    loadingFetch,
+    setLoadingFetch,
+    filterTA,
+    setFilterTA,
+  } = prop;
 
   const searchParam = useSearchParams();
   const activeTab = searchParam.get("tab") ?? "siswa";
@@ -128,6 +138,8 @@ const JustifikasiPageView = (prop: Props) => {
             setTabActive={setTabActive}
             kelasData={kelasData}
             handleFilterbyKelas={handleFilterbyKelas}
+            filterTA={filterTA}
+            setFilterTA={setFilterTA}
           />
         </div>
         {tabActive === "siswa" ? (

@@ -50,7 +50,6 @@ const UploadLokasiPageView = (prop: Props) => {
 
     // Validasi MIME
     const isValidMime = allowedMimeTypes.includes(selectedFile.type);
-
     // Validasi extensi file
     const isValidExtension = selectedFile.name.toLowerCase().endsWith(".kml");
 

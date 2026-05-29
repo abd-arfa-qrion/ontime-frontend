@@ -15,11 +15,21 @@ type Proptypes = {
   setData: Dispatch<SetStateAction<Kaldik[]>>;
   loadingFetch: boolean;
   setLoadingFetch: Dispatch<SetStateAction<boolean>>;
+  filterTA: string;
+  setFilterTA: Dispatch<SetStateAction<string>>;
 };
 
 const AkademikPageView = (props: Proptypes) => {
-  const { setToaster, session, data, setData, loadingFetch, setLoadingFetch } =
-    props;
+  const {
+    setToaster,
+    session,
+    data,
+    setData,
+    loadingFetch,
+    setLoadingFetch,
+    filterTA,
+    setFilterTA,
+  } = props;
 
   //state untuk Calender Akademik
   const [switchBtn, setSwitchBtn] = useState<string>("list"); // publish, draft, schedule
@@ -35,6 +45,8 @@ const AkademikPageView = (props: Proptypes) => {
               setAddJadwal={setAddJadwal}
               switchBtn={switchBtn}
               setSwitchBtn={setSwitchBtn}
+              setFilterTA={setFilterTA}
+              filterTA={filterTA}
             />
           </div>
           <div>

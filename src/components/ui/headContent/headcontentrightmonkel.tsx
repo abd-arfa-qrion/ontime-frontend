@@ -18,7 +18,7 @@ const HeadContentRightMonkel = (prop: Proptype) => {
         handleFilterbyKelas={handleFilterbyKelas}
         switchBtn="list"
       />
-      <FilterTahunAjaran />
+      {/* <FilterTahunAjaran /> */}
     </div>
   );
 };

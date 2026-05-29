@@ -21,7 +21,9 @@ const AdminPage = ({ setToaster }: any) => {
     useState<Resume7HariTidakhadir[]>();
   const [loadingFetch, setLoadingFetch] = useState(true);
 
-  const tasem = getTahunAjaranWithSemester();
+  const [filterTA, setFilterTA] = useState(() => {
+    return getTahunAjaranWithSemester().ta;
+  });
 
   const getRekapAbsensi = async () => {
     try {
@@ -71,7 +73,7 @@ const AdminPage = ({ setToaster }: any) => {
     try {
       const payload = {
         inst: session.data?.user?.instansiId,
-        tahunajaran: tasem.ta,
+        tahunajaran: filterTA,
       };
       const token = session.data?.accessToken;
       const req = await dashboardServices.getResume7HariPerbulan(
@@ -146,6 +148,8 @@ const AdminPage = ({ setToaster }: any) => {
       data={dataResume7HariPerbulan ?? []}
       dataResume7HariTidakhadir={dataResume7HariTidakhadir ?? []}
       loadingFetch={loadingFetch}
+      filterTA={filterTA}
+      setFilterTA={setFilterTA}
     />
   );
 };
