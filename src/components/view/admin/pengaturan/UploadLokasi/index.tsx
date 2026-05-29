@@ -33,26 +33,42 @@ const UploadLokasiPageView = (prop: Props) => {
     ) as HTMLInputElement;
     fileInput.click();
   };
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target?.files) {
-      const fileType = ["application/vnd.google-earth.kml+xml"];
-      const selectedFile = e.target.files[0];
+    if (!e.target.files || e.target.files.length === 0) return;
 
-      if (selectedFile) {
-        if (fileType.includes(selectedFile.type)) {
-          setTypeError("");
-          setFileName(selectedFile.name);
+    const selectedFile = e.target.files[0];
 
-          // ✅ SIMPAN FILE LANGSUNG
-          setEFile(selectedFile);
-        } else {
-          setTypeError("File harus berekstensi .kml");
-          setEFile(null);
-        }
-      }
+    // MIME type yang mungkin muncul di iOS / Safari
+    const allowedMimeTypes = [
+      "application/vnd.google-earth.kml+xml",
+      "application/xml",
+      "text/xml",
+      "application/octet-stream",
+      "",
+    ];
+
+    // Validasi MIME
+    const isValidMime = allowedMimeTypes.includes(selectedFile.type);
+
+    // Validasi extensi file
+    const isValidExtension = selectedFile.name.toLowerCase().endsWith(".kml");
+
+    if (isValidMime || isValidExtension) {
+      setTypeError("");
+      setFileName(selectedFile.name);
+
+      // ✅ SIMPAN FILE
+      setEFile(selectedFile);
+    } else {
+      setTypeError("File harus berekstensi .kml");
+      setFileName("");
+      setEFile(null);
+
+      // reset input supaya bisa pilih file yang sama lagi
+      e.target.value = "";
     }
   };
-
   const handleSubmit = async (e: any) => {
     setIsLoading(true);
     e.preventDefault();
@@ -153,13 +169,12 @@ const UploadLokasiPageView = (prop: Props) => {
   return (
     <div>
       <h2 className="mb-4 text-xl">Upload File Lokasi Poligon Map</h2>
-
       <form onSubmit={handleSubmit}>
         <div className={styles.enkrip}>
           <input
             className={styles.enkrip__input}
             type="file"
-            accept=".kml"
+            accept=".kml,application/vnd.google-earth.kml+xml,application/xml,text/xml"
             onChange={handleFileChange}
             id="file-input"
           />
