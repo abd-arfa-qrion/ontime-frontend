@@ -5,22 +5,12 @@ import {
   useEffect,
   useState,
 } from "react";
-import {
-  Modal,
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  SelectChangeEvent,
-  MenuItem,
-} from "@mui/material";
+import { Modal, Box, Button, Typography } from "@mui/material";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { TahunAjaran } from "@/type/Tahunajaran.type";
 import taSmesterServices from "@/pages/api/services/tasmester";
-import SelectCustom from "@/components/ui/select";
-import { SettingsInputCompositeTwoTone } from "@mui/icons-material";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 
 type Props = {
   open: boolean;
@@ -46,6 +36,10 @@ const ModalGenerate = (props: Props) => {
   const [tahunAjaran, setTahunAjaran] = useState<string>("");
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [errorTa, setErrorTa] = useState<boolean>(false);
+
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
@@ -126,23 +120,13 @@ const ModalGenerate = (props: Props) => {
         </h1>
         <form onSubmit={handleGenerates}>
           {/* Tahun Ajaran */}
-          <FormControl fullWidth size="medium" sx={{ mb: 2 }}>
-            <InputLabel>Tahun Ajaran</InputLabel>
-            <Select
-              name="tahunajaran"
-              value={tahunAjaran}
-              label="Tahun Ajaran"
-              onChange={(e: SelectChangeEvent) =>
-                setTahunAjaran(e.target.value)
-              }
-            >
-              {taData.map((dt) => (
-                <MenuItem key={dt.id} value={dt.id.toString()}>
-                  {dt.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <div className="border-b border-gray-800 py-2 mb-4 flex gap-4 items-center">
+            <Typography className="text-[var(--primary-color)] whitespace-nowrap">
+              Tahun Ajaran
+            </Typography>
+
+            <b>{activeTahunAjaran?.name}</b>
+          </div>
           {/* Button */}
           <Button
             variant="contained"

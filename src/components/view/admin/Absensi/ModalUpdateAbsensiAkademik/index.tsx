@@ -15,6 +15,7 @@ import { TahunAjaran } from "@/type/Tahunajaran.type";
 import { Box, Typography, Modal, ButtonBase } from "@mui/material";
 import Select from "@/components/ui/select";
 import React, {
+  act,
   Dispatch,
   FormEvent,
   SetStateAction,
@@ -22,7 +23,7 @@ import React, {
   useState,
 } from "react";
 import Button from "@/components/ui/button";
-import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 
 type Proptypes = {
   open: boolean;
@@ -54,7 +55,7 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
     setIsLoading,
   } = props;
 
-  const [taData, setTaData] = useState<TahunAjaran[]>([]);
+  // const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [semesterData, setSemesterData] = useState<Semester[]>([]);
   const [hariData, setHariData] = useState<Hari[]>([]);
   const [guruData, setGuruData] = useState<Guru[]>([]);
@@ -66,7 +67,9 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
   const [valueSem, setValueSem] = useState<any>(null);
   const [valueKelas, setValueKelas] = useState<any>(null);
 
-  const tasem = getTahunAjaranWithSemester();
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
   const handleUpdateJadwalAkademik = async (
     event: FormEvent<HTMLFormElement>,
   ) => {
@@ -99,7 +102,7 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
     const data = {
       id: updateJadwal.id,
       inst: session.data?.user?.instansiId,
-      tahunajaran_id: Number(form.tahunajaran.value),
+      tahunajaran_id: Number(updateJadwal.tahunajaran_id),
       semester_id: Number(valueSem.value),
       hari: valueHari.value,
       kelas_id: Number(valueKelas.value),
@@ -134,7 +137,7 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
         // feth ulang seluruh data user
         const payload = {
           inst: session.data?.user?.instansiId,
-          tahunajaran: tasem.ta,
+          tahunajaran: activeTahunAjaran?.name,
         };
         const { data } = await jadwalAkademikServices.getAllData(
           payload,
@@ -154,13 +157,8 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
   useEffect(() => {
     if (!session?.data?.accessToken) return;
     const loadData = async () => {
-      await getDataTA(); // tunggu selesai dulu
-      await Promise.all([
-        getDataGuru(),
-        getHari(),
-        getDataMapel(),
-        getSemester(),
-      ]); // setelah itu baru jalankan paralel
+      await getSemester(); // tunggu selesai dulu
+      await Promise.all([getDataGuru(), getHari(), getDataMapel()]); // setelah itu baru jalankan paralel
     };
 
     if (session.status === "authenticated") {
@@ -226,24 +224,24 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
   }, [updateJadwal, guruData]);
   // END Setting awal
 
-  const getDataTA = async () => {
-    const data = {
-      inst: session.data?.user?.instansiId,
-    };
-    const res = await taSmesterServices.getDataTA(
-      data,
-      session.data?.accessToken,
-    );
-    if (res.status !== 200) {
-      setToaster({
-        variant: "danger",
-        message: res.data.message,
-      });
-    } else {
-      setTaData(res.data.data);
-    }
-    console.log(res);
-  };
+  // const getDataTA = async () => {
+  //   const data = {
+  //     inst: session.data?.user?.instansiId,
+  //   };
+  //   const res = await taSmesterServices.getDataTA(
+  //     data,
+  //     session.data?.accessToken,
+  //   );
+  //   if (res.status !== 200) {
+  //     setToaster({
+  //       variant: "danger",
+  //       message: res.data.message,
+  //     });
+  //   } else {
+  //     setTaData(res.data.data);
+  //   }
+  //   console.log(res);
+  // };
 
   const getDataGuru = async () => {
     const data = {
@@ -317,30 +315,30 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
       setIsLoading("");
     }
   };
-  const handleGetSemester = async (e: number) => {
-    setIsLoading("semesterUpdt");
-    console.log("ambil data semester dengan Id TA: " + e);
-    const data = {
-      inst: session.data?.user?.instansiId,
-      ta_id: Number(e),
-    };
-    const res = await taSmesterServices.getDataSemester(
-      data,
-      session.data?.accessToken,
-    );
-    if (res.status !== 200) {
-      setIsLoading("");
-      setToaster({
-        variant: "danger",
-        message: res.data.message,
-      });
-    } else {
-      setIsLoading("");
-      setSemesterData(res.data.data);
-    }
-    console.log(data);
-    console.log(res);
-  };
+  // const handleGetSemester = async (e: number) => {
+  //   setIsLoading("semesterUpdt");
+  //   console.log("ambil data semester dengan Id TA: " + e);
+  //   const data = {
+  //     inst: session.data?.user?.instansiId,
+  //     ta_id: Number(e),
+  //   };
+  //   const res = await taSmesterServices.getDataSemester(
+  //     data,
+  //     session.data?.accessToken,
+  //   );
+  //   if (res.status !== 200) {
+  //     setIsLoading("");
+  //     setToaster({
+  //       variant: "danger",
+  //       message: res.data.message,
+  //     });
+  //   } else {
+  //     setIsLoading("");
+  //     setSemesterData(res.data.data);
+  //   }
+  //   console.log(data);
+  //   console.log(res);
+  // };
   const startTime = updateJadwal?.start_time
     ? updateJadwal.start_time.split(":")
     : ["", ""];
@@ -381,18 +379,7 @@ const ModalUpdateAbsensiAkademik = (props: Proptypes) => {
               Tahun Ajaran
             </Typography>
 
-            <Select
-              name="tahunajaran"
-              onChange={handleGetSemester}
-              defaultValue={updateJadwal?.ta}
-              options={
-                taData &&
-                taData.map((data: any) => ({
-                  value: data.id,
-                  label: data.name,
-                }))
-              }
-            />
+            <b>{updateJadwal.ta}</b>
           </div>
           {isLoading === "semesterUpdt" ||
           !semesterData ||

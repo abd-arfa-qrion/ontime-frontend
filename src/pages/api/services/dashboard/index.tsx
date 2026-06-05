@@ -13,8 +13,20 @@ const dashboardServices = {
         Authorization: `Bearer ${token}`,
       },
     }),
+  getRekapAbsensiGuru: (data: any, token: string) =>
+    instance.post("/api/getdashboardrekapabsenguru", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
   getResume7Hari: (data: any, token: string) =>
     instance.post("/api/getdatarekap7hari", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  getResume7HariGuru: (data: any, token: string) =>
+    instance.post("/api/getdatarekap7hariguru", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -25,8 +37,20 @@ const dashboardServices = {
         Authorization: `Bearer ${token}`,
       },
     }),
+  getResume7HariTidakhadirGuru: (data: any, token: string) =>
+    instance.post("/api/getdatarekap7haritdkhadirguru", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
   getResume7HariPerbulan: (data: any, token: string) =>
     instance.post("/api/getdatarekap7hariPerbulan", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  getResume7HariPerbulanGuru: (data: any, token: string) =>
+    instance.post("/api/getdatarekap7hariPerbulanguru", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

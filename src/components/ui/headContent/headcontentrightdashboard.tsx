@@ -7,7 +7,7 @@ type Proptypes = {
   tabActive: string;
   setTabActive: React.Dispatch<React.SetStateAction<string>>;
   kelasData: any;
-  handleFilterbyKelas: (kelas: number | null) => void;
+  selectFilterKelas: (kelas: number | null) => void;
   filterTA: string;
   setFilterTA: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -16,7 +16,7 @@ const HeadContentRightDashboard = (prop: Proptypes) => {
     tabActive,
     setTabActive,
     kelasData,
-    handleFilterbyKelas,
+    selectFilterKelas,
     filterTA,
     setFilterTA,
   } = prop;
@@ -72,11 +72,14 @@ const HeadContentRightDashboard = (prop: Proptypes) => {
       >
         Guru
       </Button>
-      <FilterKelas
-        kelasData={kelasData}
-        handleFilterbyKelas={handleFilterbyKelas}
-        switchBtn="list"
-      />
+      {tabActive === "siswa" && (
+        <FilterKelas
+          kelasData={kelasData}
+          handleFilterbyKelas={selectFilterKelas}
+          switchBtn="list"
+        />
+      )}
+
       <FilterTahunAjaran filterTA={filterTA} setFilterTA={setFilterTA} />
     </div>
   );

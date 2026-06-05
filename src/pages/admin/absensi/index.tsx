@@ -2,25 +2,28 @@ import AbsensiPageView from "@/components/view/admin/Absensi";
 import jadwalAkademikServices from "@/pages/api/services/jadwalakademik";
 import jadwalMasukServices from "@/pages/api/services/jadwalmasuk";
 import jadwalUmumServices from "@/pages/api/services/jadwalumum";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 import { JadwalAkademik } from "@/type/Jadwalakademik.type";
 import { JadwalMasuk } from "@/type/Jadwalmasuk.type";
 import { JadwalUmum } from "@/type/Jadwalumum.type";
-import { getTahunAjaranWithSemester } from "@/utils/tasemester";
-import { error } from "console";
 import { useSession } from "next-auth/react";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const AdminAbsenPage = ({ setToaster }: any) => {
   const session: any = useSession();
   const [dataJdwlAkdmk, setDataJdwlAkdmk] = useState<JadwalAkademik[]>([]);
   const [dataJdwlUmum, setDataJdwlUmum] = useState<JadwalUmum[]>([]);
   const [dataJdwlMasuk, setDataJdwlMasuk] = useState<JadwalMasuk[]>([]);
-  const [filterTA, setFilterTA] = useState(() => {
-    return getTahunAjaranWithSemester().ta;
-  });
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
+  const [filterTA, setFilterTA] = useState("");
+  useEffect(() => {
+    if (activeTahunAjaran) {
+      setFilterTA(activeTahunAjaran.name);
+    }
+  }, [activeTahunAjaran]);
   const [loadingFetch, setLoadingFetch] = useState(true);
-
-  // const tasem = getTahunAjaranWithSemester();
 
   const getDataJadwalAkademik = async () => {
     try {
@@ -79,6 +82,7 @@ const AdminAbsenPage = ({ setToaster }: any) => {
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
+    if (!filterTA) return;
 
     const loadData = async () => {
       setLoadingFetch(true);

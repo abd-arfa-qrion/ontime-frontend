@@ -24,9 +24,17 @@ type Proptype = {
   session: any;
   loadingFetch: boolean;
   setToaster: Dispatch<SetStateAction<{}>>;
+  selectFilterKelas: number | null;
 };
 const DataTableJustifikasi = (prop: Proptype) => {
-  const { data, setData, session, loadingFetch, setToaster } = prop;
+  const {
+    data,
+    setData,
+    session,
+    loadingFetch,
+    setToaster,
+    selectFilterKelas,
+  } = prop;
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -92,6 +100,9 @@ const DataTableJustifikasi = (prop: Proptype) => {
     return () => clearTimeout(timer);
   }, [searchQuery, data]);
   /// Perubahan sampai sini
+  useEffect(() => {
+    handleFilterbyKelas(selectFilterKelas);
+  }, [selectFilterKelas]);
 
   const sortedData = [...(filteredData ?? [])].sort((a, b) => {
     if (!sortField) return 0;
@@ -119,6 +130,15 @@ const DataTableJustifikasi = (prop: Proptype) => {
     console.log("menampilkan data: ", editingData);
     setUpdateJustifikasi(editingData ?? {});
     setIsLoading("");
+  };
+
+  const handleFilterbyKelas = (kelas: number | null) => {
+    if (kelas !== null) {
+      const result = data.filter((item) => item.class_id === kelas);
+      setFilteredData(result);
+    } else {
+      setFilteredData(data);
+    }
   };
 
   return (

@@ -1,15 +1,15 @@
 import CardsSkeleton from "@/components/ui/skeleton/card";
-import { ResumeSiswa } from "@/type/Dashboard.type";
+import { ResumeGuru, ResumeSiswa } from "@/type/Dashboard.type";
 import { Card } from "@mui/material";
 
 type Proptype = {
-  countSiswa: number;
-  dataResume: ResumeSiswa[];
+  countGuru: number;
+  dataResume: ResumeGuru[];
   loadingFetch: boolean;
 };
-const DashboardAtas = (prop: Proptype) => {
-  const { countSiswa, dataResume, loadingFetch } = prop;
-  const siswaHadir = dataResume.filter(
+const DashboardAtasGuru = (prop: Proptype) => {
+  const { countGuru, dataResume, loadingFetch } = prop;
+  const guruHadir = dataResume.filter(
     (item) => item.status_hadir === "hadir",
   ).length;
   const siswaTdkHadir = dataResume.filter(
@@ -26,10 +26,10 @@ const DashboardAtas = (prop: Proptype) => {
           <Card className="p-3 w-full rounded-lg">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-group text-blue-700 text-xl bg-gradient-to-b from-blue-300 to-blue-100 rounded-md px-3 py-1"></i>
-              <p>Total Siswa Aktif</p>
+              <p>Total Guru</p>
             </div>
             <div className="content text-sm">
-              <p className="text-3xl font-semibold">{countSiswa} Siswa</p>
+              <p className="text-3xl font-semibold">{countGuru} Guru</p>
             </div>
             <div className="flex gap-2 items-center">
               <i className="bx bx-chart text-blue-500 text-sm"></i>
@@ -41,30 +41,30 @@ const DashboardAtas = (prop: Proptype) => {
           <Card className="p-3 w-full rounded-lg">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-list-check text-green-700 text-xl bg-gradient-to-b from-green-300 to-green-100 rounded-md px-3 py-1"></i>
-              <p>Total Siswa Hadir</p>
+              <p>Total Guru Hadir</p>
             </div>
             <div className="content text-sm">
-              <p className="text-3xl font-semibold">{siswaHadir} Siswa</p>
+              <p className="text-3xl font-semibold">{guruHadir} Guru</p>
             </div>
             <div className="flex gap-2 items-center">
               <i className="bx bx-check-circle text-green-500 text-sm"></i>
               <p className="text-xs text-gray-400 font-thin">
-                Siswa hadir hari ini
+                Guru hadir hari ini
               </p>
             </div>
           </Card>
           <Card className="p-3 w-full rounded-lg">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-sad text-red-400 text-xl bg-gradient-to-b from-red-300 to-red-100 rounded-md px-3 py-1"></i>
-              <p>Total Siswa Tidak Hadir</p>
+              <p>Total Guru Tidak Hadir</p>
             </div>
             <div className="content text-sm">
-              <p className="text-3xl font-semibold">{siswaTdkHadir} Siswa</p>
+              <p className="text-3xl font-semibold">{siswaTdkHadir} Guru</p>
             </div>
             <div className="flex gap-2 items-center">
               <i className="bx bx-note text-red-500 text-sm"></i>
               <p className="text-xs text-gray-400 font-thin">
-                Siswa tidak hadir hari ini
+                Guru tidak hadir hari ini
               </p>
             </div>
           </Card>
@@ -74,12 +74,12 @@ const DashboardAtas = (prop: Proptype) => {
               <p>Perlu Justifikasi</p>
             </div>
             <div className="content text-sm">
-              <p className="text-3xl font-semibold">{siswaJustifikasi} Siswa</p>
+              <p className="text-3xl font-semibold">{siswaJustifikasi} Guru</p>
             </div>
             <div className="flex gap-2 items-center">
               <i className="bx bx-info-square text-yellow-500 text-sm"></i>
               <p className="text-xs text-gray-400 font-thin">
-                Perlu verifikasi data siswa
+                Perlu verifikasi data guru
               </p>
             </div>
           </Card>
@@ -91,4 +91,4 @@ const DashboardAtas = (prop: Proptype) => {
   );
 };
 
-export default DashboardAtas;
+export default DashboardAtasGuru;

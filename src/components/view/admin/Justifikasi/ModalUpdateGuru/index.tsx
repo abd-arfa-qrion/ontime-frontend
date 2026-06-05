@@ -17,6 +17,7 @@ type Props = {
   setDataGuru: Dispatch<SetStateAction<JustifikasiGuru[]>>;
   taTasem: string;
   setTabActive: Dispatch<SetStateAction<string>>;
+  filterTA: string;
 };
 const ModalUpdateJustifikasiGuru = (props: Props) => {
   const {
@@ -31,6 +32,7 @@ const ModalUpdateJustifikasiGuru = (props: Props) => {
     taTasem,
     setDataGuru,
     setTabActive,
+    filterTA,
   } = props;
   const [statusHadirTo, setStatusHadirTo] = useState(
     updateJustifikasi?.status_hadir,
@@ -95,10 +97,10 @@ const ModalUpdateJustifikasiGuru = (props: Props) => {
         setUpdateJustifikasi(null);
 
         // reload data
-        const req = await justifikasiServices.getAllData(
+        const req = await justifikasiServices.getAllDataGuru(
           {
             inst: session.data?.user?.instansiId,
-            tahunajaran: taTasem,
+            tahunajaran: filterTA,
           },
           session.data?.accessToken,
         );
@@ -201,6 +203,13 @@ const ModalUpdateJustifikasiGuru = (props: Props) => {
 
                 <div className="grid grid-cols-4 gap-2">
                   {[
+                    {
+                      label: "Hadir",
+                      value: "hadir",
+                      icon: "bx-check-circle",
+                      color:
+                        "peer-checked:border-green-500 peer-checked:bg-green-50",
+                    },
                     {
                       label: "Sakit",
                       value: "sakit",

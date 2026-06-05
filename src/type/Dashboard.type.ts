@@ -69,3 +69,74 @@ export const Resume7HariPerbulanDefault = {
   persen_kehadiran: 0,
   persen_tidak_hadir: 0,
 };
+
+// data type Guru
+export type RekapAbsensiGuru = {
+  bulan: string;
+  jumlah: number;
+  guruHadir: number;
+  guruTidakHadir: number;
+};
+
+export const RekapAbsensiGuruDefault = {
+  bulan: "",
+  jumlah: 0,
+  guruHadir: 0,
+  guruTidakHadir: 0,
+};
+export type ResumeGuru = {
+  guru_id: number;
+  guru_name: string;
+  guru_nip: string;
+  class_id: number;
+  status_hadir: string;
+};
+
+export const ResumeGuruDefault = {
+  guru_id: 0,
+  guru_name: "",
+  guru_nip: "",
+  class_id: 0,
+  status_hadir: "",
+};
+export type Resume7HariGuru = {
+  hari: string;
+  tanggal: string;
+  hadir: number;
+  tidak_hadir: number;
+};
+
+export const Resume7HariGuruDefault = {
+  hari: "",
+  tanggal: "",
+  hadir: 0,
+  tidak_hadir: 0,
+};
+
+export type Resume7HariTidakhadirGuru = {
+  keterangan: string;
+  total: number;
+  porsentase: number;
+};
+
+export const Resume7HariTidakhadirDefaultGuru = {
+  keterangan: "",
+  total: 0,
+  porsentase: 0,
+};
+
+export type Resume7HariPerbulanGuru = {
+  bulan: string;
+  total_guru: number;
+  hadir: number;
+  persen_kehadiran: number;
+  persen_tidak_hadir: number;
+};
+
+export const Resume7HariPerbulanDefaultGuru = {
+  bulan: "",
+  total_guru: 0,
+  hadir: 0,
+  persen_kehadiran: 0,
+  persen_tidak_hadir: 0,
+};

@@ -206,6 +206,13 @@ const ModalUpdateJustifikasi = (props: Props) => {
                 <div className="grid grid-cols-4 gap-2">
                   {[
                     {
+                      label: "Hadir",
+                      value: "hadir",
+                      icon: "bx-check-circle",
+                      color:
+                        "peer-checked:border-green-500 peer-checked:bg-green-50",
+                    },
+                    {
                       label: "Sakit",
                       value: "sakit",
                       icon: "bx-plus-medical",

@@ -25,9 +25,10 @@ type Proptype = {
   setData: Dispatch<SetStateAction<Resume7HariPerbulan[]>>;
   session: any;
   loadingFetch: boolean;
+  filterTA: string;
 };
 const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
-  const { data, setData, session, loadingFetch } = prop;
+  const { data, setData, session, loadingFetch, filterTA } = prop;
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -38,8 +39,6 @@ const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
     null,
   );
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
-  const tasem = getTahunAjaranWithSemester();
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -116,7 +115,7 @@ const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Absensi Mata Pelajaran Tahun Ajaran {tasem.ta}
+            Absensi Mata Pelajaran Tahun Ajaran {filterTA}
           </h4>
 
           {/* KANAN */}

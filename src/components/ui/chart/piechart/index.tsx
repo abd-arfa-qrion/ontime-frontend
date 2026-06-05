@@ -14,7 +14,7 @@ import {
 const COLORS = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF", "#845EC2"];
 
 type Props = {
-  data: Resume7HariTidakhadir[];
+  data: any[];
   title: string;
   width?: string;
   height?: string;

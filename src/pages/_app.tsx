@@ -11,6 +11,9 @@ import LoadingPage from "@/components/ui/loadingPage";
 import { CsrfProvider } from "@/context/CsrfContext";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { Poppins } from "next/font/google";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
+import taSmesterServices from "./api/services/tasmester";
+import AppContent from "@/context/AppContent";
 
 const disabledNavbar = [
   "auth",
@@ -38,6 +41,7 @@ export default function App({
   // const [loading, setLoading] = useState(false)
   const [loadingPage, setLoadingPage] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
     AOS.init({
       easing: "ease-out-cubic",
@@ -75,6 +79,7 @@ export default function App({
     >
       <SessionProvider session={session}>
         <CsrfProvider>
+          <AppContent />
           <div className={poppins.className}>
             {loadingPage && <LoadingPage />}
             {!disabledNavbar.includes(pathname.split("/")[1]) && <Navbar />}

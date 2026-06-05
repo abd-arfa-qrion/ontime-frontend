@@ -11,7 +11,6 @@ import React, {
   useState,
 } from "react";
 import Button from "@/components/ui/button";
-import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import { JadwalUmum } from "@/type/Jadwalumum.type";
 import CalendarIcon from "@/components/icons/CalendarIcon";
 import DatePicker from "react-datepicker";
@@ -22,6 +21,7 @@ import targetAbsensiServices from "@/pages/api/services/targetabsensi";
 import { TargetAbsensi } from "@/type/TargetAbsensi.type";
 import MSSTargetAbsensi from "@/components/ui/ontime/multiselect/mstargetabsensi";
 import jadwalUmumServices from "@/pages/api/services/jadwalumum";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 
 type Proptypes = {
   open: boolean;
@@ -67,7 +67,10 @@ const ModalUpdateAbsensiUmum = (props: Proptypes) => {
   const [methodeAbsensi, setMethodeAbsensi] = useState<MethodeAbsensi[]>([]);
   const [targetAbsensi, setTargetAbsensi] = useState<TargetAbsensi[]>([]);
 
-  const tasem = getTahunAjaranWithSemester();
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
+  // const tasem = getTahunAjaranWithSemester();
   const parseDate = (dateStr: string) => {
     const [dateOnly] = dateStr.split("T"); // "2026-04-26"
     const [year, month, day] = dateOnly.split("-");
@@ -173,7 +176,7 @@ const ModalUpdateAbsensiUmum = (props: Proptypes) => {
     const data = {
       id: updateJadwal.id,
       inst: session.data?.user?.instansiId,
-      tahunajaran_id: Number(form.tahunajaran.value),
+      tahunajaran_id: Number(updateJadwal.tahunajaran_id),
       absensi_name: form.namaJadwal.value,
       tgl_mulai: startDate?.toLocaleDateString("en-CA"),
       tgl_selesai: endDate?.toLocaleDateString("en-CA"),
@@ -208,7 +211,7 @@ const ModalUpdateAbsensiUmum = (props: Proptypes) => {
         // feth ulang seluruh data user
         const payload = {
           inst: session.data?.user?.instansiId,
-          tahunajaran: tasem.ta,
+          tahunajaran: activeTahunAjaran?.name,
         };
         const { data } = await jadwalUmumServices.getAllData(
           payload,
@@ -346,17 +349,7 @@ const ModalUpdateAbsensiUmum = (props: Proptypes) => {
               Tahun Ajaran
             </Typography>
 
-            <Select
-              name="tahunajaran"
-              defaultValue={updateJadwal?.ta}
-              options={
-                taData &&
-                taData.map((data: any) => ({
-                  value: data.id,
-                  label: data.name,
-                }))
-              }
-            />
+            <b>{activeTahunAjaran?.name}</b>
           </div>
           <div className="mb-4">
             <TextField

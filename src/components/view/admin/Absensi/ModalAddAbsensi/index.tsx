@@ -12,7 +12,6 @@ import { Typography } from "@mui/material";
 import Select from "@/components/ui/select";
 import jadwalAkademikServices from "@/pages/api/services/jadwalakademik";
 import taSmesterServices from "@/pages/api/services/tasmester";
-import { TahunAjaran } from "@/type/Tahunajaran.type";
 import guruServices from "@/pages/api/services/guru";
 import hariServices from "@/pages/api/services/hari";
 import { Hari } from "@/type/Hari.type";
@@ -23,7 +22,7 @@ import mapelServices from "@/pages/api/services/mapel";
 import { Mapel } from "@/type/Mapel.type";
 import { Kelas } from "@/type/Kelas.type";
 import { JadwalAkademik } from "@/type/Jadwalakademik.type";
-import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 type Proptypes = {
   setToaster: Dispatch<SetStateAction<{}>>;
   onClose: () => void;
@@ -49,20 +48,21 @@ const ModalAddAbsensi = (props: Proptypes) => {
     kelasData,
   } = props;
   const session: any = useSession();
-  const [taData, setTaData] = useState<TahunAjaran[]>([]);
+  // const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [semesterData, setSemesterData] = useState<Semester[]>([]);
   const [hariData, setHariData] = useState<Hari[]>([]);
   const [guruData, setGuruData] = useState<Guru[]>([]);
   const [mapelData, setMapelData] = useState<Mapel[]>([]);
   const [load, setLoad] = useState<string>("");
 
-  const tasem = getTahunAjaranWithSemester();
-
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
   useEffect(() => {
     if (!session?.data?.accessToken) return;
 
     const loadData = async () => {
-      await getDataTA(); // tunggu selesai dulu
+      await handleGetSemester(); // tunggu selesai dulu
       await Promise.all([getDataGuru(), getHari(), getDataMapel()]); // setelah itu baru jalankan paralel
     };
 
@@ -71,24 +71,24 @@ const ModalAddAbsensi = (props: Proptypes) => {
     }
   }, [session?.data?.accessToken]);
 
-  const getDataTA = async () => {
-    const data = {
-      inst: session.data?.user?.instansiId,
-    };
-    const res = await taSmesterServices.getDataTA(
-      data,
-      session.data?.accessToken,
-    );
-    if (res.status !== 200) {
-      setToaster({
-        variant: "danger",
-        message: res.data.message,
-      });
-    } else {
-      setTaData(res.data.data);
-    }
-    console.log(res);
-  };
+  // const getDataTA = async () => {
+  //   const data = {
+  //     inst: session.data?.user?.instansiId,
+  //   };
+  //   const res = await taSmesterServices.getDataTA(
+  //     data,
+  //     session.data?.accessToken,
+  //   );
+  //   if (res.status !== 200) {
+  //     setToaster({
+  //       variant: "danger",
+  //       message: res.data.message,
+  //     });
+  //   } else {
+  //     setTaData(res.data.data);
+  //   }
+  //   console.log(res);
+  // };
 
   const getDataGuru = async () => {
     const data = {
@@ -133,12 +133,11 @@ const ModalAddAbsensi = (props: Proptypes) => {
     }
     console.log(res);
   };
-  const handleGetSemester = async (e: number) => {
+  const handleGetSemester = async () => {
     setLoad("semester");
-    console.log("ambil data semester dengan Id TA: " + e);
     const data = {
       inst: session.data?.user?.instansiId,
-      ta_id: Number(e),
+      ta_id: Number(activeTahunAjaran?.id),
     };
     const res = await taSmesterServices.getDataSemester(
       data,
@@ -165,7 +164,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
     const keluar = form.jamKeluar.value + ":" + form.menitKeluar.value + ":59";
     const data = {
       inst: session.data?.user?.instansiId,
-      tahunajaran_id: Number(form.tahunajaran.value),
+      tahunajaran_id: Number(activeTahunAjaran?.id),
       semester_id: Number(form.semester.value),
       hari: form.hari.value,
       kelas_id: Number(form.kelas.value),
@@ -189,7 +188,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
         console.log(result);
         const dataInst = {
           inst: session.data?.user?.instansiId,
-          tahunajaran: tasem.ta,
+          tahunajaran: activeTahunAjaran?.name,
         };
 
         // fetch ulang seluruh data user
@@ -228,18 +227,7 @@ const ModalAddAbsensi = (props: Proptypes) => {
               Tahun Ajaran
             </Typography>
 
-            <Select
-              required
-              name="tahunajaran"
-              onChange={handleGetSemester}
-              options={
-                taData &&
-                taData.map((data: any) => ({
-                  value: data.id,
-                  label: data.name,
-                }))
-              }
-            />
+            <b>{activeTahunAjaran?.name}</b>
           </div>
           {load === "semester" && (
             <Loader size={24} color="var(--secondary-color)" align="center" />

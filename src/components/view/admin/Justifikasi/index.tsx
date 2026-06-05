@@ -5,6 +5,7 @@ import DataTableJustifikasi from "@/components/ui/ontime/datatable/datatablejust
 import DataTableJustifikasiGuru from "@/components/ui/ontime/datatable/datatablejustifikasiguru";
 import justifikasiServices from "@/pages/api/services/justifikasi";
 import kelasServices from "@/pages/api/services/kelas";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 import { Justifikasi, JustifikasiGuru } from "@/type/Justifikasi.type";
 import { Kelas } from "@/type/Kelas.type";
 import { getTahunAjaranWithSemester } from "@/utils/tasemester";
@@ -40,8 +41,14 @@ const JustifikasiPageView = (prop: Props) => {
   const [isLoading, setIsLoading] = useState("");
   const [tabActive, setTabActive] = useState("siswa");
   const [dataGuru, setDataGuru] = useState<JustifikasiGuru[]>([]);
+  const [selsectFilterKelas, setSelectFilterKelas] = useState<number | null>(
+    null,
+  );
 
-  const tasem = getTahunAjaranWithSemester();
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
+
   useEffect(() => {
     if (activeTab) {
       setTabActive(activeTab);
@@ -71,7 +78,7 @@ const JustifikasiPageView = (prop: Props) => {
     setLoadingFetch(true);
     const data = {
       inst: session.data?.user?.instansiId,
-      tahunajaran: tasem.ta,
+      tahunajaran: filterTA,
     };
     try {
       const res = await justifikasiServices.getAllDataGuru(
@@ -121,13 +128,15 @@ const JustifikasiPageView = (prop: Props) => {
       setIsLoading("");
     }
   };
-  const handleFilterbyKelas = (kelas: number | null) => {
+  const selectFilterKelas = (kelas: number | null) => {
     if (kelas !== null) {
-      console.log(kelas);
+      // const result = data.filter((item) => item.class_id === kelas);
+      setSelectFilterKelas(kelas);
     } else {
-      console.log(data);
+      setSelectFilterKelas(null);
     }
   };
+
   return (
     <AdminLayout>
       <div>
@@ -137,7 +146,7 @@ const JustifikasiPageView = (prop: Props) => {
             tabActive={tabActive}
             setTabActive={setTabActive}
             kelasData={kelasData}
-            handleFilterbyKelas={handleFilterbyKelas}
+            selectFilterKelas={selectFilterKelas}
             filterTA={filterTA}
             setFilterTA={setFilterTA}
           />
@@ -149,6 +158,7 @@ const JustifikasiPageView = (prop: Props) => {
             session={session}
             loadingFetch={loadingFetch}
             setToaster={setToaster}
+            selectFilterKelas={selsectFilterKelas}
           />
         ) : (
           <DataTableJustifikasiGuru
@@ -158,6 +168,7 @@ const JustifikasiPageView = (prop: Props) => {
             loadingFetch={loadingFetch}
             setToaster={setToaster}
             setTabActive={setTabActive}
+            filterTA={filterTA}
           />
         )}
 

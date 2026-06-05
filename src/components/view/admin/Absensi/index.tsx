@@ -155,7 +155,7 @@ const AbsensiPageView = (prop: Proptype) => {
               session={session}
               loadingFetch={loadingFetch}
               setLoadingFetch={setLoadingFetch}
-              // filterTA={filterTA}
+              filterTA={filterTA}
             />
           )}
         </div>

@@ -15,6 +15,7 @@ import { JadwalMasuk } from "@/type/Jadwalmasuk.type";
 import jadwalMasukServices from "@/pages/api/services/jadwalmasuk";
 import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import Button from "@/components/ui/button";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 
 type Props = {
   open: boolean;
@@ -45,8 +46,9 @@ const ModalUpdateAbsensiMasuk = (props: Props) => {
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
   const [error, setError] = useState<string>("");
 
-  //state get data
-  const tasem = getTahunAjaranWithSemester();
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
@@ -119,7 +121,7 @@ const ModalUpdateAbsensiMasuk = (props: Props) => {
 
       const data = {
         inst: session.data?.user?.instansiId,
-        tahunajaran: tasem.ta,
+        tahunajaran: activeTahunAjaran?.name,
       };
 
       const res = await jadwalMasukServices.getAllData(

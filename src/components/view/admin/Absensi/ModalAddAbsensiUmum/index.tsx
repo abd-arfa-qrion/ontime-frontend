@@ -15,6 +15,7 @@ import {
   InputLabel,
   SelectChangeEvent,
   MenuItem,
+  Typography,
 } from "@mui/material";
 import Button from "@/components/ui/button";
 import DatePicker from "react-datepicker";
@@ -34,6 +35,7 @@ import jadwalUmumServices from "@/pages/api/services/jadwalumum";
 import { JadwalUmum } from "@/type/Jadwalumum.type";
 import Validate from "@/utils/validation";
 import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 
 type Props = {
   open: boolean;
@@ -76,7 +78,10 @@ const ModalAddAbsensiUmum = (props: Props) => {
   const [methodeAbsensi, setMethodeAbsensi] = useState<MethodeAbsensi[]>([]);
   const [targetAbsensi, setTargetAbsensi] = useState<TargetAbsensi[]>([]);
 
-  const tasem = getTahunAjaranWithSemester();
+  const activeTahunAjaran = useTahunAjaranStore(
+    (state) => state.activeTahunAjaran,
+  );
+  // const tasem = getTahunAjaranWithSemester();
 
   useEffect(() => {
     if (!session?.data?.accessToken) return;
@@ -230,7 +235,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
     const keluar = form.jamKeluar.value + ":" + form.menitKeluar.value + ":59";
     const data = {
       inst: session.data?.user?.instansiId,
-      tahunajaran_id: Number(tahunAjaran),
+      tahunajaran_id: Number(activeTahunAjaran?.id),
       absensi_name: namaAbsensi,
       tgl_mulai: startDate?.toLocaleDateString("en-CA"),
       tgl_selesai: endDate?.toLocaleDateString("en-CA"),
@@ -255,7 +260,7 @@ const ModalAddAbsensiUmum = (props: Props) => {
           console.log(res);
           const dataInst = {
             inst: session.data?.user?.instansiId,
-            tahunajaran: tasem.ta,
+            tahunajaran: activeTahunAjaran?.name,
           };
 
           // fetch ulang seluruh data user
@@ -303,24 +308,13 @@ const ModalAddAbsensiUmum = (props: Props) => {
         </h1>
         <form onSubmit={handleAddAbsensi}>
           {/* Tahun Ajaran */}
-          <FormControl fullWidth size="medium" sx={{ mb: 2 }}>
-            <InputLabel>Tahun Ajaran</InputLabel>
+          <div className="border-b border-gray-800 py-2 mb-4 flex gap-4 items-center">
+            <Typography className="text-[var(--primary-color)] whitespace-nowrap">
+              Tahun Ajaran
+            </Typography>
 
-            <Select
-              name="tahunajaran"
-              value={tahunAjaran}
-              label="Tahun Ajaran"
-              onChange={(e: SelectChangeEvent) =>
-                setTahunAjaran(e.target.value)
-              }
-            >
-              {taData.map((dt) => (
-                <MenuItem key={dt.id} value={dt.id.toString()}>
-                  {dt.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+            <b>{activeTahunAjaran?.name}</b>
+          </div>
 
           {/* Nama Absensi */}
           <TextField

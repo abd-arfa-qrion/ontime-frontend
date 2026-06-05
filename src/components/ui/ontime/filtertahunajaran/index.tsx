@@ -1,13 +1,12 @@
 import taSmesterServices from "@/pages/api/services/tasmester";
+import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 import { TaFilter } from "@/type/Tahunajaran.type";
 import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import CalendarMonthRounded from "@mui/icons-material/CalendarMonthRounded";
 import {
   FormControl,
-  InputAdornment,
   InputLabel,
   MenuItem,
-  OutlinedInput,
   Select,
   SelectChangeEvent,
 } from "@mui/material";
@@ -25,6 +24,7 @@ const FilterTahunAjaran = (prop: Proptype) => {
   const [taDataFilter, setTaDataFilter] = useState<TaFilter[]>([]);
 
   const session: any = useSession();
+  // const ta = useTahunAjaranStore((state) => state.activeTahunAjaran);
 
   const getTahunAjaran = async () => {
     const data = {
