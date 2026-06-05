@@ -1,5 +1,6 @@
 # Base image
-FROM node:18-alpine
+# FROM node:18-alpine
+FROM node:20-alpine
 
 # Mendefinisikan build argument
 ARG NEXT_PUBLIC_BACKEND_API_BASEURL
