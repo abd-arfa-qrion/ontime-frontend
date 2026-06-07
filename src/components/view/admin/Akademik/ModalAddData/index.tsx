@@ -50,6 +50,7 @@ const ModalAddKaldik = (props: Props) => {
 
   const session: any = useSession();
   const [judul, setJudul] = useState("");
+  const [code, setCode] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
@@ -119,6 +120,7 @@ const ModalAddKaldik = (props: Props) => {
       inst: user?.instansiId,
       tahunajaran_id: Number(form.tahunajaran?.value),
       keterangan: formData.get("kegiatan"),
+      code: formData.get("code"),
       tgl_awal: tglMulai,
       tgl_akhir: tglSelesai,
       start_time: masuk,
@@ -194,6 +196,16 @@ const ModalAddKaldik = (props: Props) => {
             name="kegiatan"
             value={judul}
             onChange={(e) => setJudul(e.target.value)}
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            required
+            fullWidth
+            label="Kode Kegiatan"
+            placeholder="max 4 huruf"
+            name="code"
+            value={code}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
             sx={{ mb: 2 }}
           />
 
@@ -297,7 +309,7 @@ const ModalAddKaldik = (props: Props) => {
                     className="w-full mb-4"
                     label="Jam"
                     name="jamKeluar"
-                    defaultValue="00"
+                    defaultValue="23"
                     options={
                       hours &&
                       hours.map((jam) => ({
@@ -312,7 +324,7 @@ const ModalAddKaldik = (props: Props) => {
                     className="w-full mb-4"
                     label="Menit"
                     name="menitKeluar"
-                    defaultValue="00"
+                    defaultValue="59"
                     options={
                       minutes &&
                       minutes.map((mnt) => ({

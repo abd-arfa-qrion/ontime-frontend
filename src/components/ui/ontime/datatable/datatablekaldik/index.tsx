@@ -35,7 +35,7 @@ const DataTableKaldik = (prop: Proptype) => {
     prop;
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [filteredData, setFilteredData] = useState<Kaldik[]>(data);
@@ -179,6 +179,16 @@ const DataTableKaldik = (prop: Proptype) => {
 
                 <TableCell className="font-[550]">
                   <TableSortLabel
+                    active={sortField === "code"}
+                    direction={sortField === "code" ? sortOrder : "asc"}
+                    onClick={() => handleSort("code")}
+                  >
+                    Kode Kegiatan
+                  </TableSortLabel>
+                </TableCell>
+
+                <TableCell className="font-[550]">
+                  <TableSortLabel
                     active={sortField === "tgl_awal"}
                     direction={sortField === "tgl_awal" ? sortOrder : "asc"}
                     onClick={() => handleSort("tgl_awal")}
@@ -236,6 +246,9 @@ const DataTableKaldik = (prop: Proptype) => {
                       <TableCell>{page * rowsPerPage + index + 1}</TableCell>
 
                       <TableCell>{row.keterangan}</TableCell>
+                      <TableCell className="font-semibold">
+                        {row.code}
+                      </TableCell>
                       <TableCell>
                         {formatCreatedAt(row.tgl_awal)}
                         {formatCreatedAt(row.tgl_akhir) ===
@@ -251,8 +264,8 @@ const DataTableKaldik = (prop: Proptype) => {
                           {row.label}
                         </span>
                       </TableCell>
-                      <TableCell>{row.start_time}</TableCell>
-                      <TableCell>{row.end_time}</TableCell>
+                      <TableCell>{row.start_time.slice(0, 5)}</TableCell>
+                      <TableCell>{row.end_time.slice(0, 5)}</TableCell>
                       <TableCell className="flex gap-1 items-center">
                         {isLoading === "editBtn" ? (
                           <div className="box-loader">
@@ -287,7 +300,7 @@ const DataTableKaldik = (prop: Proptype) => {
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[10, 25, 50, 100]}
           labelRowsPerPage="Baris:"
           labelDisplayedRows={({ from, to, count }) =>
             `Menampilkan ${from} - ${to} dari ${count} Data`

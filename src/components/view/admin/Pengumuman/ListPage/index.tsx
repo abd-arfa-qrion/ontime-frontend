@@ -149,7 +149,7 @@ export default function PengumumanList(prop: Props) {
                           mb: 1.5,
                         }}
                       >
-                        Dibuat: {formatCreatedAt(item.created_at)}
+                        {/* Dibuat: {formatCreatedAt(item.created_at)} */}
                       </Typography>
                     </div>
                     {/* Content */}
@@ -161,6 +161,16 @@ export default function PengumumanList(prop: Props) {
                       }}
                     >
                       {item.content}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: 12,
+                        color: "text.secondary",
+                        mb: 1.5,
+                      }}
+                    >
+                      Masa pengumuman dari: {formatCreatedAt(item.start_date)}{" "}
+                      sampai: {formatCreatedAt(item.end_date)}
                     </Typography>
                     <div className="flex justify-between items-center">
                       {/* Tujuan */}

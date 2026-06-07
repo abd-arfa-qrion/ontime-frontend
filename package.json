@@ -25,6 +25,8 @@
     "formidable": "^3.5.4",
     "js-sha256": "^0.11.0",
     "jsonwebtoken": "^9.0.2",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "kujual": "file:",
     "lodash.debounce": "^4.0.8",
     "next": "^16.2.6",

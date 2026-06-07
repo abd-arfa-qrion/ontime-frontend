@@ -56,6 +56,7 @@ const ModalUpdateKaldik = (props: Props) => {
   const [taData, setTaData] = useState<TahunAjaran[]>([]);
 
   const [kegiatan, setKegiatan] = useState<string>(editingData.keterangan);
+  const [code, setCode] = useState<string>(editingData.code);
   const [startDate, setStartDate] = useState<Date>(editingData.tgl_awal);
   const [endDate, setEndDate] = useState<Date>(editingData.tgl_akhir);
 
@@ -132,6 +133,7 @@ const ModalUpdateKaldik = (props: Props) => {
       inst: user?.instansiId,
       tahunajaran_id: Number(form.tahunajaran?.value),
       keterangan: formData.get("kegiatan"),
+      code: formData.get("code"),
       tgl_awal: tglMulai,
       tgl_akhir: tglSelesai,
       start_time: masuk,
@@ -218,6 +220,25 @@ const ModalUpdateKaldik = (props: Props) => {
           />
           <span className="text-red-600">
             {error === "kegiatan" ? "Kegiatan harus diisi!" : ""}
+          </span>
+
+          <TextField
+            required
+            fullWidth
+            size="medium"
+            label="Kode Kegiatan"
+            placeholder="max 4 huruf"
+            name="code"
+            value={code}
+            onChange={(e) => {
+              setCode(e.target.value.toUpperCase());
+              setError("");
+              setIsLoading("");
+            }}
+            sx={{ mb: 2 }}
+          />
+          <span className="text-red-600">
+            {error === "code" ? "Kode Kegiatan harus diisi!" : ""}
           </span>
 
           {/* ############### DATE PICKER */}

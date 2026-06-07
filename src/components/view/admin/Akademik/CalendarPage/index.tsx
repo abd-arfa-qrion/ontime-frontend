@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { CalendarEvent, Kaldik } from "@/type/Kaldik.type";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-type EventType = "libur" | "ujian" | "kegiatan";
+type Proptypes = {
+  data: Kaldik[];
+  setData: Dispatch<SetStateAction<Kaldik[]>>;
+  setToaster: Dispatch<SetStateAction<{}>>;
+};
+const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
 
-interface CalendarEvent {
-  date: string;
-  title: string;
-  type: EventType;
-}
-
-const days = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
-
-export default function AcademicCalendar() {
+export default function AcademicCalendar(prop: Proptypes) {
+  const { data, setData, setToaster } = prop;
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [showModal, setShowModal] = useState(false);
+  // const [events, setEvents] = useState<CalendarEvent[]>([]);
+  // const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  // const [showModal, setShowModal] = useState(false);
+
+  //helper cek tanggal
+  const isDateInRange = (
+    currentDate: Date,
+    startDate: string,
+    endDate: string,
+  ) => {
+    const current = new Date(currentDate);
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    current.setHours(0, 0, 0, 0);
+    start.setHours(0, 0, 0, 0);
+    end.setHours(0, 0, 0, 0);
+
+    return current >= start && current <= end;
+  };
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -37,27 +53,35 @@ export default function AcademicCalendar() {
     setCurrentDate(new Date(year, month + 1, 1));
   };
 
-  const openAddEvent = (day: number) => {
-    const date = `${year}-${month + 1}-${day}`;
-    setSelectedDate(date);
-    setShowModal(true);
-  };
+  // const openAddEvent = (day: number) => {
+  //   const date = `${year}-${month + 1}-${day}`;
+  //   setSelectedDate(date);
+  //   setShowModal(true);
+  // };
 
-  const addEvent = (title: string, type: EventType) => {
-    if (!selectedDate) return;
+  // const addEvent = (title: string, type: EventType) => {
+  //   if (!selectedDate) return;
 
-    setEvents([...events, { date: selectedDate, title, type }]);
-    setShowModal(false);
-  };
+  //   setEvents([...events, { date: selectedDate, title, type }]);
+  //   setShowModal(false);
+  // };
 
-  const getEventColor = (type: EventType) => {
-    switch (type) {
-      case "libur":
+  const getEventColor = (label: string) => {
+    switch (label) {
+      case "danger":
         return "bg-red-500";
-      case "ujian":
+
+      case "warning":
         return "bg-yellow-500";
-      case "kegiatan":
+
+      case "success":
+        return "bg-green-500";
+
+      case "info":
         return "bg-blue-500";
+
+      default:
+        return "bg-gray-500";
     }
   };
 
@@ -85,35 +109,67 @@ export default function AcademicCalendar() {
       </div>
 
       {/* DAYS */}
-      <div className="grid grid-cols-7 text-center font-semibold text-gray-500 mb-2">
+      <div className="grid grid-cols-7 text-center font-semibold text-black mb-2">
         {days.map((d) => (
-          <div key={d}>{d}</div>
+          <div
+            className={`rounded-lg ${d === "Minggu" ? "text-[#950606] bg-red-100" : ""}`}
+            key={d}
+          >
+            {d}
+          </div>
         ))}
       </div>
 
       {/* CALENDAR */}
       <div className="grid grid-cols-7 gap-2">
         {dates.map((date, i) => {
-          const dateStr = `${year}-${month + 1}-${date}`;
-          const dayEvents = events.filter((e) => e.date === dateStr);
+          let dayEvents: Kaldik[] = [];
+
+          if (date) {
+            const currentDay = new Date(year, month, date);
+
+            dayEvents = data.filter((event) =>
+              isDateInRange(
+                currentDay,
+                event.tgl_awal.toString(),
+                event.tgl_akhir.toString(),
+              ),
+            );
+          }
+
+          let isSunday = false;
+
+          if (date) {
+            const currentDay = new Date(year, month, date);
+            isSunday = currentDay.getDay() === 0;
+          }
 
           return (
             <div
               key={i}
-              onClick={() => date && openAddEvent(date)}
-              className="h-28 border rounded-xl p-2 hover:bg-gray-50 cursor-pointer flex flex-col"
+              // onClick={() => date && openAddEvent(date)}
+              className={`h-28 rounded-xl p-2 hover:bg-gray-50 cursor-pointer flex flex-col ${isSunday ? "border-2 border-red-100" : "border"}`}
             >
-              {date && <span className="text-sm font-semibold">{date}</span>}
+              {date && (
+                <span
+                  className={`text-sm font-semibold ${
+                    isSunday ? "text-red-600" : ""
+                  }`}
+                >
+                  {date}
+                </span>
+              )}
 
               <div className="flex flex-col gap-1 mt-1">
-                {dayEvents.map((e, idx) => (
+                {dayEvents.map((e) => (
                   <div
-                    key={idx}
-                    className={`text-xs text-white px-1 rounded ${getEventColor(
-                      e.type,
-                    )}`}
+                    key={e.id}
+                    className="text-xs text-white px-1 rounded"
+                    style={{
+                      backgroundColor: e.label,
+                    }}
                   >
-                    {e.title}
+                    {e.keterangan}
                   </div>
                 ))}
               </div>
@@ -123,58 +179,58 @@ export default function AcademicCalendar() {
       </div>
 
       {/* MODAL */}
-      {showModal && (
+      {/* {showModal && (
         <AddEventModal onClose={() => setShowModal(false)} onSave={addEvent} />
-      )}
+      )} */}
     </div>
   );
 }
 
-function AddEventModal({
-  onClose,
-  onSave,
-}: {
-  onClose: () => void;
-  onSave: (title: string, type: EventType) => void;
-}) {
-  const [title, setTitle] = useState("");
-  const [type, setType] = useState<EventType>("kegiatan");
+// function AddEventModal({
+//   onClose,
+//   onSave,
+// }: {
+//   onClose: () => void;
+//   onSave: (title: string, type: EventType) => void;
+// }) {
+//   const [title, setTitle] = useState("");
+//   const [type, setType] = useState<EventType>("kegiatan");
 
-  return (
-    <div className="fixed inset-0 bg-black/30 flex items-center justify-center">
-      <div className="bg-white rounded-xl p-6 w-[350px]">
-        <h3 className="font-semibold mb-4">Tambah Event</h3>
+//   return (
+//     <div className="fixed inset-0 bg-black/30 flex items-center justify-center">
+//       <div className="bg-white rounded-xl p-6 w-[350px]">
+//         <h3 className="font-semibold mb-4">Tambah Event</h3>
 
-        <input
-          placeholder="Nama kegiatan"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border w-full p-2 rounded mb-3"
-        />
+//         <input
+//           placeholder="Nama kegiatan"
+//           value={title}
+//           onChange={(e) => setTitle(e.target.value)}
+//           className="border w-full p-2 rounded mb-3"
+//         />
 
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value as EventType)}
-          className="border w-full p-2 rounded mb-4"
-        >
-          <option value="kegiatan">Kegiatan</option>
-          <option value="ujian">Ujian</option>
-          <option value="libur">Libur</option>
-        </select>
+//         <select
+//           value={type}
+//           onChange={(e) => setType(e.target.value as EventType)}
+//           className="border w-full p-2 rounded mb-4"
+//         >
+//           <option value="kegiatan">Kegiatan</option>
+//           <option value="ujian">Ujian</option>
+//           <option value="libur">Libur</option>
+//         </select>
 
-        <div className="flex justify-end gap-2">
-          <button onClick={onClose} className="px-3 py-2 bg-gray-200 rounded">
-            Batal
-          </button>
+//         <div className="flex justify-end gap-2">
+//           <button onClick={onClose} className="px-3 py-2 bg-gray-200 rounded">
+//             Batal
+//           </button>
 
-          <button
-            onClick={() => onSave(title, type)}
-            className="px-3 py-2 bg-blue-600 text-white rounded"
-          >
-            Simpan
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
+//           <button
+//             onClick={() => onSave(title, type)}
+//             className="px-3 py-2 bg-blue-600 text-white rounded"
+//           >
+//             Simpan
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

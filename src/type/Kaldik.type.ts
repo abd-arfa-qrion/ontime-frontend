@@ -4,6 +4,7 @@ export type Kaldik = {
   tahunajaran_id: number;
   ta: string;
   keterangan: string;
+  code: string;
   tgl_awal: Date;
   tgl_akhir: Date;
   start_time: string;
@@ -20,6 +21,7 @@ export const KaldikDefault = {
   tahunajaran_id: 0,
   ta: "",
   keterangan: "",
+  code: "",
   tgl_awal: new Date(),
   tgl_akhir: new Date(),
   start_time: "",
@@ -29,4 +31,21 @@ export const KaldikDefault = {
   updated_at: "",
   deleted_at: "",
   institution_id: 0,
+};
+
+export type CalendarEvent = {
+  id: number;
+  keterangan: string;
+  code: string;
+  tgl_awal: string;
+  tgl_akhir: string;
+  label: string;
+};
+export const CalendarEventDefault = {
+  id: 0,
+  keterangan: "",
+  code: "",
+  tgl_awal: "",
+  tgl_akhir: "",
+  label: "",
 };

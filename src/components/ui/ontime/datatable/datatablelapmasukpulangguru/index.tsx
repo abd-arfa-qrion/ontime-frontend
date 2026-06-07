@@ -14,27 +14,33 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import TableRowSkeleton from "../../../skeleton/tableRow";
-import { getTahunAjaranWithSemester } from "@/utils/tasemester";
+
+import { DeleteForever, RefreshRounded } from "@mui/icons-material";
+import EditBtn from "@/components/ui/button/edit";
+import { Kaldik, KaldikDefault } from "@/type/Kaldik.type";
 import { formatCreatedAt } from "@/utils/formatdate";
-import { JustifikasiGuru } from "@/type/Justifikasi.type";
-import ModalUpdateJustifikasiGuru from "@/components/view/admin/Justifikasi/ModalUpdateGuru";
+import ModalUpdateKaldik from "@/components/view/admin/Akademik/ModalUpdateData";
+import {
+  LapAbsensiMasukGuru,
+  LapAbsensiMasukGuruDefault,
+} from "@/type/Laporan.type";
 type Proptype = {
-  dataGuru: JustifikasiGuru[];
-  setDataGuru: Dispatch<SetStateAction<JustifikasiGuru[]>>;
+  data: LapAbsensiMasukGuru[];
+  setData: Dispatch<SetStateAction<LapAbsensiMasukGuru[]>>;
+  setToaster: Dispatch<SetStateAction<{}>>;
+  setLoadingFetch: Dispatch<SetStateAction<boolean>>;
   session: any;
   loadingFetch: boolean;
-  setToaster: Dispatch<SetStateAction<{}>>;
-  setTabActive: Dispatch<SetStateAction<string>>;
   filterTA: string;
 };
-const DataTableJustifikasiGuru = (prop: Proptype) => {
+const DataTableLapMasukPulangGuru = (prop: Proptype) => {
   const {
-    dataGuru,
-    setDataGuru,
+    data,
+    setData,
+    setToaster,
+    setLoadingFetch,
     session,
     loadingFetch,
-    setToaster,
-    setTabActive,
     filterTA,
   } = prop;
 
@@ -42,21 +48,19 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
-  const [filteredData, setFilteredData] = useState<JustifikasiGuru[]>(
-    dataGuru ?? [],
-  );
-  const [sortField, setSortField] = useState<keyof JustifikasiGuru | null>(
+  const [filteredData, setFilteredData] = useState<LapAbsensiMasukGuru[]>(data);
+  const [sortField, setSortField] = useState<keyof LapAbsensiMasukGuru | null>(
     null,
   );
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [isLoading, setIsLoading] = useState<string>(""); // sebelumnya index: number
+  const [editingData, setEditingData] = useState<LapAbsensiMasukGuru>(
+    LapAbsensiMasukGuruDefault,
+  );
 
-  const [isLoading, setIsLoading] = useState<string>("");
-
-  const [updateJustifikasi, setUpdateJustifikasi] =
-    useState<JustifikasiGuru | null>(null);
-
-  const tasem = getTahunAjaranWithSemester();
-
+  //handle Modal
+  const [modalUpdate, setModalUpdate] = useState<boolean>(false);
+  const [modalDelete, setModalDelete] = useState<boolean>(false);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -78,7 +82,7 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
     }, 800);
   };
 
-  const handleSort = (field: keyof JustifikasiGuru) => {
+  const handleSort = (field: keyof LapAbsensiMasukGuru) => {
     const isAsc = sortField === field && sortOrder === "asc";
     setSortField(field);
     setSortOrder(isAsc ? "desc" : "asc");
@@ -86,14 +90,14 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
-      setFilteredData(dataGuru ?? []);
+      setFilteredData(data ?? []);
       setSearchLoading(false);
       return;
     }
     setSearchLoading(true);
     // kasih debounce kecil biar gak ke-trigger tiap ketik huruf
     const timer = setTimeout(() => {
-      const result = (dataGuru ?? []).filter((row) =>
+      const result = (data ?? []).filter((row) =>
         Object.values(row).some((value) =>
           value?.toString().toLowerCase().includes(searchQuery.toLowerCase()),
         ),
@@ -103,7 +107,7 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
       setSearchLoading(false);
     }, 300); // debounce 300ms
     return () => clearTimeout(timer);
-  }, [searchQuery, dataGuru]);
+  }, [searchQuery, data]);
   /// Perubahan sampai sini
 
   const sortedData = [...(filteredData ?? [])].sort((a, b) => {
@@ -125,23 +129,23 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage,
   );
-  const handleEdit = (row: JustifikasiGuru) => {
-    setIsLoading("editBtnJustifikasiGuru");
 
-    setUpdateJustifikasi({ ...row });
+  const handleEdit = async (id: string) => {
+    setIsLoading("editKaldikBtn");
 
-    setTimeout(() => {
-      setIsLoading("");
-    }, 150);
+    const editingData = data.find((item) => item.id === id);
+    console.log("menampilkan data: ", editingData);
+    setEditingData(editingData ?? LapAbsensiMasukGuruDefault);
+    setModalUpdate(true);
+    setIsLoading("");
   };
-
   return (
     <>
       <Paper className="px-2 pt-2">
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Justifikasi Absensi Guru Tahun Ajaran {tasem.ta}
+            Laporan Absensi Masuk & Pulang Guru {filterTA}
           </h4>
 
           {/* KANAN */}
@@ -179,9 +183,9 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
                 <TableCell className="font-[550]">No</TableCell>
                 <TableCell className="font-[550]">
                   <TableSortLabel
-                    active={sortField === "teacher_name"}
-                    direction={sortField === "teacher_name" ? sortOrder : "asc"}
-                    onClick={() => handleSort("teacher_name")}
+                    active={sortField === "guru_name"}
+                    direction={sortField === "guru_name" ? sortOrder : "asc"}
+                    onClick={() => handleSort("guru_name")}
                   >
                     Nama Guru
                   </TableSortLabel>
@@ -189,40 +193,51 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
 
                 <TableCell className="font-[550]">
                   <TableSortLabel
-                    active={sortField === "mapel_name"}
-                    direction={sortField === "mapel_name" ? sortOrder : "asc"}
-                    onClick={() => handleSort("mapel_name")}
+                    active={sortField === "guru_nip"}
+                    direction={sortField === "guru_nip" ? sortOrder : "asc"}
+                    onClick={() => handleSort("guru_nip")}
                   >
                     NIP
                   </TableSortLabel>
                 </TableCell>
+
                 <TableCell className="font-[550]">
                   <TableSortLabel
-                    active={sortField === "waktu_absensi"}
-                    direction={
-                      sortField === "waktu_absensi" ? sortOrder : "asc"
-                    }
-                    onClick={() => handleSort("waktu_absensi")}
+                    active={sortField === "tanggal"}
+                    direction={sortField === "tanggal" ? sortOrder : "asc"}
+                    onClick={() => handleSort("tanggal")}
                   >
                     Tanggal
                   </TableSortLabel>
                 </TableCell>
-                <TableCell className="font-[550] w-1 whitespace-nowrap">
+
+                <TableCell className="font-[550]">
+                  <TableSortLabel
+                    active={sortField === "checkin_time"}
+                    direction={sortField === "checkin_time" ? sortOrder : "asc"}
+                    onClick={() => handleSort("checkin_time")}
+                  >
+                    Jam Masuk
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell className="font-[550]">
+                  <TableSortLabel
+                    active={sortField === "checkout_time"}
+                    direction={
+                      sortField === "checkout_time" ? sortOrder : "asc"
+                    }
+                    onClick={() => handleSort("checkout_time")}
+                  >
+                    Jam Pulang
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell className="font-[550]">
                   <TableSortLabel
                     active={sortField === "status_hadir"}
                     direction={sortField === "status_hadir" ? sortOrder : "asc"}
                     onClick={() => handleSort("status_hadir")}
                   >
-                    Status Awal
-                  </TableSortLabel>
-                </TableCell>
-                <TableCell className="font-[550]">
-                  <TableSortLabel
-                    active={sortField === "status_akhir"}
-                    direction={sortField === "status_akhir" ? sortOrder : "asc"}
-                    onClick={() => handleSort("status_akhir")}
-                  >
-                    Status Akhir
+                    Status
                   </TableSortLabel>
                 </TableCell>
                 <TableCell className="font-[550]">Aksi</TableCell>
@@ -233,11 +248,11 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
                 <TableRowSkeleton columns={7} />
               ) : searchLoading ? (
                 <TableRowSkeleton columns={7} />
-              ) : (filteredData ?? []).length === 0 ? (
+              ) : filteredData.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={7} align="center">
                     <p className="text-gray-500 text-sm mb-4">
-                      Belum Ada data Justifikasi
+                      Belum ada absensi
                     </p>
                   </TableCell>
                 </TableRow>
@@ -247,35 +262,52 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
                     <TableRow>
                       <TableCell>{page * rowsPerPage + index + 1}</TableCell>
 
-                      <TableCell>{row.teacher_name}</TableCell>
-                      <TableCell>{row.teacher_nip}</TableCell>
+                      <TableCell>{row.guru_name}</TableCell>
+                      <TableCell>{row.guru_nip}</TableCell>
+                      <TableCell>{formatCreatedAt(row.tanggal)}</TableCell>
                       <TableCell>
-                        {formatCreatedAt(row.waktu_absensi)}
+                        {new Date(row.checkin_time).toLocaleTimeString(
+                          "id-ID",
+                          {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          },
+                        )}
                       </TableCell>
                       <TableCell>
-                        <p className="inline-block text-red-700 font-semibold bg-red-100 px-2 py-1 rounded-md border-l-4 border-red-600">
+                        {new Date(row.checkout_time).toLocaleTimeString(
+                          "id-ID",
+                          {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          },
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <p
+                          className={`inline-block font-semibold px-2 py-1 rounded-md border-l-4 ${row.status_hadir === "hadir" ? "text-green-700 bg-green-100 border-green-600 " : row.status_hadir === "izin" ? "text-yellow-700 bg-yellow-100 border-yellow-600" : row.status_hadir === "alpa" ? "text-red-700 bg-red-100 border-red-600" : "bg-orange-100 text-orange-700 border-orange-600"}`}
+                        >
                           {row.status_hadir}
                         </p>
                       </TableCell>
-                      <TableCell className="text-gray-400 font-thin">
-                        Belum Justifikasi
-                      </TableCell>
-                      <TableCell>
-                        {isLoading === "editBtnJustifikasiGuru" ? (
+                      <TableCell className="flex gap-1 items-center">
+                        {isLoading === "editBtn" ? (
                           <div className="box-loader">
                             <div className="loader" />
                             <p>Loading...</p>
                           </div>
                         ) : (
-                          <div
-                            onClick={() => handleEdit(row)}
-                            className="flex gap-1 items-center cursor-pointer"
-                          >
-                            <i className="bx bx-edit text-[var(--primary-color)] text-lg"></i>
-                            <p className="text-sm text-[var(--primary-color)]">
-                              Justifikasi
-                            </p>
+                          <EditBtn onClick={() => handleEdit(row.id)} />
+                        )}
+                        {isLoading === "deleteBtn" ? (
+                          <div className="box-loader">
+                            <div className="loader" />
+                            <p>Loading...</p>
                           </div>
+                        ) : (
+                          <DeleteForever
+                            sx={{ color: "#ae0c0c", cursor: "pointer" }}
+                          />
                         )}
                       </TableCell>
                     </TableRow>
@@ -319,24 +351,9 @@ const DataTableJustifikasiGuru = (prop: Proptype) => {
           }}
         />
       </Paper>
-      {updateJustifikasi && (
-        <ModalUpdateJustifikasiGuru
-          open={!!updateJustifikasi}
-          onClose={() => setUpdateJustifikasi(null)}
-          updateJustifikasi={updateJustifikasi}
-          setUpdateJustifikasi={setUpdateJustifikasi}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          setToaster={setToaster}
-          session={session}
-          setDataGuru={setDataGuru}
-          taTasem={tasem.ta}
-          setTabActive={setTabActive}
-          filterTA={filterTA}
-        />
-      )}
+      {modalUpdate && <div>Modal add disini</div>}
     </>
   );
 };
 
-export default DataTableJustifikasiGuru;
+export default DataTableLapMasukPulangGuru;

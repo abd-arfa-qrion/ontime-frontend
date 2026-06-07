@@ -5,22 +5,35 @@ import HeadContent from "@/components/ui/headContent/headcontent";
 import HeadContentRightLaporan from "@/components/ui/headContent/headcontentrightlaporan";
 import DownloadAbsensiModal from "./Modaldownload";
 import DataTableUmumGuru from "./datatabelumum/datatableguru";
+import DataTableLapMasukPulangGuru from "@/components/ui/ontime/datatable/datatablelapmasukpulangguru";
+import { LapAbsensiMasukGuru } from "@/type/Laporan.type";
 
 type Proptype = {
   setToaster: Dispatch<SetStateAction<{}>>;
   session: any;
   lapAbsenAkdmk: any;
   lapAbsenUmum: any;
-  lapAbsenMasuk: any;
+  lapAbsenMasukGuru: LapAbsensiMasukGuru[];
+  setLapAbsenMasukGuru: Dispatch<SetStateAction<LapAbsensiMasukGuru[]>>;
   loadingFetch: boolean;
+  setLoadingFetch: Dispatch<SetStateAction<boolean>>;
   filterTA: string;
   setFilterTA: Dispatch<SetStateAction<string>>;
 };
 const LaporanCetak = (props: Proptype) => {
-  const { setToaster, session, filterTA, setFilterTA } = props;
+  const {
+    setToaster,
+    session,
+    filterTA,
+    setFilterTA,
+    loadingFetch,
+    setLoadingFetch,
+    lapAbsenMasukGuru,
+    setLapAbsenMasukGuru,
+  } = props;
 
   const [jenisAbsensi, setJenisAbsensi] = useState("masuk");
-  const [subjek, setSubjek] = useState("siswa");
+  const [subjek, setSubjek] = useState("guru");
   const [modalDownload, setModalDownload] = useState(false);
 
   return (
@@ -43,9 +56,15 @@ const LaporanCetak = (props: Proptype) => {
           ) : jenisAbsensi === "umum" && subjek === "siswa" ? (
             <p>Data tabel Absensi Umum Siswa</p>
           ) : jenisAbsensi === "masuk" && subjek === "guru" ? (
-            <p>Data tabel Absensi Masuk Guru</p>
-          ) : jenisAbsensi === "masuk" && subjek === "siswa" ? (
-            <p>Maaf Tidak Ada absen Masuk & Pulang untuk Siswa</p>
+            <DataTableLapMasukPulangGuru
+              setToaster={setToaster}
+              session={session}
+              data={lapAbsenMasukGuru}
+              setData={setLapAbsenMasukGuru}
+              loadingFetch={loadingFetch}
+              setLoadingFetch={setLoadingFetch}
+              filterTA={filterTA}
+            />
           ) : jenisAbsensi === "pelajaran" && subjek === "guru" ? (
             <p>Maaf Tidak Ada absen pelajaran untuk Guru</p>
           ) : jenisAbsensi === "pelajaran" && subjek === "siswa" ? (

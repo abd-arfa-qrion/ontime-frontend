@@ -7,6 +7,7 @@ import HeadContentRightAkademik from "@/components/ui/headContent/headcontentrig
 import DataTableKaldik from "@/components/ui/ontime/datatable/datatablekaldik";
 import { Kaldik } from "@/type/Kaldik.type";
 import ModalAddKaldik from "./ModalAddData";
+import { DownloadKaldik } from "./Download";
 
 type Proptypes = {
   setToaster: Dispatch<SetStateAction<{}>>;
@@ -31,24 +32,59 @@ const AkademikPageView = (props: Proptypes) => {
     setFilterTA,
   } = props;
 
-  //state untuk Calender Akademik
-  const [switchBtn, setSwitchBtn] = useState<string>("list"); // publish, draft, schedule
+  const [switchBtn, setSwitchBtn] = useState<string>("list");
   const [addJadwal, setAddJadwal] = useState(false);
+
+  const [exporting, setExporting] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const handleDownload = async () => {
+    if (exporting) return; // ❗ prevent double click
+
+    setExporting(true);
+    setProgress(5);
+
+    try {
+      setProgress(20);
+
+      await DownloadKaldik(data, (p: number) => {
+        setProgress(p);
+      });
+
+      setProgress(100);
+    } catch (err) {
+      console.error(err);
+      setToaster({
+        type: "error",
+        message: "Gagal export kalender akademik",
+      });
+    } finally {
+      setTimeout(() => {
+        setExporting(false);
+        setProgress(0);
+      }, 400);
+    }
+  };
 
   return (
     <>
       <AdminLayout>
         <div>
-          <div className="bagian-head-content flex justify-between items-center">
+          <div className="flex justify-between items-center">
             <HeadContent text="Kalender Akademik" />
+
             <HeadContentRightAkademik
               setAddJadwal={setAddJadwal}
               switchBtn={switchBtn}
               setSwitchBtn={setSwitchBtn}
               setFilterTA={setFilterTA}
               filterTA={filterTA}
+              handleDownload={handleDownload}
+              exporting={exporting} // ⬅️ penting (disable button)
+              progress={progress} // ⬅️ optional UI progress
             />
           </div>
+
           <div>
             {switchBtn === "list" ? (
               <DataTableKaldik
@@ -60,17 +96,20 @@ const AkademikPageView = (props: Proptypes) => {
                 session={session}
               />
             ) : (
-              <AcademicCalendar />
+              <AcademicCalendar
+                data={data}
+                setData={setData}
+                setToaster={setToaster}
+              />
             )}
           </div>
         </div>
       </AdminLayout>
+
       {addJadwal && (
         <ModalAddKaldik
           open={addJadwal}
-          onClose={() => {
-            setAddJadwal(false);
-          }}
+          onClose={() => setAddJadwal(false)}
           setToaster={setToaster}
           setAddJadwal={setAddJadwal}
           setData={setData}

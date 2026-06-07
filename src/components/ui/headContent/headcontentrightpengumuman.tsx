@@ -38,7 +38,7 @@ const HeadContentRightPengumuman = (prop: Proptypes) => {
       >
         Disiarkan
       </Button>
-      <Button
+      {/* <Button
         onClick={() => handleClick("draft")}
         variant={statusPublish === "draft" ? "contained" : "outlined"}
         sx={{
@@ -60,7 +60,7 @@ const HeadContentRightPengumuman = (prop: Proptypes) => {
         }}
       >
         Draft
-      </Button>
+      </Button> */}
       <Button
         onClick={() => handleClick("schedule")}
         variant={statusPublish === "schedule" ? "contained" : "outlined"}
