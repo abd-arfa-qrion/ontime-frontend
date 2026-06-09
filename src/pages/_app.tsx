@@ -7,12 +7,9 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import LoadingPage from "@/components/ui/loadingPage";
 import { CsrfProvider } from "@/context/CsrfContext";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import { Poppins } from "next/font/google";
-import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
-import taSmesterServices from "./api/services/tasmester";
+import { Inter, Poppins } from "next/font/google";
 import AppContent from "@/context/AppContent";
 
 const disabledNavbar = [
@@ -27,10 +24,9 @@ const disabledNavbar = [
   "operatorsch",
   "newncil",
 ];
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Pilih berat font yang diperlukan
-  display: "swap",
+  variable: "--font-inter",
 });
 export default function App({
   Component,
@@ -80,8 +76,8 @@ export default function App({
       <SessionProvider session={session}>
         <CsrfProvider>
           <AppContent />
-          <div className={poppins.className}>
-            {loadingPage && <LoadingPage />}
+          <div className={inter.className}>
+            {/* {loadingPage && <LoadingPage />} */}
             {!disabledNavbar.includes(pathname.split("/")[1]) && <Navbar />}
             <Component
               {...pageProps}

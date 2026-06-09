@@ -44,11 +44,6 @@ const FilterKelas = (prop: Proptype) => {
           backgroundColor: "#fff",
         },
 
-        "& .MuiInputLabel-root": {
-          backgroundColor: "#fff",
-          paddingX: "4px",
-        },
-
         "& .MuiSelect-icon": {
           color: "gray",
         },
@@ -60,14 +55,14 @@ const FilterKelas = (prop: Proptype) => {
       }}
       size="small"
     >
-      <InputLabel id="filter-kelas-label">Kelas</InputLabel>
-
       <Select
         disabled={switchBtn !== "list"}
         labelId="filter-kelas-label"
         value={selectedOption}
-        label="Kelas"
         onChange={handleChange}
+        MenuProps={{
+          disableScrollLock: true,
+        }}
       >
         {/* 🔥 OPTION ALL */}
         <MenuItem value="all">Semua Kelas</MenuItem>

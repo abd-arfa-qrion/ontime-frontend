@@ -88,11 +88,6 @@ const FilterTahunAjaran = (prop: Proptype) => {
           backgroundColor: "#fff",
         },
 
-        "& .MuiInputLabel-root": {
-          backgroundColor: "#fff",
-          paddingX: "4px",
-        },
-
         "& .MuiSelect-icon": {
           color: "gray",
         },
@@ -104,23 +99,15 @@ const FilterTahunAjaran = (prop: Proptype) => {
       }}
       size="small"
     >
-      <InputLabel
-        id="demo-simple-select-label"
-        className="border border-1 rounded-md border-grey-500"
-        sx={{
-          transform: "translate(14px, -12px) scale(0.75)",
-        }}
-      >
-        Tahun Ajaran
-      </InputLabel>
-
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={selectedOption}
-        label="Options"
         onChange={handleChange}
         IconComponent={CalendarMonthRounded}
+        MenuProps={{
+          disableScrollLock: true,
+        }}
       >
         {taDataFilter.map((dtFilter) => (
           <MenuItem key={dtFilter.id} value={dtFilter.id}>

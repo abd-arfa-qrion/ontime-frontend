@@ -2,8 +2,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import styles from "./Navbar.module.scss";
 import AutoAwesomeMosaicIcon from "@mui/icons-material/AutoAwesomeMosaic";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Link from "next/link";
 import Tooltips from "@/components/ui/tooltips";
 import { useState } from "react";
@@ -67,18 +65,18 @@ const Navbar = () => {
                     role === "member"
                       ? "/member"
                       : role === "admin"
-                      ? "/admin"
-                      : role === "kasir"
-                      ? "/kasir"
-                      : role === "keuangankps"
-                      ? "/keuangankps"
-                      : role === "personalia"
-                      ? "/personalia"
-                      : role === "mgmkebun"
-                      ? "/mgmkebun"
-                      : role === "operatorsch"
-                      ? "/operatorsch"
-                      : "/sa"
+                        ? "/admin"
+                        : role === "kasir"
+                          ? "/kasir"
+                          : role === "keuangankps"
+                            ? "/keuangankps"
+                            : role === "personalia"
+                              ? "/personalia"
+                              : role === "mgmkebun"
+                                ? "/mgmkebun"
+                                : role === "operatorsch"
+                                  ? "/operatorsch"
+                                  : "/sa"
                   }
                 >
                   <AutoAwesomeMosaicIcon

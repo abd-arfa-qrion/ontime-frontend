@@ -109,23 +109,108 @@ const ResumePenjualan = ({ title, data = [] }: Proptype) => {
 
   return (
     <div className="bg-white rounded-2xl shadow-sm p-4">
-      <p className="text-center font-semibold text-gray-700 mb-2">{title}</p>
-
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={formattedData}
-          margin={{ top: 20, right: 20, left: 10, bottom: 40 }}
+          margin={{
+            top: 40,
+            right: 20,
+            left: 10,
+            bottom: 40,
+          }}
         >
-          {/* ✨ Gradient definitions */}
+          <Legend
+            verticalAlign="top"
+            wrapperStyle={{
+              top: -20,
+              left: 0,
+              right: 0,
+              padding: "0 10px",
+            }}
+            content={() => (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  minHeight: "32px",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    color: "#374151",
+                  }}
+                >
+                  {title}
+                </span>
+                <span
+                  style={{
+                    fontSize: "12px",
+                    color: "#bfbfbf",
+                  }}
+                >
+                  (7 Hari Terakhir)
+                </span>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    fontSize: "13px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 15,
+                        height: 15,
+                        borderRadius: "5px",
+                        background: "#059669",
+                      }}
+                    />
+                    Hadir
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 15,
+                        height: 15,
+                        borderRadius: "5px",
+                        background: "#dc2626",
+                      }}
+                    />
+                    Tidak Hadir
+                  </div>
+                </div>
+              </div>
+            )}
+          />
+
           <defs>
             <linearGradient id="colorHadir" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#34d399" stopOpacity={1} />
-              <stop offset="100%" stopColor="#059669" stopOpacity={0.9} />
+              <stop offset="0%" stopColor="#059669" stopOpacity={1} />
+              <stop offset="100%" stopColor="#34d399" stopOpacity={0.9} />
             </linearGradient>
 
             <linearGradient id="colorTidakHadir" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f87171" stopOpacity={1} />
-              <stop offset="100%" stopColor="#dc2626" stopOpacity={0.9} />
+              <stop offset="0%" stopColor="#dc2626" stopOpacity={1} />
+              <stop offset="100%" stopColor="#f87171" stopOpacity={0.9} />
             </linearGradient>
           </defs>
 
@@ -155,9 +240,6 @@ const ResumePenjualan = ({ title, data = [] }: Proptype) => {
             cursor={{ fill: "rgba(0,0,0,0.03)" }}
           />
 
-          <Legend />
-
-          {/* ✅ Rounded + Gradient */}
           <Bar
             dataKey="hadir"
             fill="url(#colorHadir)"

@@ -13,14 +13,14 @@ const DashboardChart = (prop: Proptype) => {
   const { loadingFetch, dataResume7Hari, dataResume7HariTidakhadir } = prop;
   return (
     <div className="flex gap-5 flex-wrap md:flex-nowrap">
-      <Card className="p-3 flex-[2] rounded-lg">
+      <Card className="p-3 flex-[2] rounded-lg shadow-none">
         <ResumePenjualan
           title="Ringkasan Kehadiran Siswa"
           data={dataResume7Hari}
         />
       </Card>
 
-      <Card className="p-3 flex-[1] rounded-lg">
+      <Card className="p-3 flex-[1] rounded-lg shadow-none">
         <PieTidakHadir
           title="Ringkasan Siswa Tidak Hadir"
           data={dataResume7HariTidakhadir}

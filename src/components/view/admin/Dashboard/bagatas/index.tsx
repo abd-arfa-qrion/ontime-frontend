@@ -23,7 +23,7 @@ const DashboardAtas = (prop: Proptype) => {
     <div>
       {!loadingFetch ? (
         <div className="flex gap-5 flex-wrap grid grid-cols-4">
-          <Card className="p-3 w-full rounded-lg">
+          <Card className="p-3 w-full rounded-lg shadow-none">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-group text-blue-700 text-xl bg-gradient-to-b from-blue-300 to-blue-100 rounded-md px-3 py-1"></i>
               <p>Total Siswa Aktif</p>
@@ -38,7 +38,7 @@ const DashboardAtas = (prop: Proptype) => {
               </p>
             </div>
           </Card>
-          <Card className="p-3 w-full rounded-lg">
+          <Card className="p-3 w-full rounded-lg shadow-none">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-list-check text-green-700 text-xl bg-gradient-to-b from-green-300 to-green-100 rounded-md px-3 py-1"></i>
               <p>Total Siswa Hadir</p>
@@ -53,7 +53,7 @@ const DashboardAtas = (prop: Proptype) => {
               </p>
             </div>
           </Card>
-          <Card className="p-3 w-full rounded-lg">
+          <Card className="p-3 w-full rounded-lg shadow-none">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-sad text-red-400 text-xl bg-gradient-to-b from-red-300 to-red-100 rounded-md px-3 py-1"></i>
               <p>Total Siswa Tidak Hadir</p>
@@ -68,7 +68,7 @@ const DashboardAtas = (prop: Proptype) => {
               </p>
             </div>
           </Card>
-          <Card className="p-3 w-full rounded-lg">
+          <Card className="p-3 w-full rounded-lg shadow-none">
             <div className="header flex justify-left gap-4 items-center mb-4">
               <i className="bx bx-info-circle text-yellow-700 text-xl bg-gradient-to-b from-yellow-300 to-yellow-100 rounded-md px-3 py-1"></i>
               <p>Perlu Justifikasi</p>

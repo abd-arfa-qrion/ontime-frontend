@@ -2,7 +2,7 @@
   position: fixed;
   top: 0px;
   right: 1px;
-  padding-left: 21vw;
+  padding-left: 16vw;
   display: flex;
   z-index: 1001;
   justify-content: space-between;
@@ -10,14 +10,18 @@
   background-color: white;
   align-items: center;
 }
-
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1130px) {
   .appbar {
-    padding-left: 220px;
+    padding-left: 20vw;
+  }
+}
+@media screen and (max-width: 870px) {
+  .appbar {
+    padding-left: 20vw;
   }
 }
 @media screen and (max-width: 800px) {
   .appbar {
-    padding-left: 22vw;
+    padding-left: 20vw;
   }
 }

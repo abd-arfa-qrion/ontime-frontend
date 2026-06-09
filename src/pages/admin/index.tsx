@@ -12,7 +12,6 @@ import {
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import dashboardServices from "../api/services/dashboard";
-import { getTahunAjaranWithSemester } from "@/utils/tasemester";
 import { useTahunAjaranStore } from "@/store/tahunAjaranStore";
 
 const AdminPage = ({ setToaster }: any) => {

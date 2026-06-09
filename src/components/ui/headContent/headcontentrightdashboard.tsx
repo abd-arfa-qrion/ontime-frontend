@@ -30,19 +30,22 @@ const HeadContentRightDashboard = (prop: Proptypes) => {
         onClick={() => handleClick("siswa")}
         variant={tabActive === "siswa" ? "contained" : "outlined"}
         sx={{
+          minWidth: "150px",
+          boxShadow: "none",
           textTransform: "none",
           padding: "8px 20px",
           borderRadius: "10px",
           color: tabActive === "siswa" ? "#fff" : "var(--primary-color)",
-          backgroundColor:
-            tabActive === "siswa" ? "var(--primary-color)" : "transparent",
+          background:
+            tabActive === "siswa" ? "var(--gradient-primary)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
-            backgroundColor:
+            background:
               tabActive === "siswa"
-                ? "var(--primary-color)"
+                ? "var(--gradient-primary)"
                 : "var(--secondary-color)",
             borderColor: "var(--primary-color)",
+            color: "#fff",
             cursor: tabActive === "siswa" ? "default" : "pointer",
           },
         }}
@@ -53,19 +56,22 @@ const HeadContentRightDashboard = (prop: Proptypes) => {
         onClick={() => handleClick("guru")}
         variant={tabActive === "guru" ? "contained" : "outlined"}
         sx={{
+          minWidth: "150px",
+          boxShadow: "none",
           textTransform: "none",
           padding: "8px 20px",
           borderRadius: "10px",
           color: tabActive === "guru" ? "#fff" : "var(--primary-color)",
-          backgroundColor:
-            tabActive === "guru" ? "var(--primary-color)" : "transparent",
+          background:
+            tabActive === "guru" ? "var(--gradient-primary)" : "#ffffff",
           borderColor: "var(--primary-color)",
           "&:hover": {
-            backgroundColor:
+            background:
               tabActive === "guru"
-                ? "var(--primary-color)"
+                ? "var(--gradient-primary)"
                 : "var(--secondary-color)",
             borderColor: "var(--primary-color)",
+            color: "#fff",
             cursor: tabActive === "guru" ? "default" : "pointer",
           },
         }}

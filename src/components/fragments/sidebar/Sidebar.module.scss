@@ -1,9 +1,9 @@
 .sidebar {
   background-color: #fff;
   color: #000;
-  width: 20vw;
+  width: 15vw;
   padding: 20px;
-  height: auto;
+  // height: 100vh; /* Sidebar akan menutupi tinggi layar */
   min-height: 100vh;
   justify-content: space-between;
   display: flex;
@@ -11,7 +11,6 @@
   position: fixed; /* Membuat sidebar tetap */
   top: 0;
   left: 0;
-  height: 100vh; /* Sidebar akan menutupi tinggi layar */
   overflow-y: auto;
   z-index: 1002;
   &__top {
@@ -54,7 +53,7 @@
           transform: 0.3s;
         }
         &__active {
-          background-color: var(--secondary-color);
+          background: var(--gradient-primary);
           color: #fff;
           transform: 0.3s;
         }
@@ -77,12 +76,12 @@
           font-size: 12pt;
         }
         &:hover {
-          background-color: var(--secondary-color);
+          background: var(--gradient-primary);
           color: #fff;
           transform: 0.3s;
         }
         &__active {
-          background-color: var(--secondary-color);
+          background: var(--gradient-primary);
           color: #fff;
           transform: 0.3s;
         }
@@ -102,12 +101,12 @@
           font-size: 18pt;
         }
         &:hover {
-          background-color: var(--secondary-color);
+          background: var(--gradient-primary);
           color: #fff;
           transform: 0.3s;
         }
         &__active {
-          background-color: var(--secondary-color);
+          background: var(--gradient-primary);
           color: #fff;
           transform: 0.3s;
         }
@@ -131,7 +130,7 @@
 @media only screen and (max-width: 870px) {
   /* For mobile phones: */
   .sidebar {
-    width: 200px;
+    width: 20vw;
   }
 }
 @media only screen and (max-width: 801px) {

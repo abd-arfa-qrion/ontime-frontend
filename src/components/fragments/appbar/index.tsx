@@ -25,12 +25,12 @@ const Appbar = () => {
         />
         <div className="flex flex-col gap-0 items-left">
           <p className="text-lg md:text-xl font-semibold"> {namaInstansi}</p>
-          <p className="text-xs md:text-sm text-gray-700">
+          <p className="text-xs md:text-sm text-gray-400">
             NPSN: {instAddInfo}
           </p>
         </div>
       </div>
-      <div className="text-md px-2 flex gap-0 md:gap-2 items-center flex-col md:flex-row ">
+      <div className="text-md px-2 flex gap-0 md:gap-2 items-center flex-col md:flex-row">
         <div className="flex gap-2 items-center">
           <div className="flex gap-2">
             <Image

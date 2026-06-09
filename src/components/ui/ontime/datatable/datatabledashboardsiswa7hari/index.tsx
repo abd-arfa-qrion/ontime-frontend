@@ -111,7 +111,7 @@ const DataTableDashboardSiswa7Hari = (prop: Proptype) => {
 
   return (
     <>
-      <Paper className="px-2 pt-2">
+      <Paper className="px-2 pt-2 shadow-none">
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">

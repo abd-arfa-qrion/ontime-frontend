@@ -5,7 +5,7 @@
     width: 100vw;
     padding: 20px;
     margin-top: 50px;
-    margin-left: 20vw;
+    margin-left: 15vw;
     &__cdata {
       min-height: 80vh;
     }
@@ -35,13 +35,21 @@
     transform: rotate(360deg);
   }
 }
-
+@media only screen and (max-width: 1130px) {
+  /* For mobile phones: */
+  .admin {
+    &__content {
+      font-size: 11px !important;
+      margin-left: 20vw;
+    }
+  }
+}
 @media only screen and (max-width: 870px) {
   /* For mobile phones: */
   .admin {
     &__content {
       font-size: 11px !important;
-      margin-left: 22vw;
+      margin-left: 20vw;
     }
   }
 }
@@ -49,11 +57,11 @@
   /* For mobile phones: */
   .admin {
     &__content {
-      margin-left: 23vw;
+      margin-left: 20vw;
     }
   }
 }
-@media only screen and (max-width: 801px) {
+@media only screen and (max-width: 800px) {
   /* For mobile phones: */
   .admin {
     &__content {

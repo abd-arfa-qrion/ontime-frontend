@@ -214,19 +214,8 @@ const Sidebar = ({ list }: Proptypes) => {
             );
           })}
         </div>
-      </div>
-
-      <div className={styles.sidebar__bottom}>
-        <Link
-          target="_blank"
-          href={`${urlQms}/token-login?token=${tokenq}`}
-          className="w-full text-white [background:var(--gradient-secondary)] hover:[background:var(--primary-color)] p-3 border rounded-md text-center underline-none"
-        >
-          <ArrowBackIos />{" "}
-          {isLoading === "btnQMS" ? "Loading..." : "Login to QMS"}
-        </Link>
-
         <Button
+          className={`mt-10 text-white [background:var(--gradient-primary)] hover:[background:var(--primary-color)] rounded-lg text-center underline-none`}
           type="button"
           onClick={() => handleSignout()}
           variant="primary"
@@ -236,6 +225,17 @@ const Sidebar = ({ list }: Proptypes) => {
           <LogoutOutlined />{" "}
           {isLoading === "btnSignOut" ? "Loading..." : "LOGOUT"}
         </Button>
+      </div>
+
+      <div className={styles.sidebar__bottom}>
+        {/* <Link
+          target="_blank"
+          href={`${urlQms}/token-login?token=${tokenq}`}
+          className="w-full text-white [background:var(--gradient-secondary)] hover:[background:var(--primary-color)] p-3 border rounded-md text-center underline-none"
+        >
+          <ArrowBackIos />{" "}
+          {isLoading === "btnQMS" ? "Loading..." : "Login to QMS"}
+        </Link> */}
       </div>
     </div>
   );
