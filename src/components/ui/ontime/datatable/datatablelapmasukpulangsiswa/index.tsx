@@ -16,7 +16,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import TableRowSkeleton from "../../../skeleton/tableRow";
 
-import { DeleteForever, RefreshRounded } from "@mui/icons-material";
+import { DeleteForever } from "@mui/icons-material";
 import EditBtn from "@/components/ui/button/edit";
 import { formatCreatedAt } from "@/utils/formatdate";
 import {
@@ -34,7 +34,7 @@ type Proptype = {
   tabActive: string;
   setTabActive: Dispatch<SetStateAction<string>>;
 };
-const DataTableLapMasukPulangGuru = (prop: Proptype) => {
+const DataTableLapMasukPulangSiswa = (prop: Proptype) => {
   const {
     data,
     setData,
@@ -151,7 +151,7 @@ const DataTableLapMasukPulangGuru = (prop: Proptype) => {
         <div className="flex items-center justify-between">
           {/* KIRI */}
           <h4 className="judul-tabel font-semibold text-md md:text-lg text-gray-800 whitespace-nowrap">
-            Laporan Absensi Masuk & Pulang Guru {filterTA}
+            Laporan Absensi Masuk & Pulang Siswa {filterTA}
           </h4>
 
           {/* KANAN */}
@@ -414,4 +414,4 @@ const DataTableLapMasukPulangGuru = (prop: Proptype) => {
   );
 };
 
-export default DataTableLapMasukPulangGuru;
+export default DataTableLapMasukPulangSiswa;

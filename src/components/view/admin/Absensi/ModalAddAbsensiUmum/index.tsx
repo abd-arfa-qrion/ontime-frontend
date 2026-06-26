@@ -62,7 +62,6 @@ const ModalAddAbsensiUmum = (props: Props) => {
   } = props;
 
   const session: any = useSession();
-  const [tahunAjaran, setTahunAjaran] = useState("");
   const [namaAbsensi, setNamaAbsensi] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -178,11 +177,6 @@ const ModalAddAbsensiUmum = (props: Props) => {
 
     const form: any = e.target as HTMLFormElement;
     const validations = [
-      {
-        condition: !tahunAjaran,
-        error: "tahunAjaran",
-        message: "Maaf, Tahun Ajaran wajib dipilih!",
-      },
       {
         condition: !form.jamMasuk.value || !form.menitMasuk.value,
         error: "waktuMasuk",

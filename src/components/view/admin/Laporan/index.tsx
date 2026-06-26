@@ -7,6 +7,7 @@ import DownloadAbsensiModal from "./Modaldownload";
 import DataTableUmumGuru from "./datatabelumum/datatableguru";
 import DataTableLapMasukPulangGuru from "@/components/ui/ontime/datatable/datatablelapmasukpulangguru";
 import { LapAbsensiMasukGuru } from "@/type/Laporan.type";
+import DataTableLapMasukPulangSiswa from "@/components/ui/ontime/datatable/datatablelapmasukpulangsiswa";
 
 type Proptype = {
   setToaster: Dispatch<SetStateAction<{}>>;
@@ -64,6 +65,20 @@ const LaporanCetak = (props: Proptype) => {
               loadingFetch={loadingFetch}
               setLoadingFetch={setLoadingFetch}
               filterTA={filterTA}
+              tabActive={subjek}
+              setTabActive={setSubjek}
+            />
+          ) : jenisAbsensi === "masuk" && subjek === "siswa" ? (
+            <DataTableLapMasukPulangSiswa
+              setToaster={setToaster}
+              session={session}
+              data={lapAbsenMasukGuru}
+              setData={setLapAbsenMasukGuru}
+              loadingFetch={loadingFetch}
+              setLoadingFetch={setLoadingFetch}
+              filterTA={filterTA}
+              tabActive={subjek}
+              setTabActive={setSubjek}
             />
           ) : jenisAbsensi === "pelajaran" && subjek === "guru" ? (
             <p>Maaf Tidak Ada absen pelajaran untuk Guru</p>
