@@ -73,7 +73,7 @@ const HeadContentRightLaporan = (prop: Proptype) => {
           },
         }}
       >
-        Absen Masuk Kantor
+        Absensi Masuk & Pulang
       </Button>
       <Button
         onClick={() => handleClick("umum")}
@@ -96,13 +96,14 @@ const HeadContentRightLaporan = (prop: Proptype) => {
           },
         }}
       >
-        Absen Umum
+        Absensi Umum
       </Button>
       <Button
         onClick={() => handleClick("pelajaran")}
         variant={jenisAbsensi === "pelajaran" ? "contained" : "outlined"}
         sx={{
           fontSize: "12px",
+          fontWeight: "bold",
           padding: "8px 20px",
           borderRadius: "10px",
           color: jenisAbsensi === "pelajaran" ? "#fff" : "var(--primary-color)",
@@ -119,7 +120,7 @@ const HeadContentRightLaporan = (prop: Proptype) => {
           },
         }}
       >
-        Absen Pelajaran
+        Absensi Pelajaran
       </Button>
       <FilterTahunAjaran filterTA={filterTA} setFilterTA={setFilterTA} />
     </div>
