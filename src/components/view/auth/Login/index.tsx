@@ -44,31 +44,31 @@ const LoginView = ({ setToaster }: any) => {
 
       console.log("berhasil recaptcha:", recaptchaToken);
 
-      //ini request auth ke qms
-      const resAuth = await fetch(
-        `${process.env.NEXT_PUBLIC_ONTUITION_BASEURL}/api/auth/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userIdentity: form.username.value,
-            password: form.password.value,
-          }),
-        },
-      );
+      // //ini request auth ke qms
+      // const resAuth = await fetch(
+      //   `${process.env.NEXT_PUBLIC_ONTUITION_BASEURL}/api/auth/login`,
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       userIdentity: form.username.value,
+      //       password: form.password.value,
+      //     }),
+      //   },
+      // );
 
-      const resAuthJson = await resAuth.json();
+      // const resAuthJson = await resAuth.json();
 
-      if (resAuthJson.success === true) {
-        sessionStorage.setItem("tokenQMS", resAuthJson.data.token);
-        sessionStorage.setItem(
-          "refreshTokenQMS",
-          resAuthJson.data.refreshToken,
-        );
-        console.log("success login qms");
-      }
+      // if (resAuthJson.success === true) {
+      //   sessionStorage.setItem("tokenQMS", resAuthJson.data.token);
+      //   sessionStorage.setItem(
+      //     "refreshTokenQMS",
+      //     resAuthJson.data.refreshToken,
+      //   );
+      //   console.log("success login qms");
+      // }
 
       console.log("START SIGNIN");
       const res = await signIn("credentials", {

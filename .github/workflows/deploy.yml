@@ -3,11 +3,11 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - "staging"
+      - "prod"
 
 jobs:
   deploy:
-    environment: staging
+    environment: prod
     runs-on: ubuntu-latest
 
     steps:
@@ -71,7 +71,7 @@ jobs:
             echo "Running new container..."
             docker run -d \
               --restart always \
-              -p 3000:3000 \
+              -p 3001:3001 \
               --name ${{ vars.CONTAINER_NAME }} \
               -e NODE_ENV=production \
               -e NEXTAUTH_SECRET='${{ secrets.NEXTAUTH_SECRET }}' \

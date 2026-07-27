@@ -4,9 +4,9 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "3001:3001"
     restart: always
     environment:
       - NODE_ENV=production
-      - NEXTAUTH_URL=https://rampay.qrion.id
-      - NEXT_PUBLIC_NEXTAUTH_URL=https://rampay.qrion.id
+      - NEXTAUTH_URL=https://admin.ontime.qrion.id
+      - NEXT_PUBLIC_NEXTAUTH_URL=https://admin.ontime.qrion.id
