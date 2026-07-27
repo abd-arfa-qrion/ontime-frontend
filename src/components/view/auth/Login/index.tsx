@@ -86,6 +86,7 @@ const LoginView = ({ setToaster }: any) => {
           variant: "success",
           message: "Login sukses!",
         });
+        console.log("berhasil login ontime");
         push(callbackUrl);
       } else {
         setIsLoading(false);
@@ -93,6 +94,7 @@ const LoginView = ({ setToaster }: any) => {
           variant: "danger",
           message: "Username / Password salah!",
         });
+        console.log("gagal login ontime");
       }
     } catch (error: any) {
       console.error("LOGIN ERROR FULL:", error);
